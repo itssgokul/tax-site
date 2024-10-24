@@ -9,7 +9,6 @@ import Section from '../../ui/Section.astro'
 import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 // - UI
-import ChipNotification from '../../ui/ChipNotification.astro'
 import { Image } from 'astro:assets'
 import Button from '../../ui/Button.astro'
 // Content
@@ -31,32 +30,6 @@ const { type = 'top-icon', title, icon = 'envelope', iconStyle, align, classes }
 ---
 
 <Section id="intro" padding="none" classes="dark:bg-neutral-900">
-	<!-- <Row>
-		<Col span="2" />
-		<Col span="8" align="center">
-			<ChipNotification radius="rounded-full" classes="mb-6">
-				<strong>30K+</strong> satisfied customers
-				<AvatarGroup avatars={avatars} radius="rounded-full" slot="button" />
-			</ChipNotification>
-			<h1>Enhance team <strong>performance</strong> with seamless integration</h1>
-
-			<p class="pb-0 text-lg">Work smarter, not harder, with our innovative platform</p>
-			<Button size="lg" link="/">Get started for free</Button>
-		</Col>
-		<Col span="2" />
-		<Col span="2" />
-		<Col span="8">
-			<Image
-				src={heroImage}
-				alt="Foxi. The tailwind astro theme"
-				class="translate-y-8 shadow-2xl shadow-neutral-200 dark:shadow-neutral-950"
-				format="webp"
-			/></Col
-		>
-		<Col span="2" />
-	</Row> -->
-
-	<!------------------------------------>
 	<Row classes="items-center">
 		<Col span="6" align="center">
 			<h1><strong>Accounting, Tax, Payroll</strong> XZY helps you with the practicalities </h1>
