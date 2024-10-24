@@ -35,31 +35,64 @@ import Button from '../../ui/Button.astro'
 
 <Section id="features">
 	<Row>
-		
-		<Col span="6">
-			<span>
+		<Col span="5" classes=''>
+			<h2 class="text-pretty mb-0 text-center text-5xl md:hidden"><strong> About</strong> Us</h2>
 				<Icon
 				name="about-us"
-				class="sm:h-5/6 sm:w-5/6 h-full w-full -translate-y-10"
+				class="h-full w-full -translate-y-10"
 				class:list={[
 					'shrink-0',
 					{ [`size-6 text-primary-500`]: iconStyle != 'square' },
 					{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
 				]}
-			/>
-			</span>
-			
+			/>			
 			 </Col>
-		<Col span="6" classes="mb-12 mx-auto">
-			<h2 class="text-pretty mb-0"><strong> About</strong> Us</h2>
+		<Col span="7" classes="mb-12">
+			<h2 class="text-pretty mb-0 hidden md:block"><strong> About</strong> Us</h2>
 
-			<p class="pb-0 text-base text-justify">
+			<p class="pb-0 text-base text-justify flex">
+				<span>
+					<Icon
+				name="filled-star"
+				class="me-2"
+				class:list={[
+					'shrink-0',
+					{ [`size-6 text-primary-500`]: iconStyle != 'square' },
+					{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
+				]}
+			/>	
+				</span> 
 				At XZY, we are committed to simplifying the complexities of Tax Services, Accounting,  Financial Advisory, and Business Registration & Compliance services for individuals and businesses. We understand that navigating financial regulations can be overwhelming, which is why we provide expert solutions designed to save you time, reduce stress, and maximize your financial benefits.
 			</p>
-			<p class="pb-0 text-base text-justify">
-				Our range of services includes Income Tax Returns, GST and TDS Filings, Accounting Services, Company Registrations,<a class="text-primary-500" href=""> and more.</a>  Whether you're an individual looking for assistance with personal taxes or a business needing complete financial management, we’re here to handle the details so you can focus on what matters most.
+			<p class="pb-0 text-base text-justify flex">
+				<span>
+					<Icon
+				name="filled-star"
+				class="me-2"
+				class:list={[
+					'shrink-0',
+					{ [`size-6 text-primary-500`]: iconStyle != 'square' },
+					{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
+				]}
+			/>	
+				</span> 
+				<span>
+					Our range of services includes Income Tax Returns, GST and TDS Filings, Accounting Services, Company Registrations,<a class="text-primary-500" href=""> and more.</a>  Whether you're an individual looking for assistance with personal taxes or a business needing complete financial management, we’re here to handle the details so you can focus on what matters most.
+				</span>
 			</p>
-			<p class="pb-0 text-base text-justify">
+			<p class="pb-0 text-base text-justify flex">
+				<span>
+					<Icon
+				name="filled-star"
+				class="me-2"
+				class:list={[
+					'shrink-0',
+					{ [`size-6 text-primary-500`]: iconStyle != 'square' },
+					{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
+				]}
+			/>	
+				</span> 
+				
 				What sets us apart is our dedication to personalized support. We work closely with each client to understand their unique financial situation and offer tailored solutions that not only meet legal requirements but also optimize tax savings and financial efficiency.
 			</p>
 			<Button size="lg" classes="my-2"  link="/">Let us take the complexity out of your finances
