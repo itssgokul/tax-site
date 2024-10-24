@@ -62,10 +62,10 @@ const { type = 'top-icon', title, icon = 'envelope', iconStyle, align, classes }
 			<h1><strong>Accounting, Tax, Payroll</strong> XZY helps you with the practicalities </h1>
 
 			<p class="pb-0 text-lg">We provide more services. Fill out the form, and we will contact you as soon as possible.</p>
-			<Button size="lg" link="/">View Other Services</Button>
-			<Button size="lg" style="neutral" link="/">Fill a Form
+			<Button size="lg" classes="my-2" link="/">View Other Services</Button>
+			<Button size="lg" classes="my-2" style="neutral" link="/">Fill a Form
 				<Icon
-				name="envelope"
+				name="envelope",
 				class:list={[
 					'shrink-0',
 					{ [`size-6 text-primary-500`]: iconStyle != 'square' },
@@ -77,7 +77,7 @@ const { type = 'top-icon', title, icon = 'envelope', iconStyle, align, classes }
 		<Image
 				src={heroImage}
 				alt="Foxi. The tailwind astro theme"
-				class="h-full w-full dark:shadow-neutral-950"
+				class="h-full w-full mt-3 dark:shadow-neutral-950"
 				format="webp"
 			/>
 	     </Col>
