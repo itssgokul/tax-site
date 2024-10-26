@@ -26,13 +26,13 @@ type Props = {
 const { title, text, data, classes } = Astro.props
 ---
 
-<StickySidebar classes={classes}>
+<StickySidebar id={title} classes={classes}>
 	<header slot="sidebar">
 		{title && <h3 class="text-3xl">{title}</h3>}
 		{text && <p class="text-lg leading-relaxed">{text}</p>}
 	</header>
 
-	<Row>
+	<Row classes='none'>
 		{
 			// Map through the filtered features and render them
 			data.map((feature: FeatureData) => (
