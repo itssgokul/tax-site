@@ -26,7 +26,7 @@ const { id, title, text, classes } = Astro.props
 		<Col span="6" classes={`self-center`}>
 			<header class="max-w-xl">
 				<h1 set:html={title} />
-				<p class="text-lg leading-relaxed">{text}</p>
+				<p class="text-lg leading-relaxed" set:html={text}></p>
 			</header>
 		</Col>
 		<Col span="6" classes="relative">

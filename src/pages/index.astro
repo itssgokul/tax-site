@@ -5,6 +5,8 @@ import Layout from '../layouts/Layout.astro'
 // - UI
 import Hero from '../components/blocks/hero/HomeCTA.astro'
 import Features from '../components/blocks/features/FeatureCards.astro'
+import OurServices from '../components/blocks/Services/OurServices.astro'
+import WhyUs from '../components/blocks/whyUs/WhyUs.astro'
 
 // Content
 // - SEO
@@ -18,4 +20,6 @@ const SEO = {
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero />
 	<Features />
+	<OurServices />
+	<WhyUs />
 </Layout>
