@@ -53,12 +53,12 @@ export const footerNavigationData: FooterData = {
 					subCategoryLink: '/services'
 				},
 				{
-					subCategory: 'FAQ',
-					subCategoryLink: '/faq'
+					subCategory: 'Blog',
+					subCategoryLink: '/blog'
 				},
 				{
-					subCategory: 'Pricing',
-					subCategoryLink: '/pricing'
+					subCategory: 'FAQ',
+					subCategoryLink: '/faq'
 				},
 				{
 					subCategory: 'Terms',
@@ -71,7 +71,7 @@ export const footerNavigationData: FooterData = {
 			subCategories: [
 				{
 					subCategory: 'About us',
-					subCategoryLink: '/'
+					subCategoryLink: '/#features'
 				},
 				{
 					subCategory: 'News',
