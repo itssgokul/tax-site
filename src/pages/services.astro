@@ -24,33 +24,35 @@ const SEO = {
 }
 // - Page Header
 const header = {
-	title: '<strong>Solutions</strong> for All Your Business and Financial Needs',
-	text: 'From tax filings to financial planning, we’ve got you covered.'
+	title: 'From tax Filings <strong>to</strong> Financial planning',
+	text: ' Clear and organized, divided into sections like Finance & Accounting, Tax & Legal, Business Compliance, and Financial Advisory'
 }
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
-	<Hero classess='!max-w-5xl mx-auto' title={header.title} text={header.text} />
+	<Hero classess='!max-w-6xl mx-auto' title={header.title} text={header.text} />
 	<Feature
 		title="Finance and Accounting"
 		text="Streamline tasks and focus on what matters with tools designed to boost your productivity."
 		data={featuresSecurity}
-		classes="bg-neutral-50 dark:bg-neutral-900"
+		
 	/>
 	<Feature
 		title="Tax"
 		text="Keep your data safe with top-notch security measures and real-time threat detection."
 		data={featuresProductivity}
+		classes="bg-neutral-50 dark:bg-neutral-900"
 	/>
 	<Feature
 		title="Business Registration & Compliance"
 		text="Effortlessly connect your favorite apps and automate workflows for a smoother workday."
 		data={featuresIntegrations}
-		classes="bg-neutral-50 dark:bg-neutral-900"
+		
 	/>
 	<Feature
 		title="Financial Advisory"
 		text="Our friendly support team is always here to assist you with any questions or issues."
 		data={featuresSupport}
+		classes="bg-neutral-50 dark:bg-neutral-900"
 	/>
 </Layout>
