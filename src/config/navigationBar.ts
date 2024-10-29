@@ -35,18 +35,18 @@ export const navigationBarData: NavData = {
 	logo: {
 		src: '/logo.svg',
 		alt: 'The tailwind astro theme',
-		text: 'Foxi.'
+		text: 'One Point.'
 	},
 	navItems: [
 		{ name: 'Home', link: '/' },
 		{ name: 'Services', link: '/services' },
 		{ name: 'Blog', link: '/blog' },
-		{ name: 'Tolls & Calculater', link: '/comming-soon' },
+		{ name: 'Tools & Calculater', link: '/coming-soon' },
 		// {
-		// 	name: 'Tolls & Calculater',
+		// 	name: 'Tools & Calculater',
 		// 	link: '#',
 		// 	submenu: [
-		// 		{ name: 'Tolls & Calculater', link: '/comming-soon' },
+		// 		{ name: 'Tools & Calculater', link: '/coming-soon' },
 		// 	]
 		// },
 		{ name: 'FAQ', link: '/faq' },
