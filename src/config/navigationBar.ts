@@ -41,13 +41,14 @@ export const navigationBarData: NavData = {
 		{ name: 'Home', link: '/' },
 		{ name: 'Services', link: '/services' },
 		{ name: 'Blog', link: '/blog' },
-		{
-			name: 'Tolls & Calculater',
-			link: '#',
-			submenu: [
-				{ name: 'Terms', link: '/terms' }
-			]
-		},
+		{ name: 'Tolls & Calculater', link: '/comming-soon' },
+		// {
+		// 	name: 'Tolls & Calculater',
+		// 	link: '#',
+		// 	submenu: [
+		// 		{ name: 'Tolls & Calculater', link: '/comming-soon' },
+		// 	]
+		// },
 		{ name: 'FAQ', link: '/faq' },
 	],
 	navActions: [{ name: 'Contact', link: '/contact', style: 'primary', size: 'lg' }]
