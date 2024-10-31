@@ -1,230 +1,277 @@
 [
 	{
-		"title": "Real-Time Analytics",
-		"icon": "chart-pie",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Analytics"
+		"title": "Book Keeping",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Customizable Dashboards",
-		"icon": "squares-plus",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Analytics"
+		"title": "Project Report",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Task Management",
-		"icon": "cliboard-document-check",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Productivity"
+		"title": "MIS Report",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Third-Party Apps",
-		"icon": "rocket",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Productivity"
+		"title": "Financial Forecasts & Projections",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Mobile Accessibility",
-		"icon": "device-phone-mobile",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "Cash Flows and Analysis",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Dedicated Customer Support",
-		"icon": "trophy",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "Financial Statements",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Robust Data Security",
-		"icon": "shield-check",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Security"
+		"title": "Account receivable",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Scalability",
-		"icon": "arrow-treding-up",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Security"
+		"title": "Account payable",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Real-Time Notifications",
-		"icon": "bell-alert",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Security"
+		"title": "Fiduciary Accounting",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Accounts"
 	},
 	{
-		"title": "Advanced Reporting",
-		"icon": "clipboard-document-list",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Analytics"
+		"title": "Tax Preparation",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Team Collaboration Tools",
-		"icon": "user-group",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Productivity"
+		"title": "Tax Planning",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "In-App Messaging",
-		"icon": "chat-bubble-left-right",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Integrations"
+		"title": "Tax on Non - Resident",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Multi-Device Sync",
-		"icon": "computer-desktop",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "Transfer Pricing",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Customizable Alerts",
-		"icon": "bell",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "GST Filing",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "API Integrations",
-		"icon": "arrow-path-rounded-square",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Integrations"
+		"title": "ESI Filing",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "User Role Management",
-		"icon": "user",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Security"
+		"title": "PF Filing",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Custom Themes",
-		"icon": "paint-brush",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Analytics"
+		"title": "TDS Filing",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Data Backup",
-		"icon": "circle-stack",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Security"
+		"title": "GST Audit",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Performance Tracking",
-		"icon": "arrow-trending-up",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Analytics"
+		"title": "Internal Audit",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Interactive Tutorials",
-		"icon": "document-chart-bar",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "Litigation Support",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Custom Widgets",
-		"icon": "squares-plus",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Analytics"
+		"title": "Stock Audit",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Tax"
 	},
 	{
-		"title": "Data Visualization",
-		"icon": "eye",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Analytics"
+		"title": "Goods and Service Tax (GST)",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Integration Marketplace",
-		"icon": "shopping-cart",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Integrations"
+		"title": "Employee State Insurance (ESI)",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Onboarding Assistance",
-		"icon": "user",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "The Employees Provident Funds And Miscellaneous Provision's(EPF)",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Knowledge Base",
-		"icon": "document-text",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "Company Registration",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Live Chat Support",
-		"icon": "chat-bubble-left-ellipsis",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "LLP Registration",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Customizable Workspaces",
-		"icon": "cursor-arrow-ripple",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Productivity"
+		"title": "Partnership Registration",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Task Automation",
-		"icon": "rectangle-stack",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Productivity"
+		"title": "Trust Registration",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Accessibility Features",
-		"icon": "eye-slash",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Security"
+		"title": "IE Code",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Enhanced Mobile Access",
-		"icon": "mobile",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Security"
+		"title": "PAN",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Advanced Bug Tracking",
-		"icon": "bug-ant",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Productivity"
+		"title": "TAN",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Comprehensive Balancer",
-		"icon": "scale",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "Shop and Establishment",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Voice Recordings",
-		"icon": "microphone",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Support"
+		"title": "Professional Tax",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "User Identity Verification",
-		"icon": "identification",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Productivity"
+		"title": "Trade Mark",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Payment Integrations",
-		"icon": "credit-card",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Integrations"
+		"title": "FSSAI",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
 	},
 	{
-		"title": "Transparent API ",
-		"icon": "cube-transparent",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Integrations"
+		"title": "MSME Registration",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Registration"
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	{
+		"title": "Asset management",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Finance"
 	},
 	{
-		"title": "Clever CRM Integration",
-		"icon": "light-bulb",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Integrations"
+		"title": "Mutual fund advisory",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Finance"
 	},
 	{
-		"title": "API key Integration",
-		"icon": "key",
-		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
-		"category": "Integrations"
+		"title": "Financial planning",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Finance"
+	},
+	{
+		"title": "Term Insurance",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Finance"
+	},
+	{
+		"title": "Health Insurance",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Finance"
+	},
+	{
+		"title": "Vehicle Insurance",
+		"icon": "check-circle",
+		"description": "",
+		"category": "Finance"
 	}
+		
+	
+	
+	
+
 ]
+
+

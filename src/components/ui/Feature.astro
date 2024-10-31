@@ -27,7 +27,54 @@ type Props = {
 const { type = 'top-icon', title, icon = 'rocket', iconStyle, align, classes } = Astro.props
 ---
 
-<div
+<div class="flex"
+	class:list={[
+		'',
+		{ ['feature--' + `${type}`]: type },
+		{ ['feature--' + `${align}`]: align },
+		{ [`${classes}`]: classes }
+	]}
+>
+	<Icon
+		name=`${icon}`
+		class:list={[
+			'shrink-0',
+			{ [`size-6 text-primary-500`]: iconStyle != 'square' },
+			{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
+		]}
+	/>
+	<div class="feature__body">
+		{
+			title && (
+				<h3
+					class:list={[
+						'feature__title',
+						{ [`mb-2 py-2`]: iconStyle === 'square' && type === 'side-icon' }
+					]}
+				>
+					{title}
+				</h3>
+			)
+		}
+		<slot />
+	</div>
+
+	<style>
+		.feature {
+			@apply flex flex-col gap-4;
+		}
+		.feature__title {
+			@apply mb-4 text-lg font-normal leading-6;
+		}
+		.feature--center {
+			@apply items-center text-center;
+		}
+		.feature--side-icon {
+			@apply flex-row;
+		}
+	</style>
+</div>
+<!-- <div
 	class:list={[
 		'feature',
 		{ ['feature--' + `${type}`]: type },
@@ -73,4 +120,4 @@ const { type = 'top-icon', title, icon = 'rocket', iconStyle, align, classes } =
 			@apply flex-row;
 		}
 	</style>
-</div>
+</div> -->
