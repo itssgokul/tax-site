@@ -9,8 +9,8 @@ import FAQ from '../components/blocks/FAQ/FaqSticky.astro'
 // Data
 import faqData from '../data/json-files/faqData.json'
 // - FAQ Categories
-const faqPricing = faqData.filter((faq) => faq.category === 'pricing')
-const faqIntegrations = faqData.filter((faq) => faq.category === 'integrations')
+const Tax = faqData.filter((faq) => faq.category === 'Tax')
+const Finance = faqData.filter((faq) => faq.category === 'Finance')
 
 // Content
 import faqImage1 from '../assets/faq/faq-01.png'
@@ -30,13 +30,13 @@ const header = {
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero title={header.title} text={header.text} />
 	<FAQ
-		title="Understanding Our Pricing Plans"
+		title="Tax Services"
 		text="Get all the details on Foxi’s pricing plans. Learn about the costs, discounts, and subscription options to find the best plan that fits your needs and budget."
-		data={faqPricing}
+		data={Tax}
 	/>
 	<FAQ classes="bg-neutral-50 dark:bg-neutral-900"
-		title="Integrations Made Easy"
+		title="Financial Advisory"
 		text="Discover how Foxi seamlessly integrates with your favorite tools and platforms. From Google Calendar to Slack, find out how to connect and enhance your productivity with powerful integrations."
-		data={faqIntegrations}
+		data={Finance}
 	/>
 </Layout>
