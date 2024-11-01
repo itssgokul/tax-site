@@ -35,13 +35,13 @@ export interface FooterData {
 
 export const footerNavigationData: FooterData = {
 	footerAbout: {
-		title: 'Foxi.',
+		title: 'OnePoint.',
 		aboutText:
 			'Your partner in financial clarity. We’re here to simplify your tax, accounting, and business compliance needs, so you can focus on what really matters.',
 		logo: {
 			src: '/logo.svg',
 			alt: 'The tailwind astro theme',
-			text: 'Foxi.'
+			text: 'OnePoint.'
 		}
 	},
 	footerColumns: [
