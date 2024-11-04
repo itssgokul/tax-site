@@ -6,7 +6,7 @@ author: "OnePoint Team"
 image: "/blog/blog-1.jpg"
 tags: ["finance", "tax", "business", "advice"]
 ---
-![Foxi is here.](/blog/blog-1.jpg)
+![OnePoint. is here.](/blog/blog-1.jpg)
 
 # Welcome to the OnePoint Blog
 
