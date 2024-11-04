@@ -21,15 +21,15 @@ export interface Config {
 }
 
 export const configData: Config = {
-	siteTitle: 'Foxi. Tailwind CSS Astro Starter Kit by Oxygenna',
+	siteTitle: 'OnePoint: Your Partner in Finance & Business Solutions',
 	siteDescription:
-		'Foxi is a design and development agency that specializes in creating beautiful and functional websites.',
+		'OnePoint offers comprehensive finance, tax, and compliance services tailored for individuals and businesses. From expert tax filing to financial advisory and business registrations, we simplify complex processes, ensuring peace of mind and precision every step of the way.',
 	ogImage: '/logo.svg',
 	logo: {
 		src: '/logo.svg',
 		alt: 'OnePoint. logo'
 	},
-	canonical: true,
+	canonical: false,
 	noindex: false,
 	mode: 'auto',
 	scrollAnimations: true
