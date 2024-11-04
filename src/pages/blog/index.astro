@@ -16,14 +16,14 @@ import { getCollection } from 'astro:content'
 // Content
 // - SEO
 const SEO = {
-	title: 'Foxi | Latest Foxi News and updates',
+	title: 'OnePoint | Latest Insights',
 	description:
-		"Explore Foxi's latest news designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your workflow with Foxi today!"
+		"Stay Updated with the Latest in Finance, Tax, and Business Compliance"
 }
 // - Page Header
 const header = {
-	title: 'The <strong>Foxi</strong> Blog. Tips, Updates & Stories',
-	text: 'Stay informed, stay productive. All the latest from the world of Foxi.'
+	title: 'The <strong>OnePoint.</strong> Blog. Tips, Updates & Stories',
+	text: 'Stay Updated with the Latest in Finance, Tax, and Business Compliance.'
 }
 
 const allPosts = await getCollection('blog')
@@ -31,5 +31,5 @@ const allPosts = await getCollection('blog')
 
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero title={header.title} text={header.text} />
-	<BlogPosts data={allPosts} />
+	<BlogPosts data={allPosts} /> 
 </Layout>
