@@ -1,25 +1,44 @@
 [
 	{
-		"question": "What is the cost of the basic plan?",
-		"reply": "Finance",
+		"question": "What is Gross Total Income ?",
+		"reply": "Gross Total Income is the sum total of your income from all sources, including salary, property, royalty, capital gains etc. We will calculate this for you once you enter it all in.",
 		"category": "Finance",
 		"open": false
 	},
 	{
-		"question": "What is the cost of the basic plan?",
-		"reply": "Finance",
+		"question": "Is my Gross Total Income taxable?",
+		"reply": "No, it isn’t. Your Gross Total Income includes sources that are exempted from tax, and these won’t be included in your net taxable income.",
 		"category": "Finance",
 		"open": false
 	},
 	{
-		"question": "What is the cost of the basic plan?",
-		"reply": "Finance",
+		"question": "Can I claim a tax deduction on my Fixed Deposit Account?",
+		"reply": "You can, but based on certain considerations like the period, amount and the kind of bank.",
 		"category": "Finance",
 		"open": false
 	},
+
 	{
-		"question": "What is the cost of the basic plan?",
-		"reply": "Tax",
+		"question": "Is financial year the same as Assessment year?",
+		"reply": "No it isn't. Assessment year is the year following the financial year, which is when the tax authorities evaluate your tax statements.",
+		"category": "Tax",
+		"open": false
+	},
+	{
+		"question": "What is Gross Total Income ?",
+		"reply": "Gross Total Income is the sum total of your income from all sources, including salary, property, royalty, capital gains etc. We will calculate this for you once you enter it all in.",
+		"category": "Tax",
+		"open": false
+	},
+	{
+		"question": "What is TDS?",
+		"reply": "TDS is Tax Deducted at Source, and is usually deducted from the taxable portion of your salary before it reaches you, every month. This is usually mentioned by the company on tax documents.",
+		"category": "Tax",
+		"open": false
+	},
+	{
+		"question": "What is Advance tax?",
+		"reply": "Advance tax is the income tax that is payable once your income is more than Rs.10,000 in the given financial year.",
 		"category": "Tax",
 		"open": false
 	}

@@ -13,6 +13,7 @@ const Accounts = featuresData.filter((feature) => feature.category === 'Accounts
 const tax = featuresData.filter((feature) => feature.category === 'Tax')
 const Registration = featuresData.filter((feature) => feature.category === 'Registration')
 const Finance = featuresData.filter((feature) => feature.category === 'Finance')
+const insurance = featuresData.filter((feature) => feature.category === 'insurance')
 
 // Content
 // - SEO
@@ -53,5 +54,10 @@ const header = {
 		text="Our friendly support team is always here to assist you with any questions or issues."
 		data={Finance}
 		classes="bg-neutral-50 dark:bg-neutral-900"
+	/>
+	<Feature
+		title="Insurance"
+		text=""
+		data={insurance}
 	/>
 </Layout>

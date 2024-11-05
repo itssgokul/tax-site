@@ -60,6 +60,10 @@ export const footerNavigationData: FooterData = {
 					subCategory: 'FAQ',
 					subCategoryLink: '/faq'
 				},
+				{
+					subCategory: 'Tools & Calculater',
+					subCategoryLink: '/coming-soon'
+				},
 			]
 		},
 		{
@@ -74,9 +78,9 @@ export const footerNavigationData: FooterData = {
 					subCategoryLink: '/blog'
 				},
 				{
-					subCategory: 'Careers',
-					subCategoryLink: '/blog'
-				}
+					subCategory: 'FAQ',
+					subCategoryLink: '/faq'
+				},
 			]
 		},
 		{
