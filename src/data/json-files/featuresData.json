@@ -253,19 +253,19 @@
 		"title": "Term Insurance",
 		"icon": "check-circle",
 		"description": "",
-		"category": "Finance"
+		"category": "insurance"
 	},
 	{
 		"title": "Health Insurance",
 		"icon": "check-circle",
 		"description": "",
-		"category": "Finance"
+		"category": "insurance"
 	},
 	{
 		"title": "Vehicle Insurance",
 		"icon": "check-circle",
 		"description": "",
-		"category": "Finance"
+		"category": "insurance"
 	}
 		
 	
