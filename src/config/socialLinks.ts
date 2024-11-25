@@ -10,18 +10,18 @@ export interface SocialLink {
 
 export const socialLinks: SocialLink[] = [
 	{
-		name: 'facebook',
-		link: '/',
-		icon: 'fb-icon'
+		name: 'instagram',
+		link: 'https://www.instagram.com/onepoint.tax/',
+		icon: 'instagram'
 	},
 	{
-		name: 'twitter',
-		link: '/',
-		icon: 'twitter-icon'
+		name: 'whatsapp',
+		link: 'https://wa.me/919524015826?text=Hello%20Team',
+		icon: 'whatsapp'
 	},
-	{
-		name: 'discord',
-		link: '/',
-		icon: 'discord-icon'
-	}
+	// {
+	// 	name: 'discord',
+	// 	link: '/',
+	// 	icon: 'discord-icon'
+	// }
 ]
