@@ -35,13 +35,13 @@ export interface FooterData {
 
 export const footerNavigationData: FooterData = {
 	footerAbout: {
-		title: 'OnePoint.',
+		title: 'OnePointTax.',
 		aboutText:
 			'Your partner in financial clarity. We’re here to simplify your tax, accounting, and business compliance needs, so you can focus on what really matters.',
 		logo: {
 			src: '/logo.svg',
-			alt: 'The tailwind astro theme',
-			text: 'OnePoint.'
+			alt: 'OnePointTax logo',
+			text: 'OnePointTax.'
 		}
 	},
 	footerColumns: [
@@ -102,6 +102,6 @@ export const footerNavigationData: FooterData = {
 		}
 	],
 	subFooter: {
-		copywriteText: '© 2024 OnePoint. All Rights Reserved. | Privacy Policy | Terms & Conditions'
+		copywriteText: '© 2024 OnePointTax. All Rights Reserved. | Privacy Policy | Terms & Conditions'
 	}
 }

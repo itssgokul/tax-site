@@ -6,9 +6,9 @@ author: "OnePoint Team"
 image: "/blog/blog-1.jpg"
 tags: ["finance", "tax", "business", "advice"]
 ---
-![OnePoint. is here.](/blog/blog-1.jpg)
+![OnePointTax. is here.](/blog/blog-1.jpg)
 
-# Welcome to the OnePoint Blog
+# Welcome to the OnePointTax Blog
 
 Your go-to resource for all things finance, tax, and business compliance. We provide valuable insights, updates, and practical tips to help you navigate the complex world of finance and grow your business with confidence.
 
