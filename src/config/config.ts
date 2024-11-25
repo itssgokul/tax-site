@@ -21,13 +21,13 @@ export interface Config {
 }
 
 export const configData: Config = {
-	siteTitle: 'OnePoint: Your Partner in Finance & Business Solutions',
+	siteTitle: 'OnePointTax: Your Partner in Finance & Business Solutions',
 	siteDescription:
-		'OnePoint offers comprehensive finance, tax, and compliance services tailored for individuals and businesses. From expert tax filing to financial advisory and business registrations, we simplify complex processes, ensuring peace of mind and precision every step of the way.',
+		'OnePointTax offers comprehensive finance, tax, and compliance services tailored for individuals and businesses. From expert tax filing to financial advisory and business registrations, we simplify complex processes, ensuring peace of mind and precision every step of the way.',
 	ogImage: '/logo.svg',
 	logo: {
 		src: '/logo.svg',
-		alt: 'OnePoint. logo'
+		alt: 'OnePointTax. logo'
 	},
 	canonical: false,
 	noindex: false,

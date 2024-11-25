@@ -35,7 +35,7 @@ export const navigationBarData: NavData = {
 	logo: {
 		src: '/logo.svg',
 		alt: 'The tailwind astro theme',
-		text: 'OnePoint.'
+		text: 'OnePointTax'
 	},
 	navItems: [
 		{ name: 'Home', link: '/' },

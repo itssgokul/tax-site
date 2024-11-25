@@ -16,14 +16,14 @@ const Finance = faqData.filter((faq) => faq.category === 'Finance')
 import faqImage1 from '../assets/faq/faq-01.png'
 // - SEO
 const SEO = {
-	title: 'OnePoint. | Get Your Questions Answered with a Smile',
+	title: 'OnePointTax. | Get Your Questions Answered with a Smile',
 	description:
-		'Dive into the OnePoint. FAQ Funhouse to get answers to all your questions about pricing, integrations, features, and more. Discover how OnePoint. can make your work life more productive and enjoyable.'
+		'Dive into the OnePointTax. FAQ Funhouse to get answers to all your questions about pricing, features, and more.'
 }
 // - Page Header
 const header = {
 	title: '<strong>F</strong>requently <strong>a</strong>sked <strong>Q</strong>uestion',
-	text: 'Find answers to common questions about OnePoint. '
+	text: 'Find answers to common questions about OnepointTax. '
 }
 ---
 
@@ -31,12 +31,12 @@ const header = {
 	<Hero title={header.title} text={header.text} />
 	<FAQ
 		title="Tax Services"
-		text="Get all the details on OnePoint. pricing plans. Learn about the costs, discounts, and subscription options to find the best plan that fits your needs and budget."
+		text=""
 		data={Tax}
 	/>
 	<FAQ classes="bg-neutral-50 dark:bg-neutral-900"
 		title="Financial Advisory"
-		text="Discover how OnePoint. seamlessly integrates with your favorite tools and platforms. From Google Calendar to Slack, find out how to connect and enhance your productivity with powerful integrations."
+		text=""
 		data={Finance}
 	/>
 </Layout>
