@@ -6,12 +6,6 @@
 		"category": "Accounts"
 	},
 	{
-		"title": "Project Report",
-		"icon": "check-circle",
-		"description": "",
-		"category": "Accounts"
-	},
-	{
 		"title": "MIS Report",
 		"icon": "check-circle",
 		"description": "",
@@ -36,19 +30,13 @@
 		"category": "Accounts"
 	},
 	{
-		"title": "Account receivable",
+		"title": "Accounts Receivable Management",
 		"icon": "check-circle",
 		"description": "",
 		"category": "Accounts"
 	},
 	{
-		"title": "Account payable",
-		"icon": "check-circle",
-		"description": "",
-		"category": "Accounts"
-	},
-	{
-		"title": "Fiduciary Accounting",
+		"title": "Account Payable Management",
 		"icon": "check-circle",
 		"description": "",
 		"category": "Accounts"
@@ -67,12 +55,6 @@
 	},
 	{
 		"title": "Tax on Non - Resident",
-		"icon": "check-circle",
-		"description": "",
-		"category": "Tax"
-	},
-	{
-		"title": "Transfer Pricing",
 		"icon": "check-circle",
 		"description": "",
 		"category": "Tax"
@@ -114,12 +96,6 @@
 		"category": "Tax"
 	},
 	{
-		"title": "Litigation Support",
-		"icon": "check-circle",
-		"description": "",
-		"category": "Tax"
-	},
-	{
 		"title": "Stock Audit",
 		"icon": "check-circle",
 		"description": "",
@@ -138,7 +114,7 @@
 		"category": "Registration"
 	},
 	{
-		"title": "The Employees Provident Funds And Miscellaneous Provision's(EPF)",
+		"title": "PF Registration",
 		"icon": "check-circle",
 		"description": "",
 		"category": "Registration"
