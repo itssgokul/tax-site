@@ -61,7 +61,7 @@ export const footerNavigationData: FooterData = {
 					subCategoryLink: '/faq'
 				},
 				{
-					subCategory: 'Tools & Calculater',
+					subCategory: 'Tools & Calculator',
 					subCategoryLink: '/coming-soon'
 				},
 			]
