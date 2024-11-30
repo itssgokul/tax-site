@@ -11,7 +11,7 @@ export interface SocialLink {
 export const socialLinks: SocialLink[] = [
 	{
 		name: 'instagram',
-		link: 'https://www.instagram.com/onepoint.tax/',
+		link: 'https://www.instagram.com/onepointtax/',
 		icon: 'instagram'
 	},
 	{
