@@ -41,12 +41,12 @@ export const navigationBarData: NavData = {
 		{ name: 'Home', link: '/' },
 		{ name: 'Services', link: '/services' },
 		{ name: 'Blog', link: '/blog' },
-		{ name: 'Tools & Calculater', link: '/coming-soon' },
+		{ name: 'Tools & Calculator', link: '/coming-soon' },
 		// {
-		// 	name: 'Tools & Calculater',
+		// 	name: 'Tools & Calculator',
 		// 	link: '#',
 		// 	submenu: [
-		// 		{ name: 'Tools & Calculater', link: '/coming-soon' },
+		// 		{ name: 'Tools & Calculator', link: '/coming-soon' },
 		// 	]
 		// },
 		{ name: 'FAQ', link: '/faq' },
