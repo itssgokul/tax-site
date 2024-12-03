@@ -29,7 +29,7 @@ export const configData: Config = {
 		src: '/logo.svg',
 		alt: 'OnePointTax. logo'
 	},
-	canonical: false,
+	canonical: true,
 	noindex: false,
 	mode: 'auto',
 	scrollAnimations: true
