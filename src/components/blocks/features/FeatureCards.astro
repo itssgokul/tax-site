@@ -29,19 +29,10 @@ import { Icon } from 'astro-icon/components'
 import Button from '../../ui/Button.astro'
 ---
 
-<Section id="features">
+<Section id="features" classes='dark:bg-neutral-900'>
 	<Row>
-		<Col span="5" classes=''>
-			<h2 class="text-pretty mb-0 text-center text-5xl md:hidden"><strong> About</strong> Us</h2>
-			<Image
-			src={aboutus}
-			alt="OnePoint Tax. About Us"
-			class="h-full w-full dark:shadow-neutral-950"
-			format="webp"
-		/>
-			 </Col>
 		<Col span="7" classes="mb-12">
-			<h2 class="text-pretty mb-0 hidden md:block"><strong> About</strong> Us</h2>
+			<h2 class="text-pretty mb-0 text-5xl text-center md:text-left"><strong> About</strong> Us</h2>
 
 			<p class="pb-0 text-base text-justify flex mt-3">
 				<span>
@@ -70,7 +61,7 @@ import Button from '../../ui/Button.astro'
 			/>	
 				</span> 
 				<span>
-					Our range of services includes Income Tax Returns, GST and TDS Filings, Accounting Services, Company Registrations,<a class="text-primary-500" href=""> and more.</a>  Whether you're an individual looking for assistance with personal taxes or a business needing complete financial management, we’re here to handle the details so you can focus on what matters most.
+					Our range of services includes Income Tax Returns, GST and TDS Filings, Accounting Services, Company Registrations,<a class="text-primary-500" href="/services"> and more.</a>  Whether you're an individual looking for assistance with personal taxes or a business needing complete financial management, we’re here to handle the details so you can focus on what matters most.
 				</span>
 			</p>
 			<p class="pb-0 text-base text-justify flex">
@@ -97,5 +88,15 @@ import Button from '../../ui/Button.astro'
 				]}
 			/></Button>
 		</Col>
+
+		<Col span="5" classes=''>
+			<!-- <h2 class="text-pretty mb-0 text-center text-5xl md:hidden"><strong> About</strong> Us</h2> -->
+			<Image
+			src={aboutus}
+			alt="OnePoint Tax. About Us"
+			class="h-full w-full dark:shadow-neutral-950"
+			format="webp"
+		/>
+			 </Col>
 	</Row>
 </Section>

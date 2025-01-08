@@ -6,19 +6,20 @@ import { Image } from 'astro:assets'
 import sevices from '../../../assets/our-sevices.svg'
 ---
 
-<Section padding="bottom" id="features" classes='dark:bg-neutral-900'>
+<Section  id="features" >
 	<Row classes='items-center'>
+		<Col span="5" classes='hidden md:block'>
+			<Image
+				src={sevices}
+				alt="OnePoint. Services"
+				class="w-full h-full md:h-5/6 md:w-5/6 dark:shadow-neutral-950"
+				format="webp"
+			/>
+		</Col>
 		<Col span="7" >
-			<h2 class="text-pretty mb-0 text-5xl"><strong> Our</strong> Services</h2>
+			<h2 class="text-pretty mb-0 text-5xl text-center md:text-left"><strong> Our</strong> Services</h2>
 
 			<div class="flex-1 flex flex-col sm:flex-row flex-wrap -mb-4 -mx-2">
-				<div class="w-full sm:w-1/2 mb-4 px-2 ">
-					<div class="h-full py-4 px-4 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
-						<h3 class="text-2xl font-bold text-md mb-6">Accounting Services</h3>
-						<p class="text-sm mb-0">Streamline your finances with our Accounting Services and Company Accounts Management. We handle Bookkeeping and Financial Reporting, giving you clear insights so you can focus on growth. <a href="/services/#Finance and Accounting" class="text-end font-bold text-sm highlight animate-pulse hover:text-neutral-500 hover:animate-none">Read more</a></p>
-					    
-					</div>
-				</div>
 				<div class="w-full sm:w-1/2 mb-4 px-2 ">
 					<div class="h-full py-4 px-4 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
 						<h3 class="text-2xl font-bold text-md mb-6">Tax Services</h3>
@@ -26,7 +27,12 @@ import sevices from '../../../assets/our-sevices.svg'
 					    
 					</div>
 				</div>
-	
+				<div class="w-full sm:w-1/2 mb-4 px-2 ">
+					<div class="h-full py-4 px-4 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
+						<h3 class="text-2xl font-bold text-md mb-6">Accounting Services</h3>
+						<p class="text-sm mb-0">Streamline your finances with our Accounting Services and Company Accounts Management. We handle Bookkeeping and Financial Reporting, giving you clear insights so you can focus on growth. <a href="/services/#Finance and Accounting" class="text-end font-bold text-sm highlight animate-pulse hover:text-neutral-500 hover:animate-none">Read more</a></p>
+					</div>
+				</div>
 				<div class="w-full sm:w-1/2 mb-4 px-2 ">
 					<div class="h-full py-4 px-4 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
 						<h3 class="text-2xl font-bold text-md mb-6">Business <br> Registration & Compliance</h3>
@@ -43,14 +49,6 @@ import sevices from '../../../assets/our-sevices.svg'
 					</div>
 				</div>
 			</div>
-		</Col>
-		<Col span="5" classes=''>
-			<Image
-				src={sevices}
-				alt="OnePoint. Services"
-				class="w-full h-full md:h-5/6 md:w-5/6 dark:shadow-neutral-950"
-				format="webp"
-			/>
 		</Col>
 	</Row>
 </Section>
