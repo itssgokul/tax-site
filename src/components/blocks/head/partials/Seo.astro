@@ -18,7 +18,11 @@ type Props = {
 	noindex?: boolean
 }
 
-const { title, description, ogImage, canonical, noindex } = Astro.props
+// Use default ogImage from config if not provided in props
+import { configData } from '../../../../config/config'
+const { title, description, ogImage = configData.ogImage, canonical, noindex } = Astro.props
+const imageURL = new URL(ogImage, Astro.url.origin).href; // Resolve to full URL
+const imageAlt = `Preview image for ${title}`; // Dynamic alt text
 ---
 
 <Fragment>
@@ -28,18 +32,13 @@ const { title, description, ogImage, canonical, noindex } = Astro.props
 	<meta property="og:url" content={Astro.url} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
-	<meta property="og:image" itemprop="image" content="https://onepointtax.in/og.jpg" />
-	<!-- Size of image. Any size up to 300. Anything above 300px will not work in WhatsApp -->
-	<meta property="og:image:alt" content="OnePoint is here " />
-	<meta property="og:image:type" content="image/jpeg">
-	<meta property="og:image:width" content="300">
-    <meta property="og:image:height" content="300">
+	<meta property="og:image" content={imageURL} />
+	<meta property="og:image:alt" content={imageAlt} />
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:url" content={Astro.url} />
 	<meta property="twitter:title" content={title} />
 	<meta property="twitter:description" content={description} />
-	<meta property="twitter:image" content={ogImage} />
-	<link rel="canonical" href={Astro.url} />
-	{canonical && <link rel="canonical" href={Astro.url} item-prop="url" />}
+	<meta property="twitter:image" content={imageURL} />
+	{canonical && <link rel="canonical" href={Astro.url.href} />}
 	{noindex && <meta name="robots" content="noindex,nofollow" />}
 </Fragment>
