@@ -1,7 +1,14 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "strictNullChecks": true,
-    "allowJs": true
-  }
+    "jsx": "preserve",
+    "allowJs": true,
+    "types": [
+      "astro/client"
+    ]
+  },
+  "include": [
+    "src",
+    "astro.config.*"
+  ]
 }

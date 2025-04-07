@@ -1,20 +1,19 @@
 ---
-// Button
-// ------------
-// Description: Buttons are interactive elements activated by a user with a mouse, keyboard, or tap
+// Button Component
+// ---------------
+// Enhanced with subtle hover transformations and clear focus-visible rings.
 // Properties:
-// - Type: the type of the button (link, button, submit, reset). If its type is link, the button will be rendered as an anchor tag
-// - Size: the size of the button (lg, base, sm)
-// - Link: the link of the button (if type is link)
-// - Modal: The id of the modal that the button can trigger (optional)
-// - Style: the style of the button (primary, secondary, neutral)
-// - Variation: the variation of the button (defaultoutline, link)
-// - Elevated: whether the button is elevated or not (optional)
-// - classes: additional classes
-// Reference: https://wind-ui.com/components/buttons/
+// - Type: the type of the button ('link', 'button', 'submit', 'reset'). Renders <a> if 'link'.
+// - Size: 'lg', 'base', 'sm'
+// - Link: URL for the anchor tag (if type is 'link')
+// - Modal: ID of a modal to trigger (optional, adds data-modal attribute)
+// - Style: 'primary', 'secondary', 'neutral' (defines color scheme)
+// - Variation: 'outline', 'link' (modifies base style)
+// - Elevated: boolean (adds shadow effects)
+// - classes: additional CSS classes to apply
 
-// Props
-type Props = {
+// Props Interface
+interface Props {
 	type?: 'link' | 'button' | 'submit' | 'reset'
 	size?: 'lg' | 'base' | 'sm'
 	link?: string
@@ -22,8 +21,10 @@ type Props = {
 	style?: 'primary' | 'secondary' | 'neutral'
 	variation?: 'outline' | 'link'
 	elevated?: boolean
-	classes?: string
+	classes?: string // Using 'class' directly is also possible with Astro.props
 }
+
+// Default Prop Values
 const {
 	type = 'button',
 	size = 'base',
@@ -32,73 +33,110 @@ const {
 	style = 'primary',
 	variation,
 	elevated,
-	classes
-} = Astro.props
+	classes // renamed from class to avoid conflict if using Astro.props.class later
+} = Astro.props as Props // Explicit type assertion
+
+// Determine element type (a or button)
+const Element = type === 'link' || link ? 'a' : 'button'
+
+// Base classes including new transitions and focus ring setup
+const baseClasses = `
+	button inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap
+	rounded font-bold tracking-wide
+	transition-all duration-300 ease-in-out
+	transform hover:-translate-y-px /* Subtle lift on hover */
+	focus:outline-none focus-visible:outline-none /* Remove default outlines */
+	focus-visible:ring-2 focus-visible:ring-offset-2
+	focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950 /* Ring offset for contrast */
+	disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none disabled:translate-y-0 /* Styles for disabled state */
+`
+
+// Size specific classes
+const sizeClasses = {
+	lg: 'h-12 px-6 text-sm',
+	base: 'h-10 px-5 text-sm',
+	sm: 'h-8 px-4 text-xs'
+}
+
+// Style specific classes (including hover colors and focus ring color)
+const styleClasses = {
+	primary: `
+		bg-primary-500 text-white hover:bg-primary-700 focus-visible:ring-primary-500
+		disabled:border-primary-300 disabled:bg-primary-300
+		[&.button--variation-link]:bg-transparent [&.button--variation-link]:text-primary-500
+		hover:[&.button--variation-link]:text-primary-600 focus:[&.button--variation-link]:text-primary-600
+		[&.button--variation-outline]:border-primary-500 [&.button--variation-outline]:bg-transparent
+		[&.button--variation-outline]:text-primary-500 [&.button--variation-outline]:hover:border-primary-600
+		[&.button--variation-outline]:hover:text-primary-600
+	`,
+	secondary: `
+		bg-primary-50 text-primary-500 hover:bg-primary-100 hover:text-primary-600 focus-visible:ring-primary-500
+		disabled:border-primary-300 disabled:bg-primary-100 disabled:text-primary-400
+		[&.button--variation-link]:bg-transparent [&.button--variation-link]:text-primary-500
+		hover:[&.button--variation-link]:text-primary-600 focus:[&.button--variation-link]:text-primary-600
+		[&.button--variation-link_svg]:stroke-primary-500
+		[&.button--variation-outline]:border-primary-500 [&.button--variation-outline]:bg-transparent
+		[&.button--variation-outline]:text-primary-500 [&.button--variation-outline]:hover:border-primary-600
+		[&.button--variation-outline]:hover:text-primary-600
+		[&_svg]:stroke-primary-500
+	`,
+	neutral: `
+		bg-neutral-700 text-white hover:bg-neutral-800 focus-visible:ring-neutral-500
+		disabled:border-neutral-300 disabled:bg-neutral-300
+		[&.button--variation-link]:bg-transparent [&.button--variation-link]:text-neutral-700
+		hover:[&.button--variation-link]:text-neutral-800 focus:[&.button--variation-link]:text-neutral-900
+		[&.button--variation-outline]:border-neutral-700 [&.button--variation-outline]:bg-transparent
+		[&.button--variation-outline]:text-neutral-700 [&.button--variation-outline]:hover:border-neutral-800
+		[&.button--variation-outline]:hover:text-neutral-800
+	`
+}
+
+// Variation specific classes
+const variationClasses = {
+	outline: 'button--variation-outline border bg-transparent', // Combined base outline styles
+	link: 'button--variation-link px-0 font-normal bg-transparent' // Combined base link styles
+}
+
+// Elevation specific classes (applied conditionally)
+// Using Tailwind JIT arbitrary variants `[&.button--elevated]:`
+const elevationClasses = {
+	lg: '[&.button--elevated]:shadow-lg [&.button--elevated]:hover:shadow-md [&.button--elevated]:focus:shadow-md',
+	base: '[&.button--elevated]:shadow-md [&.button--elevated]:hover:shadow-sm [&.button--elevated]:focus:shadow-sm',
+	sm: '[&.button--elevated]:shadow-md [&.button--elevated]:hover:shadow-sm [&.button--elevated]:focus:shadow-sm',
+	primary:
+		'[&.button--elevated]:shadow-primary-500/30 [&.button--elevated]:hover:shadow-primary-500/30 [&.button--elevated]:focus:shadow-primary-500/30',
+	secondary:
+		'[&.button--elevated]:shadow-primary-500/30 [&.button--elevated]:hover:shadow-primary-500/30 [&.button--elevated]:focus:shadow-primary-500/30', // Assuming secondary elevated uses primary shadow color based on original
+	neutral:
+		'[&.button--elevated]:shadow-neutral-500/30 [&.button--elevated]:hover:shadow-neutral-500/30 [&.button--elevated]:focus:shadow-neutral-500/30'
+}
 ---
 
-{
-	type === 'link' || link ? (
-		<a
-			href={link}
-			class:list={[
-				'button',
-				{ ['button--' + `${size}`]: size },
-				{ ['button--' + `${style}`]: style },
-				{ ['button--' + `${variation}`]: variation },
-				{ ['button--elevated']: elevated },
-				{ [`${classes}`]: classes }
-			]}
-		>
-			<slot />
-		</a>
-	) : (
-		<button
-			type={type}
-			class:list={[
-				'button',
-				{ ['button--' + `${size}`]: size },
-				{ ['button--' + `${style}`]: style },
-				{ ['button--' + `${variation}`]: variation },
-				{ ['button--elevated']: elevated },
-				{ [`${classes}`]: classes }
-			]}
-			{...(modal ? { 'data-modal': modal } : {})}
-		>
-			<slot />
-		</button>
-	)
-}
-<style>
-	.button {
-		@apply inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded font-bold tracking-wide transition duration-300 focus-visible:outline-none disabled:cursor-not-allowed disabled:shadow-none;
-	}
+<element
+	href={Element === 'a' ? link : undefined}
+	type={Element === 'button' ? type : undefined}
+	class:list={[
+		baseClasses,
+		sizeClasses[size],
+		styleClasses[style],
+		variation ? variationClasses[variation] : '',
+		elevated ? 'button--elevated' : '', // Add marker class for elevation JIT variants
+		elevated ? elevationClasses[size] : '',
+		elevated ? elevationClasses[style] : '',
+		classes // User-provided extra classes
+	]}
+	{...modal ? { 'data-modal': modal } : {}}
+	{...Astro.props}
+>
+	<slot />
+</element>
 
-	.button--lg {
-		@apply h-12 px-6 text-sm [&.button--elevated]:shadow-lg [&.button--elevated]:hover:shadow-md [&.button--elevated]:focus:shadow-md;
-	}
+<!-- Note: Removed the <style> block as all styles are now applied via Tailwind classes -->
+<!-- in the script section using class:list for better maintainability and composability. -->
+<!-- Ensure your tailwind.config.js is set up to scan .astro files and includes the -->
+<!-- primary and neutral color palettes used here. -->
 
-	.button--base {
-		@apply h-10 px-5 text-sm [&.button--elevated]:shadow-md [&.button--elevated]:hover:shadow-sm [&.button--elevated]:focus:shadow-sm;
-	}
-
-	.button--sm {
-		@apply h-8 px-4 text-xs [&.button--elevated]:shadow-md [&.button--elevated]:hover:shadow-sm [&.button--elevated]:focus:shadow-sm;
-	}
-	.button--outline {
-		@apply border;
-	}
-	.button--link {
-		@apply inline-flex items-center justify-start gap-2 px-0 font-normal;
-	}
-	.button--primary {
-		@apply bg-primary-500 text-white hover:bg-primary-700 focus:bg-primary-700 disabled:border-primary-300 disabled:bg-primary-300 [&.button--elevated]:shadow-lg [&.button--elevated]:shadow-primary-500/30 [&.button--elevated]:hover:shadow-primary-500/30 [&.button--elevated]:focus:shadow-primary-500/30 [&.button--link]:bg-transparent [&.button--link]:text-primary-500 hover:[&.button--link]:text-primary-600 focus:[&.button--link]:text-primary-600 [&.button--outline]:border-primary-500 [&.button--outline]:bg-transparent [&.button--outline]:text-primary-500 [&.button--outline]:hover:border-primary-600 [&.button--outline]:hover:text-primary-600;
-	}
-
-	.button--secondary {
-		@apply bg-primary-50 text-primary-500 hover:bg-primary-100 hover:text-primary-600 focus:bg-primary-200 focus:text-primary-700 disabled:border-primary-300 disabled:bg-primary-100 disabled:text-primary-400 [&.button--elevated]:shadow-primary-500/30 [&.button--elevated]:hover:shadow-primary-500/30 [&.button--elevated]:focus:shadow-primary-500/30 [&.button--link]:bg-transparent [&.button--link]:text-primary-500 hover:[&.button--link]:text-primary-600 focus:[&.button--link]:text-primary-600 [&.button--link_svg]:stroke-primary-500 [&.button--outline]:border-primary-500 [&.button--outline]:bg-transparent [&.button--outline]:text-primary-500 [&.button--outline]:hover:border-primary-600 [&.button--outline]:hover:text-primary-600 [&_svg]:stroke-primary-500;
-	}
-
-	.button--neutral {
-		@apply bg-neutral-700 text-white hover:bg-neutral-800 focus:bg-neutral-900 disabled:border-neutral-300 disabled:bg-neutral-300 [&.button--elevated]:shadow-neutral-500/30 [&.button--elevated]:hover:shadow-neutral-500/30 [&.button--elevated]:focus:shadow-neutral-500/30 [&.button--link]:bg-transparent [&.button--link]:text-neutral-700 hover:[&.button--link]:text-neutral-800 focus:[&.button--link]:text-neutral-900 [&.button--outline]:border-neutral-700 [&.button--outline]:bg-transparent [&.button--outline]:text-neutral-700 [&.button--outline]:hover:border-neutral-800 [&.button--outline]:hover:text-neutral-800;
-	}
-</style>
+<!-- If you prefer keeping the <style> block, you could refactor the logic above -->
+<!-- to conditionally apply simpler marker classes (e.g., 'button--primary', 'button--size-lg') -->
+<!-- and define the @apply rules within the <style> block as before, incorporating the -->
+<!-- new transition, transform, and focus-visible styles. -->
