@@ -1,22 +1,24 @@
 ---
-// Blog Post Page
-// ------------
-// Description: The blog post page.
-
-// Components
-// - Layout
 import Layout from '../../layouts/PostLayout.astro'
+import { getCollection, getEntry } from 'astro:content'
 
-// Data
-import { getCollection } from 'astro:content'
 export async function getStaticPaths() {
 	const blogEntries = await getCollection('blog')
+	// Use entry.slug for URL-friendly paths
 	return blogEntries.map((entry) => ({
 		params: { slug: entry.slug },
-		props: { entry }
+		props: { slug: entry.slug } // Pass the correct slug as a prop
 	}))
 }
-const { entry } = Astro.props
+
+const { slug } = Astro.props
+// Use getEntry instead of the deprecated getEntryBySlug
+const entry = await getEntry('blog', slug)
+
+if (!entry) {
+	throw new Error(`Blog post not found for slug: ${slug}`)
+}
+
 const { Content } = await entry.render()
 ---
 
