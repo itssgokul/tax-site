@@ -1,0 +1,464 @@
+---
+// src/components/auth/GoogleSignInForm.astro
+// import { configData } from '../../config/config'; // Adjust path if needed - Assuming configData is not strictly needed here based on provided code
+import Button from '../ui/Button.astro' // Assuming you have a Button component
+
+// Get Client ID from environment variables
+const GOOGLE_CLIENT_ID = import.meta.env.PUBLIC_GOOGLE_CLIENT_ID
+
+// Helper library for decoding JWT (optional, for getting user info client-side)
+// Run: npm install jwt-decode
+// import { jwtDecode } from 'jwt-decode'; // This will be imported in the script tag
+
+interface DecodedToken {
+	email?: string
+	name?: string
+	picture?: string
+	// Add other fields if needed based on scope
+}
+---
+
+<div
+	id="auth-container"
+	class="mx-auto max-w-md rounded-lg border border-slate-200 p-6 dark:border-slate-700"
+>
+	{/* Stage 1: Sign-In Prompt */}
+	<div id="sign-in-section">
+		<h2 class="mb-4 text-xl font-semibold">Sign in / Register</h2>
+		<p class="mb-4 text-sm text-slate-600 dark:text-slate-400">
+			Please accept the terms and sign in with Google to proceed.
+		</p>
+
+		{/* Terms & Conditions Checkbox */}
+		<div class="mb-4 flex items-center">
+			<input
+				type="checkbox"
+				id="terms-checkbox"
+				class="mr-2 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+			/>
+			<label for="terms-checkbox" class="text-sm text-slate-700 dark:text-slate-300">
+				I accept the <a
+					href="/terms"
+					target="_blank"
+					class="text-primary-600 hover:underline">Terms & Conditions</a
+				>
+			</label>
+		</div>
+		<div id="terms-error" class="mb-3 hidden text-sm text-red-500">
+			Please accept the Terms & Conditions.
+		</div>
+
+		{/* Google Sign-In Button Placeholder */}
+		<div id="google-signin-button-container" class="mb-4">
+			{/* The official Google button will be rendered here by the script */}
+			{/* You can add custom styling to this container if needed */}
+		</div>
+		<p class="text-xs text-slate-500 dark:text-slate-400">
+			Uses Google Sign in for secure authentication.
+		</p>
+	</div>
+
+	{/* Stage 2: Data Collection Form (Initially Hidden) */}
+	<div id="form-section" class="hidden">
+		<h2 class="mb-1 text-xl font-semibold">Welcome to One Point Tax!</h2>
+		<p id="user-greeting" class="mb-4 text-sm text-slate-600 dark:text-slate-400">
+			Please provide a few more details.
+		</p>
+		{/* Area for inline status/error messages */}
+		<div id="form-message-area" role="alert" class="mb-4 hidden rounded-lg p-3 text-sm">
+			{/* Message content will be set by script */}
+		</div>
+		<form id="user-data-form">
+			<div class="mb-4">
+				<label
+					for="full-name"
+					class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300"
+					>Full Name</label
+				>
+				<input
+					type="text"
+					id="full-name"
+					name="fullName"
+					required
+					class="w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-slate-600 dark:bg-slate-800"
+				/>
+			</div>
+			<div class="mb-4">
+				<label
+					for="phone-number"
+					class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300"
+					>Phone Number</label
+				>
+				<input
+					type="tel"
+					id="phone-number"
+					name="phoneNumber"
+					required
+					class="w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-slate-600 dark:bg-slate-800"
+				/>
+			</div>
+			<div class="mb-4">
+				<label
+					for="service-interest"
+					class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300"
+					>Service Interested In</label
+				>
+				<select
+					id="service-interest"
+					name="serviceInterest"
+					required
+					class="w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-slate-600 dark:bg-slate-800"
+				>
+					<option value="" disabled selected>Select a service...</option>
+					<option value="tax-prep">Tax Filing/Preparation</option>
+					<option value="GST">GST Services</option>
+					<option value="bookkeeping">Bookkeeping</option>
+					<option value="consulting">Consulting</option>
+					{/* Add other services */}
+				</select>
+			</div>
+
+			<Button type="submit" style="primary" classes="w-full">Submit Information</Button>
+		</form>
+	</div>
+
+	{/* Stage 3: Confirmation Message (Initially Hidden) */}
+	<div id="confirmation-section" class="hidden">
+		<h2 class="mb-2 text-xl font-semibold text-green-600 dark:text-green-400">Thank You!</h2>
+		<p class="text-slate-700 dark:text-slate-300">
+			We've received your information and will get in touch soon.
+		</p>
+		{/* Optionally add a button to go back home or something */}
+	</div>
+</div>
+
+<script define:vars={{ GOOGLE_CLIENT_ID }}>
+	// Import the decoder function (make sure you installed jwt-decode)
+	// Note: Standard JS modules cannot be directly imported like this in Astro's client-side scripts.
+	// We need to load jwt-decode via a CDN or bundle it. For simplicity, let's assume
+	// jwt-decode is available globally (e.g., loaded via CDN in Layout.astro or bundled).
+	// If using npm package, you'd typically bundle this script.
+	// For now, we'll assume a global `jwt_decode` function exists.
+
+	// --- Get DOM Elements ---
+	const authContainer = document.getElementById('auth-container')
+	const signInSection = document.getElementById('sign-in-section')
+	const formSection = document.getElementById('form-section')
+	const confirmationSection = document.getElementById('confirmation-section')
+	const googleButtonContainer = document.getElementById('google-signin-button-container')
+	const termsCheckbox = document.getElementById('terms-checkbox') // Removed 'as HTMLInputElement'
+	const termsError = document.getElementById('terms-error')
+	const userDataForm = document.getElementById('user-data-form') // Removed 'as HTMLFormElement'
+	const userGreeting = document.getElementById('user-greeting')
+	const formMessageArea = document.getElementById('form-message-area') // Get message area element
+	let currentGoogleIdToken = null // Variable to store the token
+	let isSubmitting = false // Flag to prevent double submission
+
+	// --- Google Sign-In Initialization ---
+	// Removed hardcoded Client ID and is:inline log
+	// GOOGLE_CLIENT_ID is now passed via define:vars
+
+	// Wrap initialization in DOMContentLoaded and add polling for the google object
+	document.addEventListener('DOMContentLoaded', () => {
+		console.log('DOM fully loaded and parsed. Starting Google library check...')
+		let googleCheckIntervalId = null // Store interval ID
+
+		googleCheckIntervalId = setInterval(() => {
+			// Check parts separately for better logging
+			const googleDefined = typeof google !== 'undefined'
+			const accountsDefined = googleDefined && typeof google.accounts !== 'undefined'
+			const idDefined = accountsDefined && typeof google.accounts.id !== 'undefined'
+			const clientIdPresent = !!GOOGLE_CLIENT_ID // Check if Client ID exists and is not empty
+
+			console.log(
+				`Checking Google Lib: google=${googleDefined}, accounts=${accountsDefined}, id=${idDefined}, clientID=${clientIdPresent}`
+			)
+
+			if (idDefined && clientIdPresent) {
+				// Check only for id and client ID presence now
+				console.log('Google library ready.')
+				clearInterval(googleCheckIntervalId) // Stop polling using the stored ID
+				googleCheckIntervalId = null // Clear the ID variable
+
+				// Proceed with initialization now that the library is confirmed ready
+				try {
+					google.accounts.id.initialize({
+						client_id: GOOGLE_CLIENT_ID, // Use the variable passed from Astro
+						callback: handleCredentialResponse // Function to handle successful sign-in
+					})
+					console.log('Google Accounts ID initialized.')
+
+					// Ensure the container element exists before rendering the button
+					if (googleButtonContainer) {
+						console.log('Rendering Google button in container:', googleButtonContainer)
+						// Render the Google Button
+						google.accounts.id.renderButton(
+							googleButtonContainer, // Target element
+							{
+								theme: 'outline', // 'filled_blue', 'filled_black'
+								size: 'large', // 'medium', 'small'
+								type: 'standard', // 'icon'
+								shape: 'rectangular' // 'pill', 'circle', 'square'
+							} // Customization options
+						)
+						console.log('google.accounts.id.renderButton called successfully.') // Add log after call
+					} else {
+						console.error('Google button container not found in DOM.')
+					}
+				} catch (error) {
+					console.error('Error initializing Google Sign-In:', error)
+					// Display error within the container if possible
+					if (googleButtonContainer) {
+						googleButtonContainer.innerHTML =
+							'<p class="text-red-500">Error initializing Google Sign-In. Check Client ID.</p>'
+					}
+				}
+			} else {
+				console.error('Google Identity Services script not loaded or Client ID missing.')
+				if (googleButtonContainer) {
+					googleButtonContainer.innerHTML =
+						'<p class="text-red-500">Error loading Google Sign-In.</p>'
+				}
+			}
+		}, 100) // Check every 100ms
+
+		// Optional: Add a timeout to stop checking after a few seconds
+		const timeoutId = setTimeout(() => {
+			if (googleCheckIntervalId) {
+				// Check if interval is still running
+				clearInterval(googleCheckIntervalId)
+				googleCheckIntervalId = null // Clear the ID variable
+				console.error('Google library did not load within 5 seconds timeout period.')
+				if (googleButtonContainer && !googleButtonContainer.hasChildNodes()) {
+					// Check if button wasn't rendered
+					googleButtonContainer.innerHTML =
+						'<p class="text-red-500">Error: Google Sign-In library failed to load.</p>'
+				}
+			}
+		}, 5000) // Stop checking after 5 seconds
+	}) // End of DOMContentLoaded listener
+
+	// --- Callback function for Google Sign-In Success ---
+	// This function needs to be defined globally or attached to the window object
+	// if the Google library calls it directly by name from the global scope.
+	// Reverting: Attaching to window might not be necessary when passed directly to initialize.
+	function handleCredentialResponse(response /*: google.accounts.id.CredentialResponse */) {
+		// Removed type annotation
+		console.log('Encoded JWT ID token received.')
+		currentGoogleIdToken = response.credential // Store the token
+
+		// 1. Check if Terms & Conditions are accepted *before* proceeding
+		// Ensure termsCheckbox is an HTMLInputElement before accessing 'checked' or 'focus'
+		if (!(termsCheckbox instanceof HTMLInputElement) || !termsCheckbox.checked) {
+			if (termsError) termsError.classList.remove('hidden')
+			if (termsCheckbox instanceof HTMLInputElement) termsCheckbox.focus() // Check type before calling focus
+			return // Stop processing
+		} else {
+			if (termsError) termsError.classList.add('hidden') // Hide error if it was shown
+		}
+
+		// 2. Decode the JWT to get user info (client-side only - for display)
+		// IMPORTANT: For production, you should send response.credential to your backend
+		//            for verification and secure handling!
+		let decoded = null // Removed type annotation
+		try {
+			// Ensure jwt_decode is available globally (e.g., via CDN)
+			// @ts-ignore - Assume jwt_decode exists globally if using CDN approach
+			if (typeof jwt_decode === 'function') {
+				// @ts-ignore
+				decoded = jwt_decode(response.credential) // Removed type argument
+				console.log('Decoded JWT:', decoded)
+				// Use optional chaining and nullish coalescing for safer access
+				const name = decoded?.name
+				const email = decoded?.email
+				// Update text content - remove "Welcome!" part
+				if (userGreeting && name) {
+					userGreeting.textContent = `Hi ${name}! Please provide a few more details.` // Changed greeting
+				} else if (userGreeting && email) {
+					userGreeting.textContent = `Hi ${email}! Please provide a few more details.` // Changed greeting
+				} else if (userGreeting) {
+					userGreeting.textContent = `Please provide a few more details.` // Changed fallback greeting
+				}
+			} else {
+				console.warn('jwt-decode function not found. Cannot decode token client-side.')
+				if (userGreeting) {
+					userGreeting.textContent = `Please provide a few more details.` // Changed fallback greeting
+				}
+			}
+		} catch (error) {
+			console.error('Error decoding JWT:', error)
+			if (userGreeting) {
+				userGreeting.textContent = `Please provide a few more details.` // Changed fallback greeting on error
+			}
+		}
+
+		// 3. Update UI: Hide Sign-In, Show Form
+		if (signInSection) signInSection.classList.add('hidden')
+		if (formSection) formSection.classList.remove('hidden')
+		if (confirmationSection) confirmationSection.classList.add('hidden') // Ensure confirmation is hidden
+	}
+
+	// --- Form Submission Handling ---
+	// --- Form Submission Handling ---
+	// Check if userDataForm is an HTMLFormElement before adding listener
+	if (userDataForm instanceof HTMLFormElement) {
+		userDataForm.addEventListener('submit', async (event) => {
+			event.preventDefault() // Prevent default browser submission
+
+			// Prevent double submission
+			if (isSubmitting) {
+				console.log('Submission already in progress...')
+				return
+			}
+			isSubmitting = true // Set submitting flag
+
+			const submitButton = userDataForm.querySelector('button[type="submit"]') // Removed type assertion
+			if (submitButton instanceof HTMLButtonElement) {
+				// Check type before accessing properties
+				submitButton.disabled = true
+				submitButton.textContent = 'Submitting...'
+			}
+
+			const formData = new FormData(userDataForm) // userDataForm is confirmed to be a form here
+			const formDataObject = Object.fromEntries(formData.entries())
+
+			console.log('Form Data Submitted:', formDataObject)
+
+			// Clear previous messages
+			if (formMessageArea) {
+				formMessageArea.textContent = ''
+				formMessageArea.className = 'hidden p-3 mb-4 text-sm rounded-lg' // Reset classes
+			}
+
+			// Ensure we have the token before sending
+			if (!currentGoogleIdToken) {
+				console.error('Google ID token is missing. Cannot submit form.')
+				// Display error inline
+				if (formMessageArea) {
+					formMessageArea.textContent =
+						'Authentication error. Please try signing in again.'
+					formMessageArea.className =
+						'p-3 mb-4 text-sm rounded-lg bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' // Error style
+				} else {
+					alert('Authentication error. Please try signing in again.') // Fallback alert
+				}
+				if (submitButton instanceof HTMLButtonElement) {
+					submitButton.disabled = false
+					submitButton.textContent = 'Submit Information'
+				}
+				isSubmitting = false // Reset flag on error
+				return
+			}
+
+			// >>> Send Data to Backend API <<<
+			try {
+				const apiResponse = await fetch('/api/submit-contact', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						formData: formDataObject,
+						googleToken: currentGoogleIdToken
+					})
+				})
+
+				if (!apiResponse.ok) {
+					// Try to get error message from API response body
+					let errorMessage = `API Error: ${apiResponse.statusText}`
+					try {
+						const errorData = await apiResponse.json()
+						errorMessage = errorData.message || errorMessage
+					} catch (e) {
+						/* Ignore JSON parsing error */
+					}
+					throw new Error(errorMessage)
+				}
+
+				const result = await apiResponse.json()
+				console.log('API Response:', result)
+
+				// Check the status returned from the API
+				let messageHandled = false; // Flag to track if we handled the response
+
+				if (result.status === 'exists') {
+					// User already exists, show inline message (info style)
+					if (formMessageArea) {
+						formMessageArea.textContent = result.message || 'You are already registered.';
+						formMessageArea.className = 'p-3 mb-4 text-sm rounded-lg bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300';
+						messageHandled = true;
+					} else {
+						alert(result.message || 'You are already registered.'); // Fallback alert
+					}
+					// **Important: Do NOT hide form here. Re-enable button and reset flag.**
+					if (submitButton instanceof HTMLButtonElement) {
+						submitButton.disabled = false;
+						submitButton.textContent = 'Submit Information';
+					}
+					isSubmitting = false;
+
+				} else if (result.status === 'success') {
+					// New user successfully inserted, show standard confirmation
+					if (formMessageArea) formMessageArea.classList.add('hidden'); // Ensure message area is hidden
+					if (formSection) formSection.classList.add('hidden');
+					if (confirmationSection) confirmationSection.classList.remove('hidden');
+					messageHandled = true;
+					// No need to reset isSubmitting here, as the form is gone.
+				}
+
+				// Handle any other unexpected success status
+				if (!messageHandled) {
+					console.warn('Received unexpected success status from API:', result.status);
+					if (formMessageArea) {
+						formMessageArea.textContent = `Submission received, but with an unexpected status: ${result.status}`;
+						formMessageArea.className = 'p-3 mb-4 text-sm rounded-lg bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'; // Warning style
+					} else {
+						alert(`Submission received, but with an unexpected status: ${result.status}`); // Fallback alert
+					}
+					// Re-enable button and reset flag for unexpected status too
+					if (submitButton instanceof HTMLButtonElement) {
+						submitButton.disabled = false;
+						submitButton.textContent = 'Submit Information';
+					}
+					isSubmitting = false;
+				}
+			} catch (error) {
+				console.error('Error submitting form data:', error)
+				// Display error inline
+				if (formMessageArea) {
+					formMessageArea.textContent = `There was an error submitting your information: ${error.message || 'Please try again.'}`
+					formMessageArea.className =
+						'p-3 mb-4 text-sm rounded-lg bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' // Error style
+				} else {
+					alert(
+						`There was an error submitting your information: ${error.message || 'Please try again.'}`
+					) // Fallback alert
+				}
+				// Re-enable button and reset flag on error
+				if (submitButton instanceof HTMLButtonElement) {
+					submitButton.disabled = false
+					submitButton.textContent = 'Submit Information'
+				}
+				isSubmitting = false // Reset flag on error
+			}
+			// Removed simulation code
+			/* Original simulation re-enable logic:
+    if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Information';
+    }
+    */
+		})
+	}
+
+	// --- Terms Checkbox Listener ---
+	if (termsCheckbox && termsError) {
+		termsCheckbox.addEventListener('change', () => {
+			if (termsCheckbox.checked) {
+				termsError.classList.add('hidden')
+			}
+		})
+	}
+
+	// Removed the 'declare global' block as it's TypeScript syntax
+</script>

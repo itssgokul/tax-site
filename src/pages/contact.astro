@@ -3,7 +3,8 @@
 // - Layout
 import Layout from '../layouts/Layout.astro'
 // - UI
-import FormHero from '../components/blocks/hero/ContactHero.astro'
+// import FormHero from '../components/blocks/hero/ContactHero.astro' // Replaced with GoogleSignInForm
+import GoogleSignInForm from '../components/auth/GoogleSignInForm.astro'; // Import the new component
 
 // Content
 // - SEO
@@ -20,9 +21,15 @@ const header = {
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
-	<FormHero
-		title={header.title}
-		text={header.text}
-		id="contact"
-	/>
+	{/* Optional: Keep the header section if desired */}
+	<section class="py-16 md:py-24">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto mb-12 max-w-3xl text-center">
+				<h1 class="mb-4 font-headings text-4xl font-black tracking-tight text-neutral-950 md:text-6xl dark:text-white" set:html={header.title} />
+				<p class="text-lg text-neutral-500 dark:text-neutral-400" set:html={header.text} />
+			</div>
+			{/* Render the Google Sign-In Form */}
+			<GoogleSignInForm />
+		</div>
+	</section>
 </Layout>

@@ -18,11 +18,15 @@ export interface NavItem {
 	submenu?: NavSubItem[]
 }
 
+// Define specific types for Button style and size, matching Button.astro props
+type ButtonStyle = 'primary' | 'secondary' | 'neutral';
+type ButtonSize = 'lg' | 'base' | 'sm';
+
 export interface NavAction {
 	name: string
 	link: string
-	style: string
-	size: string
+	style: ButtonStyle // Use specific type
+	size: ButtonSize   // Use specific type
 }
 
 export interface NavData {
@@ -51,5 +55,8 @@ export const navigationBarData: NavData = {
 		// },
 		{ name: 'FAQ', link: '/faq' },
 	],
-	navActions: [{ name: 'Contact', link: '/contact', style: 'primary', size: 'lg' }]
+	navActions: [
+        // { name: 'Register / Sign In', link: '/register', style: 'secondary', size: 'lg' }, // Removed Register link
+        { name: 'Contact', link: '/contact', style: 'primary', size: 'lg' }
+    ]
 }
