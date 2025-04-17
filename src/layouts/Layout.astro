@@ -3,7 +3,7 @@
 import NavigationBar from '../components/ui/NavigationBar.astro'
 import Main from '../components/ui/Main.astro'
 import Footer from '../components/ui/Footer.astro'
-import Modal from '../components/blocks/modal/SignUp.astro'
+// import Modal from '../components/blocks/modal/SignUp.astro' // Removed import
 import Header from '../components/blocks/head/Header.astro'
 import Scriprs from '../components/scripts/LocalScripts.astro'
 import GoogleTagManagerBody from '../components/scripts/googleTagManagerBody.astro'
@@ -49,7 +49,7 @@ const GOOGLE_CLIENT_ID = import.meta.env.PUBLIC_GOOGLE_CLIENT_ID || 'YOUR_FALLBA
 			<slot />
 		</Main>
 		<Footer />
-		<Modal />
+		{/* <Modal /> Removed usage */}
 		<Scriprs />
 	</body>
 </html>

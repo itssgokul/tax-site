@@ -34,13 +34,11 @@ const {
 	variation,
 	elevated,
 	classes
-	// Removed ...rest for now to simplify
-} = Astro.props // Removed 'as Props' assertion
+} = Astro.props as Props
 
-// Determine element type (a or button), renamed to avoid conflict with DOM Element
-const ElementType = link ? 'a' : 'button'
+// Determine element type (a or button)
+const Element = link ? 'a' : 'button'
 
-// Restore complex class definitions
 // Base classes including new transitions and focus ring setup
 const baseClasses = `
   button inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap
@@ -108,48 +106,54 @@ const elevationClasses = {
 	secondary: '[&.button--elevated]:shadow-primary-500/30',
 	neutral: '[&.button--elevated]:shadow-neutral-500/30'
 }
-
-// Pre-calculate classes to simplify template
-let combinedClasses = [
-    baseClasses,
-    sizeClasses[size],
-    styleClasses[style],
-];
-if (variation) {
-    combinedClasses.push(variationClasses[variation]);
-}
-if (elevated) {
-    combinedClasses.push('button--elevated');
-    combinedClasses.push(elevationClasses[size]);
-    combinedClasses.push(elevationClasses[style]);
-}
-if (classes) { // Add explicitly passed classes
-    combinedClasses.push(classes);
-}
-// Join valid classes into a single string
-const finalClassString = combinedClasses.filter(Boolean).join(' ');
-
 ---
 
-{/* Use pre-calculated class string */}
 {
-	ElementType === 'a' ? ( // Use renamed variable
+	Element === 'a' ? (
 		<a
 			href={link}
-			class={finalClassString}
-			data-modal={modal ? modal : undefined}
-		> {/* Removed {...Astro.props} */}
+			class:list={[
+				baseClasses,
+				sizeClasses[size],
+				styleClasses[style],
+				variation ? variationClasses[variation] : '',
+				elevated ? 'button--elevated' : '',
+				elevated ? elevationClasses[size] : '',
+				elevated ? elevationClasses[style] : '',
+				classes
+			]}
+			{...(modal ? { 'data-modal': modal } : {})}
+			{...Astro.props}
+		>
 			<slot />
 		</a>
 	) : (
 		<button
 			type={type}
-			class={finalClassString}
-			data-modal={modal ? modal : undefined}
-		> {/* Removed {...Astro.props} */}
+			class:list={[
+				baseClasses,
+				sizeClasses[size],
+				styleClasses[style],
+				variation ? variationClasses[variation] : '',
+				elevated ? 'button--elevated' : '',
+				elevated ? elevationClasses[size] : '',
+				elevated ? elevationClasses[style] : '',
+				classes
+			]}
+			{...(modal ? { 'data-modal': modal } : {})}
+			{...Astro.props}
+		>
 			<slot />
 		</button>
 	)
 }
 
-{/* Removed final HTML comments */}
+<!-- Note: Removed the <style> block as all styles are now applied via Tailwind classes -->
+<!-- in the script section using class:list for better maintainability and composability. -->
+<!-- Ensure your tailwind.config.js is set up to scan .astro files and includes the -->
+<!-- primary and neutral color palettes used here. -->
+
+<!-- If you prefer keeping the <style> block, you could refactor the logic above -->
+<!-- to conditionally apply simpler marker classes (e.g., 'button--primary', 'button--size-lg') -->
+<!-- and define the @apply rules within the <style> block as before, incorporating the -->
+<!-- new transition, transform, and focus-visible styles. -->

@@ -101,16 +101,24 @@ function isActivePath(currentPath: string): boolean {
 			<!-- Navigation action buttons -->
 			<div class="header__actions">
 				{
-					navActions.map((action) => ( // Iterate directly over navActions
-						<Button
-							type="button"
-							link={action.link}
-							classes="flex-auto"
-							size={action.size}
-							style={action.style}
-						>
-							{action.name}
-						</Button>
+					navActions.map((action) => (
+						action.link === '/contact' ? (
+							// Special handling for Contact link to add data-astro-reload
+							<a href={action.link} data-astro-reload class="button inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded font-bold tracking-wide transition-all duration-300 ease-in-out transform hover:-translate-y-px focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none disabled:translate-y-0 h-10 px-5 text-sm bg-primary-500 text-white hover:bg-primary-700 focus-visible:ring-primary-500 flex-auto">
+								{action.name}
+							</a>
+						) : (
+							// Render other buttons normally
+							<Button
+								type="button"
+								link={action.link}
+								classes="flex-auto"
+								size={action.size}
+								style={action.style}
+							>
+								{action.name}
+							</Button>
+						)
 					))
 				}
 			</div>
