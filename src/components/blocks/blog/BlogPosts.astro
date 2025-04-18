@@ -20,10 +20,15 @@ type Props = {
 }
 const { data: allPosts } = Astro.props
 
-// Function to sort posts by date
-const sortedPosts = allPosts.sort((a: any, b: any) => {
-	return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-})
+// Function to sort posts by date, handling potential undefined input
+const sortedPosts = Array.isArray(allPosts)
+	? allPosts.sort((a: any, b: any) => {
+			// Ensure pubDate exists before trying to create a Date object
+			const dateA = a?.data?.pubDate ? new Date(a.data.pubDate).getTime() : 0;
+			const dateB = b?.data?.pubDate ? new Date(b.data.pubDate).getTime() : 0;
+			return dateB - dateA; // Sort descending (newest first)
+		})
+	: []; // Default to empty array if allPosts is not an array
 ---
 
 <Section>

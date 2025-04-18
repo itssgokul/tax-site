@@ -6,17 +6,25 @@ export async function getStaticPaths() {
 	const blogEntries = await getCollection('blog')
 	// Use entry.slug for URL-friendly paths
 	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { slug: entry.slug } // Pass the correct slug as a prop
+		params: { slug: entry.slug }
+		// props: { slug: entry.slug } // Removed props as slug is accessed via Astro.params
 	}))
 }
 
-const { slug } = Astro.props
+const { slug } = Astro.params // Use Astro.params for dynamic routes
+
+// Check if slug is valid before calling getEntry
+if (!slug || typeof slug !== 'string') {
+  // Redirect to 404 if slug is missing or invalid
+  return Astro.redirect('/404');
+}
+
 // Use getEntry instead of the deprecated getEntryBySlug
 const entry = await getEntry('blog', slug)
 
+// Redirect to 404 if no matching entry is found for a valid slug
 if (!entry) {
-	throw new Error(`Blog post not found for slug: ${slug}`)
+	return Astro.redirect('/404');
 }
 
 const { Content } = await entry.render()
