@@ -1,0 +1,63 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import Feature from '../components/blocks/features/FeatureSticky.astro'
+import Hero from '../components/blocks/hero/PageHeader.astro'
+
+// Data
+import featuresData from '../data/json-files/featuresData.json'
+// - Feature Categories
+const Accounts = featuresData.filter((feature) => feature.category === 'Accounts')
+const tax = featuresData.filter((feature) => feature.category === 'Tax')
+const Registration = featuresData.filter((feature) => feature.category === 'Registration')
+const Finance = featuresData.filter((feature) => feature.category === 'Finance')
+const insurance = featuresData.filter((feature) => feature.category === 'insurance')
+
+// Content
+// - SEO
+const SEO = {
+	title: 'OnePointTax. Services | Expert Finance, Tax, and Compliance Solutions',
+	description:
+		"Discover OnePointTax's range of professional services, from finance and tax advisory to business compliance and strategic financial planning. We simplify complex processes to help you achieve financial clarity and business success."
+}
+// - Page Header
+const header = {
+	title: 'From tax Filings <strong>to</strong> Financial planning',
+	text: ' Clear and organized, divided into sections like Finance & Accounting, Tax & Legal, Business Compliance, and Financial Advisory'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero classess='!max-w-6xl mx-auto' title={header.title} text={header.text} />
+	<Feature
+		title="Accounting Services"
+		text="Simplify Your Financial Management"
+		data={Accounts}
+		
+	/>
+	<Feature
+		title="Tax Services"
+		text="Maximize Your Tax Benefits"
+		data={tax}
+		classes="bg-neutral-50 dark:bg-neutral-900"
+	/>
+	<Feature
+		title="Business Registration & Compliance"
+		text="Start and Sustain Your Business with Ease"
+		data={Registration}
+		
+	/>
+	<Feature
+		title="Financial Advisory"
+		text="Plan for a Secure Financial Future"
+		data={Finance}
+		classes="bg-neutral-50 dark:bg-neutral-900"
+	/>
+	<Feature
+		title="Insurance"
+		text="Protect What Matters Most"
+		data={insurance}
+	/>
+</Layout>
