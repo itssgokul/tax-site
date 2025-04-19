@@ -1,11 +1,12 @@
 import { b as createAstro, c as createComponent, m as maybeRenderHead, d as addAttribute, e as renderSlot, a as renderTemplate, r as renderComponent, F as Fragment } from './astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { $ as $$Section, a as $$Row, b as $$Col } from './Col_-kpsvJ5I.mjs';
+import { $ as $$Section, a as $$Row, b as $$Col } from './Col_CXK7UgQZ.mjs';
 import { $ as $$Image } from './_astro_assets_Bl8UiN6Z.mjs';
 import { $ as $$Card } from './Card_BK8nP-3t.mjs';
 import 'clsx';
 /* empty css                         */
-import { $ as $$Badge, g as getCollection } from './_astro_content_YtFwpWCF.mjs';
+import { $ as $$Badge } from './Badge_BzUedGMn.mjs';
+import { g as getCollection } from './_astro_content_DpgAjiTA.mjs';
 
 const $$Astro$3 = createAstro("https://onepointtax.in/");
 const $$CardBody = createComponent(($$result, $$props, $$slots) => {

@@ -1,20 +1,10 @@
-import { b as createAstro, c as createComponent, m as maybeRenderHead, d as addAttribute, a as renderTemplate, A as AstroError, U as UnknownContentCollectionError, R as RenderUndefinedEntryError, u as unescapeHTML, f as renderUniqueStylesheet, g as renderScriptElement, h as createHeadAndContent, r as renderComponent } from './astro/server_BQC3fY5D.mjs';
-import 'kleur/colors';
-import 'clsx';
-/* empty css                          */
 import { escape } from 'html-escaper';
 import { Traverse } from 'neotraverse/modern';
 import pLimit from 'p-limit';
 import { r as removeBase, i as isRemotePath, V as VALID_INPUT_FORMATS, p as prependForwardSlash } from './consts_7OPt-DQA.mjs';
+import { A as AstroError, U as UnknownContentCollectionError, c as createComponent, R as RenderUndefinedEntryError, u as unescapeHTML, a as renderTemplate, f as renderUniqueStylesheet, g as renderScriptElement, h as createHeadAndContent, r as renderComponent } from './astro/server_BQC3fY5D.mjs';
+import 'kleur/colors';
 import * as devalue from 'devalue';
-
-const $$Astro = createAstro("https://onepointtax.in/");
-const $$Badge = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
-  Astro2.self = $$Badge;
-  const { name, link, type = "neutral", classes } = Astro2.props;
-  return renderTemplate`${link ? renderTemplate`${maybeRenderHead()}<a${addAttribute(link, "href")}${addAttribute(["badge", { [`${classes}`]: classes }, { [`badge--${type}`]: type }], "class:list")} data-astro-cid-35zd7xm4>${name}</a>` : renderTemplate`<span${addAttribute(["badge", { [`${classes}`]: classes }, { [`badge--${type}`]: type }], "class:list")} data-astro-cid-35zd7xm4>${name}</span>`}`;
-}, "D:/tax-site/src/components/ui/Badge.astro", void 0);
 
 const CONTENT_IMAGE_FLAG = "astroContentImageFlag";
 const IMAGE_IMPORT_PREFIX = "__ASTRO_IMAGE_";
@@ -74,7 +64,7 @@ class ImmutableDataStore {
    */
   static async fromModule() {
     try {
-      const data = await import('./_astro_data-layer-content_BD_l2FbQ.mjs');
+      const data = await import('./_astro_data-layer-content_3gikHZ-P.mjs');
       if (data.default instanceof Map) {
         return ImmutableDataStore.fromMap(data.default);
       }
@@ -503,4 +493,4 @@ const getEntry = createGetEntry({
 	collectionNames,
 });
 
-export { $$Badge as $, getEntry as a, getCollection as g };
+export { getEntry as a, getCollection as g };

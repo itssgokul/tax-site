@@ -1,8 +1,8 @@
 /* empty css                                     */
 import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../chunks/astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { $ as $$PostLayout } from '../../chunks/PostLayout_CBqiNG7-.mjs';
-import { a as getEntry, g as getCollection } from '../../chunks/_astro_content_YtFwpWCF.mjs';
+import { $ as $$PostLayout } from '../../chunks/PostLayout_gn9wlVnO.mjs';
+import { a as getEntry, g as getCollection } from '../../chunks/_astro_content_DpgAjiTA.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Astro = createAstro("https://onepointtax.in/");

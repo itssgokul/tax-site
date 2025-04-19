@@ -1,8 +1,8 @@
 /* empty css                                  */
 import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, u as unescapeHTML } from '../chunks/astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BnWE_35o.mjs';
-import { $ as $$GoogleSignInForm } from '../chunks/GoogleSignInForm_DMhBvRJ1.mjs';
+import { $ as $$Layout } from '../chunks/Layout_06QFzFFe.mjs';
+import { $ as $$GoogleSignInForm } from '../chunks/GoogleSignInForm_DZd4Twuo.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Contact = createComponent(($$result, $$props, $$slots) => {

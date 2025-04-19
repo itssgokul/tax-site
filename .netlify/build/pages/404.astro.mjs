@@ -1,8 +1,8 @@
 /* empty css                                  */
 import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { $ as $$Layout, a as $$Button, b as $$Icon } from '../chunks/Layout_BnWE_35o.mjs';
-import { $ as $$Section, a as $$Row, b as $$Col } from '../chunks/Col_-kpsvJ5I.mjs';
+import { $ as $$Layout, a as $$Button, b as $$Icon } from '../chunks/Layout_06QFzFFe.mjs';
+import { $ as $$Section, a as $$Row, b as $$Col } from '../chunks/Col_CXK7UgQZ.mjs';
 import { $ as $$Spacer } from '../chunks/Spacer_Dg3SIBCq.mjs';
 export { renderers } from '../renderers.mjs';
 

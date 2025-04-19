@@ -1,9 +1,9 @@
 /* empty css                                  */
 import { c as createComponent, r as renderComponent, i as renderScript, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BnWE_35o.mjs';
-import { $ as $$GoogleSignInForm } from '../chunks/GoogleSignInForm_DMhBvRJ1.mjs';
-import { $ as $$Section, a as $$Row, b as $$Col } from '../chunks/Col_-kpsvJ5I.mjs';
+import { $ as $$Layout } from '../chunks/Layout_06QFzFFe.mjs';
+import { $ as $$GoogleSignInForm } from '../chunks/GoogleSignInForm_DZd4Twuo.mjs';
+import { $ as $$Section, a as $$Row, b as $$Col } from '../chunks/Col_CXK7UgQZ.mjs';
 export { renderers } from '../renderers.mjs';
 
 const transition = "none";

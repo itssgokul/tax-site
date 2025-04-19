@@ -1,6 +1,6 @@
 import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, e as renderSlot } from './astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { $ as $$Section, a as $$Row, b as $$Col } from './Col_-kpsvJ5I.mjs';
+import { $ as $$Section, a as $$Row, b as $$Col } from './Col_CXK7UgQZ.mjs';
 /* empty css                       */
 
 const $$Astro = createAstro("https://onepointtax.in/");

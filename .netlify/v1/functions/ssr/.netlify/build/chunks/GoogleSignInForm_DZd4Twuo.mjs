@@ -1,6 +1,6 @@
 import { c as createComponent, a as renderTemplate, j as defineScriptVars, r as renderComponent, m as maybeRenderHead } from './astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { a as $$Button } from './Layout_BnWE_35o.mjs';
+import { a as $$Button } from './Layout_06QFzFFe.mjs';
 
 var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;

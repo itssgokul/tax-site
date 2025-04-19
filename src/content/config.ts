@@ -11,6 +11,14 @@ const blogCollection = defineCollection({
 	}),
 });
 
+const legalCollection = defineCollection({
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+	}),
+});
+
 export const collections = {
-	blog: blogCollection, // ✅ Use the defined collection
+	blog: blogCollection,
+	legal: legalCollection, // ✅ Add the legal collection
 };

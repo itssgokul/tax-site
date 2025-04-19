@@ -1,8 +1,8 @@
 import { b as createAstro, c as createComponent, m as maybeRenderHead, d as addAttribute, r as renderComponent, a as renderTemplate, e as renderSlot } from './astro/server_BQC3fY5D.mjs';
 import 'kleur/colors';
-import { b as $$Icon, $ as $$Layout } from './Layout_BnWE_35o.mjs';
-import { $ as $$Section, a as $$Row, b as $$Col } from './Col_-kpsvJ5I.mjs';
-import { $ as $$Badge } from './_astro_content_YtFwpWCF.mjs';
+import { b as $$Icon, $ as $$Layout } from './Layout_06QFzFFe.mjs';
+import { $ as $$Section, a as $$Row, b as $$Col } from './Col_CXK7UgQZ.mjs';
+import { $ as $$Badge } from './Badge_BzUedGMn.mjs';
 /* empty css                          */
 
 const $$Astro$2 = createAstro("https://onepointtax.in/");

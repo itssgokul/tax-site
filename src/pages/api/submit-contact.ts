@@ -1,29 +1,46 @@
 import type { APIRoute } from 'astro';
-import { OAuth2Client } from 'google-auth-library'; // Keep for token verification
-import { createClient } from '@supabase/supabase-js'; // Import Supabase client
-// Removed unused googleapis and JWT imports
+import { OAuth2Client } from 'google-auth-library';
+import { createClient } from '@supabase/supabase-js';
+// Import default and destructure for CommonJS compatibility
+import pkg from 'sib-api-v3-sdk';
+const { ApiClient, TransactionalEmailsApi, SendSmtpEmail } = pkg;
 
 // Environment variables
 const GOOGLE_CLIENT_ID = import.meta.env.PUBLIC_GOOGLE_CLIENT_ID;
-const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL; // Use PUBLIC_ prefix if URL is needed client-side elsewhere, otherwise just SUPABASE_URL
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
+const BREVO_API_KEY = import.meta.env.BREVO_API_KEY; // Add Brevo API Key
 
 // Basic validation
-if (!GOOGLE_CLIENT_ID || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-    console.error("Missing required environment variables for Google Sign-In or Supabase integration.");
+if (!GOOGLE_CLIENT_ID || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BREVO_API_KEY) {
+    console.error("Missing required environment variables for Google Sign-In, Supabase, or Brevo integration.");
     // Optionally throw an error during build or handle differently
 }
 
 const oAuth2Client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
-// Initialize Supabase client ONCE outside the handler using the service role key
-// This key should NOT be exposed client-side.
+// Initialize Supabase client ONCE outside the handler
 const supabaseAdmin = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
 
+// Initialize Brevo client ONCE outside the handler using named imports
+let defaultClient = ApiClient.instance; // Use ApiClient directly
+let apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = BREVO_API_KEY!;
+const brevoApiInstance = new TransactionalEmailsApi(); // Use TransactionalEmailsApi directly
+
+// Define sender and recipients (ensure sender email is verified in Brevo)
+const senderEmail = "noreply@onepointtax.in"; // CHANGE THIS if needed to your verified sender
+const senderName = "One Point Tax Notifications";
+const recipientEmails = [
+    // { email: "contactonepointtax@gmail.com" }, // Removed as requested
+    { email: "vijee.p@onepointtax.in" }
+];
+
+
 export const POST: APIRoute = async ({ request }) => {
-    // Check required variables again inside handler in case they weren't loaded at build time
-    if (!GOOGLE_CLIENT_ID || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-        console.error("Runtime Check: Missing environment variables for Supabase/Google.");
+    // Check required variables again inside handler
+    if (!GOOGLE_CLIENT_ID || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BREVO_API_KEY) {
+        console.error("Runtime Check: Missing environment variables for Supabase/Google/Brevo.");
         return new Response(JSON.stringify({ message: "Server configuration error." }), { status: 500 });
     }
 
@@ -119,6 +136,28 @@ export const POST: APIRoute = async ({ request }) => {
                 throw insertError;
             }
             console.log("Successfully inserted data for email:", verifiedEmail);
+
+            // ---- START: Send Brevo Email Notification ----
+            try {
+                const currentDate = new Date().toLocaleDateString('en-IN'); // Format date as DD/MM/YYYY for India
+                const subject = `New User Registration - One Point Tax - ${currentDate}`;
+                const emailContent = `A new user has registered:\nName: ${supabaseData.name || 'N/A'}\nEmail: ${supabaseData.email}\nPhone: ${supabaseData.phone_number || 'N/A'}\nService Interest: ${supabaseData.service_interest || 'N/A'}`;
+
+                let sendSmtpEmail = new SendSmtpEmail(); // Use SendSmtpEmail directly
+                sendSmtpEmail.sender = { email: senderEmail, name: senderName };
+                sendSmtpEmail.to = recipientEmails;
+                sendSmtpEmail.subject = subject;
+                sendSmtpEmail.textContent = emailContent; // Use textContent for plain text
+
+                await brevoApiInstance.sendTransacEmail(sendSmtpEmail);
+                console.log('Brevo notification email sent successfully to:', recipientEmails.map(r => r.email).join(', '));
+
+            } catch (emailError) {
+                console.error("Error sending Brevo notification email:", emailError);
+                // Log the error but don't fail the request, as user data was saved.
+            }
+            // ---- END: Send Brevo Email Notification ----
+
             return new Response(JSON.stringify({ status: 'success', message: 'Data submitted successfully.' }), { status: 200 });
         }
 
