@@ -8,12 +8,15 @@ import FAQ from '../components/blocks/FAQ/FaqSticky.astro'
 
 // Data
 import faqData from '../data/json-files/faqData.json'
-// - FAQ Categories
-const Tax = faqData.filter((faq) => faq.category === 'Tax')
-const Finance = faqData.filter((faq) => faq.category === 'Finance')
+// - FAQ Categories - Updated to include all 5 categories
+const TaxServices = faqData.filter((faq) => faq.category === 'Tax Services')
+const AccountingServices = faqData.filter((faq) => faq.category === 'Accounting Services')
+const BusinessReg = faqData.filter((faq) => faq.category === 'Business Registration & Compliance')
+const FinancialAdvisory = faqData.filter((faq) => faq.category === 'Financial Advisory')
+const Insurance = faqData.filter((faq) => faq.category === 'Insurance')
 
 // Content
-import faqImage1 from '../assets/faq/faq-01.png'
+// Removed unused image import: import faqImage1 from '../assets/faq/faq-01.png'
 // - SEO
 const SEO = {
 	title: 'OnePointTax. | Get Your Questions Answered with a Smile',
@@ -29,14 +32,30 @@ const header = {
 
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero title={header.title} text={header.text} />
+	{/* Display all 5 FAQ categories */}
 	<FAQ
 		title="Tax Services"
-		text=""
-		data={Tax}
+		text="Answers to common questions about our tax filing and advisory services."
+		data={TaxServices}
+	/>
+	<FAQ classes="bg-neutral-50 dark:bg-neutral-900"
+		title="Accounting Services"
+		text="Find information on bookkeeping, financial reporting, and more."
+		data={AccountingServices}
+	/>
+	<FAQ
+		title="Business Registration & Compliance"
+		text="Learn about setting up your business and staying compliant."
+		data={BusinessReg}
 	/>
 	<FAQ classes="bg-neutral-50 dark:bg-neutral-900"
 		title="Financial Advisory"
-		text=""
-		data={Finance}
+		text="Guidance on investments, planning, and financial health."
+		data={FinancialAdvisory}
+	/>
+	<FAQ
+		title="Insurance"
+		text="Details on life, health, vehicle, and business insurance options."
+		data={Insurance}
 	/>
 </Layout>

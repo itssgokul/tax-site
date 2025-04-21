@@ -82,6 +82,21 @@ export default {
         fadeInShadowLight: "fadeInShadowLight 500ms ease-in-out forwards",
         fadeInShadowDark: "fadeInShadowDark 500ms ease-in-out forwards",
       },
+      // Add typography customization
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-links': theme('colors.primary[500]'),
+            '--tw-prose-invert-links': theme('colors.primary[500]'), // Ensure consistency in dark mode if needed
+             a: {
+               'text-decoration': 'none', // Optional: remove underline from prose links if desired
+               '&:hover': {
+                 color: theme('colors.primary[600]'), // Match global link hover
+               },
+             },
+          },
+        },
+      }),
     },
   },
   variants: {

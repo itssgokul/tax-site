@@ -6,42 +6,50 @@
 // Components
 // - Layout
 import Row from '../../ui/Row.astro'
-import Col from '../../ui/Col.astro'
 import StickySidebar from '../basic/StickySidebar.astro'
 // - UI
-import Feature from '../../ui/Feature.astro'
+import FeatureCard from '../../ui/cards/FeatureCard.astro'; // Import FeatureCard component
+// Removed Accordion and Button imports as they are no longer used here
 
 // Props
 type FeatureData = {
 	title: string
 	icon: string
-	description: string
+	// description: string // Removed description from type
+	note?: string
 }
 type Props = {
 	title: string
 	text?: string
 	data: FeatureData[]
 	classes?: string
+	id?: string // Add optional id prop
 }
-const { title, text, data, classes } = Astro.props
+const { title, text, data, classes, id } = Astro.props // Destructure id
+
+// Prepare card props in frontmatter
+const cardProps = data.map((feature: FeatureData) => ({
+	title: feature.title,
+	icon: feature.icon,
+	cardNote: feature.note ? feature.note : '' // Ensure string or empty string
+}));
+
 ---
 
-<StickySidebar id={title} classes={classes}>
+<StickySidebar id={id || title} classes={classes}> {/* Use passed id or fallback to title */}
 	<header slot="sidebar">
-		{title && <h3 class="text-3xl">{title}</h3>}
-		{text && <p class="text-lg leading-relaxed">{text}</p>}
+		{title && <h3 class="text-3xl mb-2">{title}</h3>}
+		{text && <p class="text-lg leading-relaxed">{text}</p>} {/* Removed bottom margin as button is gone */}
+		{/* Removed CTA Button */}
 	</header>
 
-	<Row classes='none'>
+	{/* Changed layout to 3 columns on medium screens */}
+	<div class="grid grid-cols-1 gap-4 md:grid-cols-3"> {/* Adjusted gap */}
 		{
-			// Map through the filtered features and render them
-			data.map((feature: FeatureData) => (
-				<Col span="4">
-					<Feature title={feature.title} icon={feature.icon} align="left" classes="">
-						{feature.description}
-					</Feature>
-				</Col>
+			// Render cards using pre-processed props
+			cardProps.map((props) => (
+				<FeatureCard {...props} />
 			))
 		}
-	</Row>
+	</div>
 </StickySidebar>

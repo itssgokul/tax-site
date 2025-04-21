@@ -1,23 +1,23 @@
 import type { APIRoute } from 'astro';
-import { OAuth2Client } from 'google-auth-library';
+// import { OAuth2Client } from 'google-auth-library'; // Removed Google Auth
 import { createClient } from '@supabase/supabase-js';
 // Import default and destructure for CommonJS compatibility
 import pkg from 'sib-api-v3-sdk';
 const { ApiClient, TransactionalEmailsApi, SendSmtpEmail } = pkg;
 
 // Environment variables
-const GOOGLE_CLIENT_ID = import.meta.env.PUBLIC_GOOGLE_CLIENT_ID;
+// const GOOGLE_CLIENT_ID = import.meta.env.PUBLIC_GOOGLE_CLIENT_ID; // Removed Google Auth
 const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
 const BREVO_API_KEY = import.meta.env.BREVO_API_KEY; // Add Brevo API Key
 
 // Basic validation
-if (!GOOGLE_CLIENT_ID || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BREVO_API_KEY) {
-    console.error("Missing required environment variables for Google Sign-In, Supabase, or Brevo integration.");
+if (/*!GOOGLE_CLIENT_ID ||*/ !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BREVO_API_KEY) { // Removed Google ID check
+    console.error("Missing required environment variables for Supabase or Brevo integration."); // Updated error message
     // Optionally throw an error during build or handle differently
 }
 
-const oAuth2Client = new OAuth2Client(GOOGLE_CLIENT_ID);
+// const oAuth2Client = new OAuth2Client(GOOGLE_CLIENT_ID); // Removed Google Auth
 
 // Initialize Supabase client ONCE outside the handler
 const supabaseAdmin = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
@@ -39,8 +39,8 @@ const recipientEmails = [
 
 export const POST: APIRoute = async ({ request }) => {
     // Check required variables again inside handler
-    if (!GOOGLE_CLIENT_ID || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BREVO_API_KEY) {
-        console.error("Runtime Check: Missing environment variables for Supabase/Google/Brevo.");
+    if (/*!GOOGLE_CLIENT_ID ||*/ !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BREVO_API_KEY) { // Removed Google ID check
+        console.error("Runtime Check: Missing environment variables for Supabase/Brevo."); // Updated error message
         return new Response(JSON.stringify({ message: "Server configuration error." }), { status: 500 });
     }
 
@@ -56,62 +56,51 @@ export const POST: APIRoute = async ({ request }) => {
         console.log("Successfully parsed JSON body:", requestData);
     } catch (error) {
         console.error("Error parsing request body as JSON:", error); // Log the parsing error
-        return new Response(JSON.stringify({ message: "Invalid request body. Expecting JSON." }), { status: 400 });
-    }
-
-    const { googleToken, formData } = requestData;
-
-    if (!googleToken || !formData) {
-        return new Response(JSON.stringify({ message: "Missing googleToken or formData in request body." }), { status: 400 });
-    }
-
-    // 1. Verify Google ID Token
-    let payload;
-    try {
-        const ticket = await oAuth2Client.verifyIdToken({
-            idToken: googleToken,
-            audience: GOOGLE_CLIENT_ID,
-        });
-        payload = ticket.getPayload();
-        if (!payload) {
-            throw new Error("Invalid token payload");
+        // Try parsing as form data if JSON fails
+        try {
+            const requestClone = request.clone(); // Clone again for form data
+            const formData = await requestClone.formData();
+            requestData = Object.fromEntries(formData.entries());
+            console.log("Successfully parsed form data:", requestData);
+        } catch (formError) {
+            console.error("Error parsing request body as form data:", formError);
+            return new Response(JSON.stringify({ message: "Invalid request body. Expecting JSON or form data." }), { status: 400 });
         }
-        console.log("Google Token Verified. Payload:", payload);
-    } catch (error) {
-        console.error("Error verifying Google ID token:", error);
-        return new Response(JSON.stringify({ message: "Invalid Google Sign-In token." }), { status: 401 });
     }
 
-    // 2. Prepare data for Supabase
-    // Removed leftover Google Sheets authentication logic here
-    const verifiedEmail = payload.email;
-    if (!verifiedEmail) {
-        console.error("Verified email not found in token payload.");
-        return new Response(JSON.stringify({ message: "Verified email missing from token." }), { status: 400 });
+    // Extract fields directly from requestData
+    const { name, email, phone_number, service_interest } = requestData;
+
+    // Basic validation for required fields
+    if (!name || !email) {
+        return new Response(JSON.stringify({ message: "Missing required fields: name and email." }), { status: 400 });
     }
 
-    // Extract fullName from formData, default to null if missing
-    const fullName = formData.fullName || null;
-    const phoneNumber = formData.phoneNumber || null;
-    const serviceInterest = formData.serviceInterest || null;
+    // 1. Prepare data for Supabase (Google verification removed)
+    const submittedEmail = email; // Use the email submitted in the form
 
     // Explicitly define the object for Supabase
     const supabaseData = {
-        email: verifiedEmail,
-        name: fullName,
-        phone_number: phoneNumber,
-        service_interest: serviceInterest,
+        email: submittedEmail,
+        name: name, // Use submitted name
+        phone_number: phone_number || null, // Use submitted phone or null
+        service_interest: service_interest || null, // Use submitted interest or null
         updated_at: new Date().toISOString()
     };
 
-    // 3. Check if user exists, then Insert or Notify
+    // 2. Check if user exists by email OR phone, then Insert or Notify
     try {
-        console.log("Checking if email exists:", verifiedEmail);
+        console.log(`Checking if email (${submittedEmail}) or phone (${supabaseData.phone_number}) exists.`);
+        // Build the 'or' condition for the query
+        let orConditions = [`email.eq.${submittedEmail}`];
+        if (supabaseData.phone_number) {
+            orConditions.push(`phone_number.eq.${supabaseData.phone_number}`);
+        }
         const { data: existingUser, error: selectError } = await supabaseAdmin
             .from('contacts') // Use correct table name 'contacts'
-            .select('email') // Select only necessary field
-            .eq('email', verifiedEmail)
-            .maybeSingle(); // Returns one row or null, doesn't error if not found
+            .select('email, phone_number') // Select fields to check
+            .or(orConditions.join(',')) // Check if email OR phone number matches
+            .maybeSingle(); // Returns one row or null if no match
 
         if (selectError) {
             console.error("Supabase select error:", selectError);
@@ -119,14 +108,14 @@ export const POST: APIRoute = async ({ request }) => {
         }
 
         if (existingUser) {
-            // User exists - Just notify (as requested)
-            console.log("User already exists:", verifiedEmail);
-            // Return a specific status for the frontend to handle
-            return new Response(JSON.stringify({ status: 'exists', message: 'You are already registered.' }), { status: 200 });
+            // User exists (matched either email or phone) - Just notify
+            let existingField = existingUser.email === submittedEmail ? 'email' : 'phone number';
+            console.log(`User already exists with this ${existingField}:`, existingUser);
+            return new Response(JSON.stringify({ status: 'exists', message: `This ${existingField} is already registered.` }), { status: 200 }); // More specific message
 
         } else {
             // User does not exist - Insert new record
-            console.log("New user, inserting data for:", verifiedEmail);
+            console.log("New user, inserting data for:", submittedEmail);
             const { error: insertError } = await supabaseAdmin
                 .from('contacts') // Use correct table name 'contacts'
                 .insert(supabaseData);
@@ -135,13 +124,13 @@ export const POST: APIRoute = async ({ request }) => {
                 console.error("Supabase insert error:", insertError);
                 throw insertError;
             }
-            console.log("Successfully inserted data for email:", verifiedEmail);
+            console.log("Successfully inserted data for email:", submittedEmail);
 
             // ---- START: Send Brevo Email Notification ----
             try {
                 const currentDate = new Date().toLocaleDateString('en-IN'); // Format date as DD/MM/YYYY for India
-                const subject = `New User Registration - One Point Tax - ${currentDate}`;
-                const emailContent = `A new user has registered:\nName: ${supabaseData.name || 'N/A'}\nEmail: ${supabaseData.email}\nPhone: ${supabaseData.phone_number || 'N/A'}\nService Interest: ${supabaseData.service_interest || 'N/A'}`;
+                const subject = `New Contact Form Submission - One Point Tax - ${currentDate}`; // Updated subject
+                const emailContent = `New contact form submission:\nName: ${supabaseData.name || 'N/A'}\nEmail: ${supabaseData.email}\nPhone: ${supabaseData.phone_number || 'N/A'}\nService Interest: ${supabaseData.service_interest || 'N/A'}`; // Updated content description
 
                 let sendSmtpEmail = new SendSmtpEmail(); // Use SendSmtpEmail directly
                 sendSmtpEmail.sender = { email: senderEmail, name: senderName };
@@ -158,11 +147,12 @@ export const POST: APIRoute = async ({ request }) => {
             }
             // ---- END: Send Brevo Email Notification ----
 
-            return new Response(JSON.stringify({ status: 'success', message: 'Data submitted successfully.' }), { status: 200 });
+            // Return updated success message
+            return new Response(JSON.stringify({ status: 'success', message: 'Thanks for reaching out! Our expert will be in touch shortly — we’re excited to help!' }), { status: 200 });
         }
 
     } catch (error) {
         console.error("Error saving data to Supabase:", error);
-        return new Response(JSON.stringify({ message: "Failed to save data." }), { status: 500 });
+        return new Response(JSON.stringify({ message: "We’ve already got your details! Our expert will be in touch soon." }), { status: 500 });
     }
 };

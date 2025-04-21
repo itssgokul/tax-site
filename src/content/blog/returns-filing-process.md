@@ -128,4 +128,4 @@ Taking control of your returns filing process empowers your business to operate 
 
 **Ready to ditch the tax headaches? Start by identifying one key area from this guide to improve today!**
 
-Need expert help navigating complex tax regulations or choosing the right automation tools? [Get in touch with us!](/signin)
+Need expert help navigating complex tax regulations or choosing the right automation tools? [Get in touch with us!](/contact)

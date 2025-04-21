@@ -1,0 +1,83 @@
+---
+// src/components/ui/cards/FeatureCard.astro - Flipping Card Style (Reintroduced)
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	title: string;
+	icon: string; // Icon name from astro-icon
+	cardNote?: string; // Content for the card back
+}
+
+const { title, icon, cardNote } = Astro.props;
+---
+
+<div class="flip-card-container group cursor-pointer p-2">
+	{/* Set a min-height to ensure cards have a base size */}
+	{/* Increased shadow for glassmorphism */}
+	{/* Adjusted flip animation timing */}
+	<div class="flip-card-inner relative min-h-[180px] w-full rounded-xl shadow-lg transition-transform duration-500 ease-out">
+		{/* Front Face - Added glassmorphism */}
+		<div class="flip-card-front absolute inset-0 flex h-full w-full flex-col items-center justify-center rounded-xl border border-white/20 bg-white/10 p-4 text-center backdrop-blur-lg dark:border-neutral-700/30 dark:bg-neutral-800/20">
+			<span class="mb-3 inline-flex rounded-lg bg-primary-100 p-3 text-primary-600 dark:bg-primary-900/50 dark:text-primary-400">
+				<Icon name={icon} class="size-7" aria-hidden="true" />
+			</span>
+			<h4 class="text-md font-semibold text-neutral-800 dark:text-neutral-200">{title}</h4>
+		</div>
+
+		{/* Back Face - Added glassmorphism */}
+		<div class="flip-card-back absolute inset-0 h-full w-full overflow-y-auto rounded-xl border border-white/20 bg-white/10 p-5 backdrop-blur-lg dark:border-neutral-700/30 dark:bg-neutral-800/20">
+			{/* Removed Details: heading */}
+			{/* Increased font size */}
+			<p class="text-base text-neutral-800 dark:text-neutral-200">
+				{cardNote || 'No details available.'} {/* Display cardNote */}
+			</p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.flip-card-container {
+		perspective: 1000px; /* Add perspective for 3D effect */
+	}
+	.flip-card-inner {
+		transform-style: preserve-3d; /* Enable 3D space */
+	}
+	.flip-card-front,
+	.flip-card-back {
+		backface-visibility: hidden; /* Hide the back side of elements */
+		-webkit-backface-visibility: hidden; /* Safari */
+		/* Ensure position and size are correct */
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: inherit; /* Inherit rounding from parent */
+	}
+	.flip-card-back {
+		transform: rotateY(180deg); /* Start with the back face rotated away */
+	}
+	.group:hover .flip-card-inner {
+		transform: rotateY(180deg); /* Rotate the inner container on hover */
+	}
+	/* Style scrollbar for webkit browsers */
+	.flip-card-back::-webkit-scrollbar {
+	  width: 6px;
+	}
+	.flip-card-back::-webkit-scrollbar-track {
+	  background: rgba(0,0,0,0.1);
+	  border-radius: 3px;
+	}
+	.flip-card-back::-webkit-scrollbar-thumb {
+	  background: rgba(0,0,0,0.3);
+	  border-radius: 3px;
+	}
+	.flip-card-back::-webkit-scrollbar-thumb:hover {
+	  background: rgba(0,0,0,0.4);
+	}
+	/* Style scrollbar for Firefox */
+	.flip-card-back {
+	  scrollbar-width: thin;
+	  scrollbar-color: rgba(0,0,0,0.3) rgba(0,0,0,0.1);
+	}
+</style>

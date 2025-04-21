@@ -2,252 +2,267 @@
 	{
 		"title": "Book Keeping",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Accurate and timely recording of daily financial transactions to ensure organized and compliant financial records.",
+		"note": "Accurate and timely recording of daily financial transactions to ensure organized and compliant financial records.",
 		"category": "Accounts"
 	},
 	{
 		"title": "MIS Report",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Management Information System reports that help track performance, financial health, and support decision-making.",
+		"note": "Management Information System reports that help track performance, financial health, and support decision-making.",
 		"category": "Accounts"
 	},
 	{
 		"title": "Financial Forecasts & Projections",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Data-driven projections of income, expenses, and profitability for strategic planning and investment.",
+		"note": "Data-driven projections of income, expenses, and profitability for strategic planning and investment.",
 		"category": "Accounts"
 	},
 	{
 		"title": "Cash Flows and Analysis",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Monitor and analyze inflows and outflows to maintain liquidity and optimize cash usage.",
+		"note": "Monitor and analyze inflows and outflows to maintain liquidity and optimize cash usage.",
 		"category": "Accounts"
 	},
 	{
 		"title": "Financial Statements",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Preparation of Balance Sheet, Income Statement, and Cash Flow Statement to present the company’s financial standing.",
+		"note": "Preparation of Balance Sheet, Income Statement, and Cash Flow Statement to present the company’s financial standing.",
 		"category": "Accounts"
 	},
 	{
 		"title": "Accounts Receivable Management",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Systematic tracking and follow-up of outstanding customer payments to improve cash flow.",
+		"note": "Systematic tracking and follow-up of outstanding customer payments to improve cash flow.",
 		"category": "Accounts"
 	},
 	{
 		"title": "Account Payable Management",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Efficient handling of outgoing payments to vendors and creditors to maintain good supplier relations and cash management.",
+		"note": "Efficient handling of outgoing payments to vendors and creditors to maintain good supplier relations and cash management.",
 		"category": "Accounts"
 	},
 	{
 		"title": "Tax Preparation",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Accurate computation and filing of income tax returns to comply with tax laws and avoid penalties.",
+		"note": "Accurate computation and filing of income tax returns to comply with tax laws and avoid penalties.",
 		"category": "Tax"
 	},
 	{
 		"title": "Tax Planning",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Strategic planning to minimize tax liability and take advantage of lawful deductions and exemptions.",
+		"note": "Strategic planning to minimize tax liability and take advantage of lawful deductions and exemptions.",
 		"category": "Tax"
 	},
 	{
 		"title": "Tax on Non - Resident",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Specialized tax advisory and filing for NRIs to ensure compliance with Indian tax regulations.",
+		"note": "Specialized tax advisory and filing for NRIs to ensure compliance with Indian tax regulations.",
 		"category": "Tax"
 	},
 	{
 		"title": "GST Filing",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Filing of GST returns (monthly/quarterly/annual) with reconciliation to avoid notices and penalties.",
+		"note": "Filing of GST returns (monthly/quarterly/annual) with reconciliation to avoid notices and penalties.",
 		"category": "Tax"
 	},
 	{
 		"title": "ESI Filing",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Filing of ESI returns for employee state insurance contributions and compliance with labour laws.",
+		"note": "Filing of ESI returns for employee state insurance contributions and compliance with labour laws.",
 		"category": "Tax"
 	},
 	{
 		"title": "PF Filing",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Monthly Provident Fund return filing and related compliance with EPFO regulations.",
+		"note": "Monthly Provident Fund return filing and related compliance with EPFO regulations.",
 		"category": "Tax"
 	},
 	{
 		"title": "TDS Filing",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Filing of Tax Deducted at Source returns and issuing of Form 16/16A for smooth compliance.",
+		"note": "Filing of Tax Deducted at Source returns and issuing of Form 16/16A for smooth compliance.",
 		"category": "Tax"
 	},
 	{
 		"title": "GST Audit",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Comprehensive audit under GST laws to ensure compliance and identify discrepancies.",
+		"note": "Comprehensive audit under GST laws to ensure compliance and identify discrepancies.",
 		"category": "Tax"
 	},
 	{
 		"title": "Internal Audit",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Independent review of internal processes, controls, and systems to ensure operational efficiency and risk management.",
+		"note": "Independent review of internal processes, controls, and systems to ensure operational efficiency and risk management.",
 		"category": "Tax"
 	},
 	{
 		"title": "Stock Audit",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Verification and valuation of inventory to prevent discrepancies and ensure accurate reporting.",
+		"note": "Verification and valuation of inventory to prevent discrepancies and ensure accurate reporting.",
 		"category": "Tax"
 	},
 	{
 		"title": "Goods and Service Tax (GST)",
 		"icon": "check-circle",
-		"description": "",
+		"description": "End-to-end assistance in GST registration for businesses liable under GST law.",
+		"note": "End-to-end assistance in GST registration for businesses liable under GST law.",
 		"category": "Registration"
 	},
 	{
 		"title": "Employee State Insurance (ESI)",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Registration under the ESI scheme for employee health and social security benefits.",
+		"note": "Registration under the ESI scheme for employee health and social security benefits.",
 		"category": "Registration"
 	},
 	{
 		"title": "PF Registration",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Provident Fund registration for companies to manage employee retirement benefits.",
+		"note": "Provident Fund registration for companies to manage employee retirement benefits.",
 		"category": "Registration"
 	},
 	{
 		"title": "Company Registration",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Incorporation of Private Limited, Public Limited, or One Person Companies under MCA.",
+		"note": "Incorporation of Private Limited, Public Limited, or One Person Companies under MCA.",
 		"category": "Registration"
 	},
 	{
 		"title": "LLP Registration",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Formation of Limited Liability Partnership firms with structured compliance support.",
+		"note": "Formation of Limited Liability Partnership firms with structured compliance support.",
 		"category": "Registration"
 	},
 	{
 		"title": "Partnership Registration",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Drafting partnership deeds and registering firms under the Partnership Act.",
+		"note": "Drafting partnership deeds and registering firms under the Partnership Act.",
 		"category": "Registration"
 	},
 	{
 		"title": "Trust Registration",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Creating and registering charitable or religious trusts for legal recognition.",
+		"note": "Creating and registering charitable or religious trusts for legal recognition.",
 		"category": "Registration"
 	},
 	{
 		"title": "IE Code",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Issuance of Import Export Code for businesses engaging in cross-border trade.",
+		"note": "Issuance of Import Export Code for businesses engaging in cross-border trade.",
 		"category": "Registration"
 	},
 	{
 		"title": "PAN",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Assistance in applying for Permanent Account Number for tax purposes.",
+		"note": "Assistance in applying for Permanent Account Number for tax purposes.",
 		"category": "Registration"
 	},
 	{
 		"title": "TAN",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Registration of Tax Deduction and Collection Account Number for TDS compliance.",
+		"note": "Registration of Tax Deduction and Collection Account Number for TDS compliance.",
 		"category": "Registration"
 	},
 	{
 		"title": "Shop and Establishment",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Licensing for commercial establishments as per local labour regulations.",
+		"note": "Licensing for commercial establishments as per local labour regulations.",
 		"category": "Registration"
 	},
 	{
 		"title": "Professional Tax",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Registration for payment of professional tax by employers and professionals.",
+		"note": "Registration for payment of professional tax by employers and professionals.",
 		"category": "Registration"
 	},
 	{
 		"title": "Trade Mark",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Registration of brand names and logos to protect intellectual property.",
+		"note": "Registration of brand names and logos to protect intellectual property.",
 		"category": "Registration"
 	},
 	{
 		"title": "FSSAI",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Food Safety license registration for food-related businesses.",
+		"note": "Food Safety license registration for food-related businesses.",
 		"category": "Registration"
 	},
 	{
 		"title": "MSME Registration",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Registration under Micro, Small, and Medium Enterprises for availing government benefits.",
+		"note": "Registration under Micro, Small, and Medium Enterprises for availing government benefits.",
 		"category": "Registration"
 	},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	{
 		"title": "Asset management",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Strategic management of investments and physical assets to maximize returns.",
+		"note": "Strategic management of investments and physical assets to maximize returns.",
 		"category": "Finance"
 	},
 	{
 		"title": "Mutual fund advisory",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Professional advice on selecting mutual funds that match your risk profile and goals.",
+		"note": "Professional advice on selecting mutual funds that match your risk profile and goals.",
 		"category": "Finance"
 	},
 	{
 		"title": "Financial planning",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Comprehensive planning of income, savings, investment, and retirement for financial security.",
+		"note": "Comprehensive planning of income, savings, investment, and retirement for financial security.",
 		"category": "Finance"
 	},
 	{
 		"title": "Term Insurance",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Life insurance policy providing financial security to your family in your absence.",
+		"note": "Life insurance policy providing financial security to your family in your absence.",
 		"category": "insurance"
 	},
 	{
 		"title": "Health Insurance",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Medical insurance coverage for individuals and families to handle healthcare expenses.",
+		"note": "Medical insurance coverage for individuals and families to handle healthcare expenses.",
 		"category": "insurance"
 	},
 	{
 		"title": "Vehicle Insurance",
 		"icon": "check-circle",
-		"description": "",
+		"description": "Coverage for damages or loss to vehicles due to accidents, theft, or third-party liabilities.",
+		"note": "Coverage for damages or loss to vehicles due to accidents, theft, or third-party liabilities.",
 		"category": "insurance"
 	}
-		
-	
-	
-	
-
 ]
-
-

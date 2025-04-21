@@ -9,7 +9,6 @@
 // - Modal: ID of a modal to trigger (optional, adds data-modal attribute)
 // - Style: 'primary', 'secondary', 'neutral' (defines color scheme)
 // - Variation: 'outline', 'link' (modifies base style)
-// - Elevated: boolean (adds shadow effects)
 // - classes: additional CSS classes to apply
 
 // Props Interface
@@ -20,7 +19,6 @@ interface Props {
 	modal?: string
 	style?: 'primary' | 'secondary' | 'neutral'
 	variation?: 'outline' | 'link'
-	elevated?: boolean
 	classes?: string
 }
 
@@ -32,7 +30,6 @@ const {
 	modal,
 	style = 'primary',
 	variation,
-	elevated,
 	classes
 } = Astro.props as Props
 
@@ -44,7 +41,7 @@ const baseClasses = `
   button inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap
   rounded font-bold tracking-wide
   transition-all duration-300 ease-in-out
-  transform hover:-translate-y-px
+  transform
   focus:outline-none focus-visible:outline-none
   focus-visible:ring-2 focus-visible:ring-offset-2
   focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950
@@ -58,36 +55,59 @@ const sizeClasses = {
 	sm: 'h-8 px-4 text-xs'
 }
 
-// Style specific classes
+// Style specific classes with dark mode variants
 const styleClasses = {
 	primary: `
     bg-primary-500 text-white hover:bg-primary-700 focus-visible:ring-primary-500
-    disabled:border-primary-300 disabled:bg-primary-300
+    dark:hover:bg-primary-600 dark:focus-visible:ring-primary-400
+    disabled:border-primary-300 disabled:bg-primary-300 dark:disabled:bg-primary-400 dark:disabled:opacity-50
+    /* Link variation */
     [&.button--variation-link]:bg-transparent [&.button--variation-link]:text-primary-500
+    dark:[&.button--variation-link]:text-primary-400
     hover:[&.button--variation-link]:text-primary-600 focus:[&.button--variation-link]:text-primary-600
+    dark:hover:[&.button--variation-link]:text-primary-300 dark:focus:[&.button--variation-link]:text-primary-300
+    /* Outline variation */
     [&.button--variation-outline]:border-primary-500 [&.button--variation-outline]:bg-transparent
+    dark:[&.button--variation-outline]:border-primary-400
     [&.button--variation-outline]:text-primary-500 [&.button--variation-outline]:hover:border-primary-600
-    [&.button--variation-outline]:hover:text-primary-600
+    dark:[&.button--variation-outline]:text-primary-400 dark:[&.button--variation-outline]:hover:border-primary-300
+    [&.button--variation-outline]:hover:text-primary-600 dark:[&.button--variation-outline]:hover:text-primary-300
   `,
 	secondary: `
     bg-primary-50 text-primary-500 hover:bg-primary-100 hover:text-primary-600 focus-visible:ring-primary-500
+    dark:bg-primary-900/50 dark:text-primary-400 dark:hover:bg-primary-900 dark:hover:text-primary-300 dark:focus-visible:ring-primary-400
     disabled:border-primary-300 disabled:bg-primary-100 disabled:text-primary-400
+    dark:disabled:bg-primary-900/30 dark:disabled:text-primary-600 dark:disabled:opacity-50
+    /* Link variation */
     [&.button--variation-link]:bg-transparent [&.button--variation-link]:text-primary-500
+    dark:[&.button--variation-link]:text-primary-400
     hover:[&.button--variation-link]:text-primary-600 focus:[&.button--variation-link]:text-primary-600
-    [&.button--variation-link_svg]:stroke-primary-500
+    dark:hover:[&.button--variation-link]:text-primary-300 dark:focus:[&.button--variation-link]:text-primary-300
+    [&.button--variation-link_svg]:stroke-primary-500 dark:[&.button--variation-link_svg]:stroke-primary-400
+    /* Outline variation */
     [&.button--variation-outline]:border-primary-500 [&.button--variation-outline]:bg-transparent
+    dark:[&.button--variation-outline]:border-primary-400
     [&.button--variation-outline]:text-primary-500 [&.button--variation-outline]:hover:border-primary-600
-    [&.button--variation-outline]:hover:text-primary-600
-    [&_svg]:stroke-primary-500
+    dark:[&.button--variation-outline]:text-primary-400 dark:[&.button--variation-outline]:hover:border-primary-300
+    [&.button--variation-outline]:hover:text-primary-600 dark:[&.button--variation-outline]:hover:text-primary-300
+    /* SVG Stroke */
+    [&_svg]:stroke-primary-500 dark:[&_svg]:stroke-primary-400
   `,
 	neutral: `
     bg-neutral-700 text-white hover:bg-neutral-800 focus-visible:ring-neutral-500
-    disabled:border-neutral-300 disabled:bg-neutral-300
+    dark:bg-neutral-600 dark:hover:bg-neutral-500 dark:focus-visible:ring-neutral-400
+    disabled:border-neutral-300 disabled:bg-neutral-300 dark:disabled:bg-neutral-500 dark:disabled:opacity-50
+    /* Link variation */
     [&.button--variation-link]:bg-transparent [&.button--variation-link]:text-neutral-700
+    dark:[&.button--variation-link]:text-neutral-300
     hover:[&.button--variation-link]:text-neutral-800 focus:[&.button--variation-link]:text-neutral-900
+    dark:hover:[&.button--variation-link]:text-neutral-200 dark:focus:[&.button--variation-link]:text-neutral-100
+    /* Outline variation */
     [&.button--variation-outline]:border-neutral-700 [&.button--variation-outline]:bg-transparent
+    dark:[&.button--variation-outline]:border-neutral-500
     [&.button--variation-outline]:text-neutral-700 [&.button--variation-outline]:hover:border-neutral-800
-    [&.button--variation-outline]:hover:text-neutral-800
+    dark:[&.button--variation-outline]:text-neutral-300 dark:[&.button--variation-outline]:hover:border-neutral-400
+    [&.button--variation-outline]:hover:text-neutral-800 dark:[&.button--variation-outline]:hover:text-neutral-200
   `
 }
 
@@ -97,15 +117,6 @@ const variationClasses = {
 	link: 'button--variation-link px-0 font-normal bg-transparent'
 }
 
-// Elevation specific classes
-const elevationClasses = {
-	lg: '[&.button--elevated]:shadow-lg [&.button--elevated]:hover:shadow-md [&.button--elevated]:focus:shadow-md',
-	base: '[&.button--elevated]:shadow-md [&.button--elevated]:hover:shadow-sm [&.button--elevated]:focus:shadow-sm',
-	sm: '[&.button--elevated]:shadow-md [&.button--elevated]:hover:shadow-sm [&.button--elevated]:focus:shadow-sm',
-	primary: '[&.button--elevated]:shadow-primary-500/30',
-	secondary: '[&.button--elevated]:shadow-primary-500/30',
-	neutral: '[&.button--elevated]:shadow-neutral-500/30'
-}
 ---
 
 {
@@ -117,9 +128,6 @@ const elevationClasses = {
 				sizeClasses[size],
 				styleClasses[style],
 				variation ? variationClasses[variation] : '',
-				elevated ? 'button--elevated' : '',
-				elevated ? elevationClasses[size] : '',
-				elevated ? elevationClasses[style] : '',
 				classes
 			]}
 			{...(modal ? { 'data-modal': modal } : {})}
@@ -135,9 +143,6 @@ const elevationClasses = {
 				sizeClasses[size],
 				styleClasses[style],
 				variation ? variationClasses[variation] : '',
-				elevated ? 'button--elevated' : '',
-				elevated ? elevationClasses[size] : '',
-				elevated ? elevationClasses[style] : '',
 				classes
 			]}
 			{...(modal ? { 'data-modal': modal } : {})}

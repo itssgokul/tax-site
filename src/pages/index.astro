@@ -8,6 +8,7 @@ import Features from '../components/blocks/features/FeatureCards.astro'
 import OurServices from '../components/blocks/Services/OurServices.astro'
 import WhyUs from '../components/blocks/whyUs/WhyUs.astro'
 import Testimonial from '../components/blocks/Testimonial/Testimonial.astro'
+import BottomCTA from '../components/blocks/cta/BottomCTA.astro' // Import the new CTA component
 
 // Content
 // - SEO
@@ -24,4 +25,5 @@ const SEO = {
 	<OurServices />
 	<Features />
 	<Testimonial />
+	<BottomCTA /> {/* Add the new CTA component before the footer */}
 </Layout>

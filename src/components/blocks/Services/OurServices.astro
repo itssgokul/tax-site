@@ -4,6 +4,34 @@ import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 import { Image } from 'astro:assets'
 import services from '../../../assets/our-sevices.svg' // Fixed typo: sevices -> services
+import ServiceCard from '../../ui/cards/ServiceCard.astro'
+
+const serviceData = [
+	{
+		title: 'Tax Services',
+		description:
+			'Stay compliant with our Income Tax Returns, GST & TDS Filings, Professional Tax, and Sales Tax/VAT Consultancy. We also manage Company Law Compliance, ESI & EPF Returns, and provide Income Tax Consultancy to simplify your tax needs.',
+		linkHref: '/services/#tax-services'
+	},
+	{
+		title: 'Accounting Services',
+		description:
+			'Streamline your finances with our Accounting Services and Company Accounts Management. We handle Bookkeeping and Financial Reporting, giving you clear insights so you can focus on growth.',
+		linkHref: '/services/#accounting-services'
+	},
+	{
+		title: 'Business <br /> Registration & Compliance',
+		description:
+			'Get your business started with Partnership Registration, Company Incorporation, MSME Registration, and FSSAI Registration. We handle ongoing needs like Trust Incorporation and ROC Filing to keep your business legally sound.',
+		linkHref: '/services/#business-registration-compliance'
+	},
+	{
+		title: 'Financial Advisory',
+		description:
+			'Achieve financial security with our Investment Advisory, Asset Management, and Financial Planning services. We offer Mutual Fund Advisory and comprehensive Insurance Options like Term, Health, and Vehicle Insurance to protect your future.',
+		linkHref: '/services/#financial-advisory'
+	}
+]
 ---
 
 <Section id="features">
@@ -17,78 +45,31 @@ import services from '../../../assets/our-sevices.svg' // Fixed typo: sevices ->
 			/>
 		</Col>
 		<Col span="7">
-			<h2 class="mb-0 text-pretty text-center text-5xl md:text-left">
-				<strong> Our</strong> Services
-			</h2>
+			<section aria-labelledby="our-services-heading">
+				{/* Adjusted heading size and bottom margin */}
+				<h2
+					id="our-services-heading"
+					class="mb-8 text-pretty text-center text-4xl font-bold md:text-left"
+				>
+					Our <strong>Services</strong> {/* Swapped strong tag */}
+				</h2>
 
-			<div class="-mx-2 -mb-4 flex flex-1 flex-col flex-wrap sm:flex-row">
-				<div class="mb-4 w-full px-2 sm:w-1/2">
-					<div
-						class="h-full rounded-br-xl border border-l-0 border-t-0 border-green-500 px-4 py-4"
-					>
-						<h3 class="text-md mb-6 text-2xl font-bold">Tax Services</h3>
-						<p class="mb-0 text-sm">
-							Stay compliant with our Income Tax Returns, GST & TDS Filings,
-							Professional Tax, and Sales Tax/VAT Consultancy. We also manage Company
-							Law Compliance, ESI & EPF Returns, and provide Income Tax Consultancy to
-							simplify your tax needs. <a
-								href="/services/#Tax Services"
-								class="highlight animate-pulse text-end text-sm font-bold hover:animate-none hover:text-neutral-500"
-								>Read more</a>
-						</p>
-					</div>
+				{/* Adjusted margins and gap for the card container */}
+				<div class="-mx-3 mt-6 flex flex-wrap">
+					{' '}
+					{/* Removed -mb-4, adjusted negative margin */}
+					{
+						serviceData.map((service) => (
+							// Added bottom padding/margin implicitly via ServiceCard's mb-4
+							<ServiceCard
+								title={service.title}
+								description={service.description}
+								linkHref={service.linkHref}
+							/>
+						))
+					}
 				</div>
-				<div class="mb-4 w-full px-2 sm:w-1/2">
-					<div
-						class="h-full rounded-br-xl border border-l-0 border-t-0 border-green-500 px-4 py-4"
-					>
-						<h3 class="text-md mb-6 text-2xl font-bold">Accounting Services</h3>
-						<p class="mb-0 text-sm">
-							Streamline your finances with our Accounting Services and Company
-							Accounts Management. We handle Bookkeeping and Financial Reporting,
-							giving you clear insights so you can focus on growth. <a
-								href="/services/#Finance and Accounting"
-								class="highlight animate-pulse text-end text-sm font-bold hover:animate-none hover:text-neutral-500"
-								>Read more</a>
-						</p>
-					</div>
-				</div>
-				<div class="mb-4 w-full px-2 sm:w-1/2">
-					<div
-						class="h-full rounded-br-xl border border-l-0 border-t-0 border-green-500 px-4 py-4"
-					>
-						<h3 class="text-md mb-6 text-2xl font-bold">
-							Business <br /> Registration & Compliance
-						</h3>
-						<p class="mb-0 text-sm">
-							Get your business started with Partnership Registration, Company
-							Incorporation, MSME Registration, and FSSAI Registration. We handle
-							ongoing needs like Trust Incorporation and ROC Filing to keep your
-							business legally sound. <a
-								href="/services/#Business Registration & Compliance"
-								class="highlight animate-pulse text-end text-sm font-bold hover:animate-none hover:text-neutral-500"
-								>Read more</a>
-						</p>
-					</div>
-				</div>
-
-				<div class="mb-4 w-full px-2 sm:w-1/2">
-					<div
-						class="h-full rounded-br-xl border border-l-0 border-t-0 border-green-500 px-4 py-4"
-					>
-						<h3 class="text-md mb-6 text-2xl font-bold">Financial Advisory</h3>
-						<p class="mb-0 text-sm">
-							Achieve financial security with our Investment Advisory, Asset
-							Management, and Financial Planning services. We offer Mutual Fund
-							Advisory and comprehensive Insurance Options like Term, Health, and
-							Vehicle Insurance to protect your future. <a
-								href="/services/#Financial Advisory"
-								class="highlight animate-pulse text-end text-sm font-bold hover:animate-none hover:text-neutral-500"
-								>Read more</a>
-						</p>
-					</div>
-				</div>
-			</div>
+			</section>
 		</Col>
 	</Row>
 </Section>

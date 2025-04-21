@@ -102,6 +102,6 @@ export const footerNavigationData: FooterData = {
 		}
 	],
 	subFooter: {
-		copywriteText: '© 2024 OnePointTax. All Rights Reserved. | <a href="/legal/privacy-policy" class="hover:underline">Privacy Policy</a> | <a href="/legal/terms-conditions" class="hover:underline">Terms & Conditions</a> | <a href="/legal/disclaimer" class="hover:underline">Disclaimer</a> | <a href="/legal/cookie-policy" class="hover:underline">Cookie Policy</a>'
+		copywriteText: '© 2025 OnePointTax. All Rights Reserved. | <a href="/legal/privacy-policy" class="hover:underline">Privacy Policy</a> | <a href="/legal/terms" class="hover:underline">Terms & Conditions</a> | <a href="/legal/disclaimer" class="hover:underline">Disclaimer</a> | <a href="/legal/cookie-policy" class="hover:underline">Cookie Policy</a>'
 	}
 }

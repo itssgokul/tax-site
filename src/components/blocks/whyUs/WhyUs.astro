@@ -4,109 +4,209 @@ import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 import { Image } from 'astro:assets'
 import stats from '../../../assets/our-stats.svg'
-
 ---
 
 <Section id="whyus">
-	<Row classes='items-center'>
-        <Col span="12" align="center">
-            <h2 class="text-pretty mb-0 text-center text-5xl"><strong>Why</strong> Us</h2>
-            <p class="pb-0 text-lg">Precision and Expertise, All in OnePoint.</p>
-            <div class="grid w-full grid-cols-1 gap-8 xl:gap-16 md:grid-cols-4">
-                <div class="space-y-3">
-                    <span class="inline-block p-3 text-primary-500 bg-primary-100 rounded-xl dark:text-white dark:bg-primary-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
-                          </svg>
-                    </span>
+	<Row classes="items-center">
+		<Col span="12" align="center">
+			<h2 class="mb-0 text-pretty text-center text-5xl font-bold"><strong>Why</strong> Us</h2>
+			<p class="pb-0 text-lg">Precision and Expertise, All in OnePoint.</p>
 
-                    <h3 class="text-2xl font-bold text-md mb-6">We Speak in Plain Language</h3>
-
-                    <p class="text-gray-500 dark:text-gray-300">
-                        We make financial advice easy to understand, without the jargon.
-                    </p>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="inline-block p-3 text-primary-500 bg-primary-100 rounded-xl dark:text-white dark:bg-primary-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                          </svg>                          
-                    </span>
-
-                    <h3 class="text-2xl font-bold text-md mb-6">Client-Focused Expertise</h3>
-
-                    <p class="text-gray-500 dark:text-gray-300">
-                        Your needs drive our solutions, ensuring personalized support every time.
-                    </p>
-                </div>
-
-                <div class="space-y-3">
-                    <span class="inline-block p-3 text-primary-500 bg-primary-100 rounded-xl dark:text-white dark:bg-primary-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-                          </svg>                          
-                    </span>
-
-                    <h3 class="text-2xl font-bold text-md mb-6">Quality in Everything</h3>
-
-                    <p class="text-gray-500 dark:text-gray-300">
-                        Excellence and accuracy are at the heart of every service we provide.
-                    </p>
-                </div>
-                
-                <div class="space-y-3">
-                    <span class="inline-block p-3 text-primary-500 bg-primary-100 rounded-xl dark:text-white dark:bg-primary-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.99 14.993 6-6m6 3.001c0 1.268-.63 2.39-1.593 3.069a3.746 3.746 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043 3.745 3.745 0 0 1-3.068 1.593c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.297 3.746 3.746 0 0 1-1.593-3.068c0-1.268.63-2.39 1.593-3.068a3.746 3.746 0 0 1 1.043-3.297 3.745 3.745 0 0 1 3.296-1.042 3.745 3.745 0 0 1 3.068-1.594c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.297 3.746 3.746 0 0 1 1.593 3.068ZM9.74 9.743h.008v.007H9.74v-.007Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                          </svg>
-                          
-                    </span>
-
-                    <h3 class="text-2xl font-bold text-md mb-6">Save up to 49% Than Others</h3>
-
-                    <p class="text-gray-500 dark:text-gray-300">
-                        Enjoy up to 49% savings with us, without compromising quality.
-                    </p>
-                </div>
-            </div>
-
-    
-
-
-         </Col>
+			<div
+				class="mt-10 grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 xl:gap-16"
+			>
+				{
+					[
+						{
+							title: 'We Speak in Plain Language',
+							desc: 'We make financial advice easy to understand, without the jargon.',
+							icon: (
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									class="size-6"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"
+									/>
+								</svg>
+							)
+						},
+						{
+							title: 'Client-Focused Expertise',
+							desc: 'Your needs drive our solutions, ensuring personalized support every time.',
+							icon: (
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									class="size-6"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
+									/>
+								</svg>
+							)
+						},
+						{
+							title: 'Quality in Everything',
+							desc: 'Excellence and accuracy are at the heart of every service we provide.',
+							icon: (
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									class="size-6"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"
+									/>
+								</svg>
+							)
+						},
+						{
+							title: 'Save up to 49% Than Others',
+							desc: 'Enjoy up to 49% savings with us, without compromising quality.',
+							icon: (
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									class="size-6"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="m8.99 14.993 6-6m6 3.001c0 1.268-.63 2.39-1.593 3.069a3.746 3.746 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043 3.745 3.745 0 0 1-3.068 1.593c-1.268 0-2.39-.63-3.068-1.593a3.745 3.745 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.297 3.746 3.746 0 0 1-1.593-3.068c0-1.268.63-2.39 1.593-3.068a3.746 3.746 0 0 1 1.043-3.297 3.745 3.745 0 0 1 3.296-1.042 3.745 3.745 0 0 1 3.068-1.594c1.268 0 2.39.63 3.068 1.593a3.745 3.745 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.297 3.746 3.746 0 0 1 1.593 3.068ZM9.74 9.743h.008v.007H9.74v-.007Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 4.5h.008v.008h-.008v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+									/>
+								</svg>
+							)
+						}
+					].map(({ title, desc, icon }) => (
+						<div
+							class="space-y-3 rounded-lg bg-white/10 p-6 text-center backdrop-blur-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl dark:bg-neutral-900/20"
+						>
+							<span class="inline-block rounded-xl bg-primary-100 p-3 text-primary-500 dark:bg-primary-500 dark:text-white">
+								{icon}
+							</span>
+							<h3 class="mb-2 text-2xl font-bold">{title}</h3>
+							<p class="text-gray-500 dark:text-gray-300">{desc}</p>
+						</div>
+					))
+				}
+			</div>
+		</Col>
 	</Row>
 </Section>
 
-
-<Section padding="bottom" id="whyus" classes='dark:bg-neutral-900'>
-	<Row classes='items-center'>
-        <Col span="5" classes=''>
+<Section padding="bottom" id="whyus" classes="dark:bg-neutral-900">
+	<Row classes="items-center">
+		<Col span="5">
 			<Image
 				src={stats}
 				alt="OnePointTax. Stats"
-				class="w-full h-full md:h-5/6 md:w-5/6 dark:shadow-neutral-950"
+				class="h-full w-full md:h-5/6 md:w-5/6 dark:shadow-neutral-950"
 				format="webp"
 			/>
 		</Col>
-        <Col span="7" align="center">
-    <h2 class="text-pretty text-center text-5xl mb-0">Our <strong>Stats</strong></h2>
-    <p class="pb-0 text-lg"> Proof of Excellence in Every Figure!</p>
-    <dl class="grid gap-8 mx-auto text-gray-900 sm:grid-cols-3 shadow-md rounded-lg p-8 max-w-screen-md dark:bg-neutral-900  dark:text-white">
-        <div class="flex flex-col items-center justify-center">
-            <dt class="mb-2 text-3xl md:text-4xl font-extrabold highlight">600+</dt>
-            <dd class="text-sm mb-0">Happy clients</dd>
-        </div>
-        <div class="flex flex-col items-center justify-center">
-            <dt class="mb-2 text-3xl md:text-4xl font-extrabold highlight">10</dt>
-            <dd class="text-sm mb-0">Expert Professional</dd>
-        </div>
-        <div class="flex flex-col items-center justify-center">
-            <dt class="mb-2 text-3xl md:text-4xl font-extrabold highlight">4+</dt>
-            <dd class="text-sm mb-0">Years of service</dd>
-        </div>
-    </dl>
-
-</Col>
-</Row>
+		<Col span="7" align="center">
+			<h2 class="mb-0 text-pretty text-center text-5xl">Our <strong>Stats</strong></h2>
+			<p class="pb-0 text-lg">Proof of Excellence in Every Figure!</p>
+			<dl
+				class="stats-container mx-auto mt-6 grid max-w-screen-md gap-8 rounded-lg p-8 text-gray-900 shadow-md sm:grid-cols-3 dark:bg-neutral-900 dark:text-white"
+			>
+				<div class="flex flex-col items-center justify-center">
+					<dt
+						class="count-up-stat highlight mb-2 text-3xl font-extrabold md:text-4xl"
+						data-target="600"
+					>
+						0+
+					</dt>
+					<dd class="text-sm">Happy clients</dd>
+				</div>
+				<div class="flex flex-col items-center justify-center">
+					<dt
+						class="count-up-stat highlight mb-2 text-3xl font-extrabold md:text-4xl"
+						data-target="10"
+					>
+						0
+					</dt>
+					<dd class="text-sm">Expert Professionals</dd>
+				</div>
+				<div class="flex flex-col items-center justify-center">
+					<dt
+						class="count-up-stat highlight mb-2 text-3xl font-extrabold md:text-4xl"
+						data-target="4"
+					>
+						0+
+					</dt>
+					<dd class="text-sm">Years of service</dd>
+				</div>
+			</dl>
+		</Col>
+	</Row>
 </Section>
+
+<script>
+	const stats = document.querySelectorAll('.count-up-stat')
+	const statsContainer = document.querySelector('.stats-container')
+
+	const animateCountUp = (el: HTMLElement) => {
+		const target = parseInt(el.dataset.target || '0', 10)
+		const duration = 1500 // Animation duration in milliseconds
+		const suffix = el.textContent?.includes('+') ? '+' : '' // Preserve suffix like '+'
+		let startTime: number | null = null
+
+		const step = (timestamp: number) => {
+			if (!startTime) startTime = timestamp
+			const progress = Math.min((timestamp - startTime) / duration, 1)
+			const currentCount = Math.floor(progress * target)
+			el.textContent = currentCount.toString() + suffix
+
+			if (progress < 1) {
+				window.requestAnimationFrame(step)
+			} else {
+				// Ensure final target number is displayed accurately
+				el.textContent = target.toString() + suffix
+			}
+		}
+
+		window.requestAnimationFrame(step)
+	}
+
+	const observer = new IntersectionObserver(
+		(entries, observer) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const statElement = entry.target as HTMLElement
+					animateCountUp(statElement)
+					observer.unobserve(statElement) // Stop observing once animated
+				}
+			})
+		},
+		{
+			root: null, // Use the viewport as the root
+			threshold: 0.5 // Trigger when 50% of the element is visible
+		}
+	)
+
+	// Observe each stat element individually
+	stats.forEach((stat) => {
+		observer.observe(stat)
+	})
+</script>

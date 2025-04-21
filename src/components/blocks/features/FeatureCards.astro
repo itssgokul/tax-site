@@ -29,74 +29,120 @@ import { Icon } from 'astro-icon/components'
 import Button from '../../ui/Button.astro'
 ---
 
-<Section id="features" classes='dark:bg-neutral-900'>
+<Section id="features" classes="dark:bg-neutral-900">
 	<Row>
 		<Col span="7" classes="mb-12">
-			<h2 class="text-pretty mb-0 text-5xl text-center md:text-left"><strong> About</strong> Us</h2>
+			{/* 4. Responsive Title */}
+			<h2
+				class="mb-0 text-pretty text-center text-3xl font-bold sm:text-4xl md:text-left md:text-5xl"
+			>
+				<strong> About</strong> Us
+			</h2>
 
-			<p class="pb-0 text-base text-justify flex mt-3">
+			<p class="mt-3 flex pb-0 text-justify text-base">
 				<span>
+					{/* 1. Accessibility - Icon */}
 					<Icon
-				name="filled-star"
-				class="me-2"
-				class:list={[
-					'shrink-0',
-					{ [`size-6 text-primary-400`]: iconStyle != 'square' },
-					{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
-				]}
-			/>	
-				</span> 
-				At OnepointTax, we are committed to simplifying the complexities of Tax Services, Accounting,  Financial Advisory, and Business Registration & Compliance services for individuals and businesses. We understand that navigating financial regulations can be overwhelming, which is why we provide expert solutions designed to save you time, reduce stress, and maximize your financial benefits.
-			</p>
-			<p class="pb-0 text-base text-justify flex">
+						name="filled-star"
+						aria-hidden="true"
+						class="me-2"
+						class:list={[
+							'shrink-0',
+							{ [`size-6 text-primary-400`]: iconStyle != 'square' },
+							{
+								[`size-10 rounded bg-primary-500 p-2 text-white`]:
+									iconStyle === 'square'
+							}
+						]}
+					/>
+				</span>
 				<span>
-					<Icon
-				name="filled-star"
-				class="me-2"
-				class:list={[
-					'shrink-0',
-					{ [`size-6 text-primary-400`]: iconStyle != 'square' },
-					{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
-				]}
-			/>	
-				</span> 
-				<span>
-					Our range of services includes Income Tax Returns, GST and TDS Filings, Accounting Services, Company Registrations,<a class="text-primary-500" href="/services"> and more.</a>  Whether you're an individual looking for assistance with personal taxes or a business needing complete financial management, we’re here to handle the details so you can focus on what matters most.
+					At OnepointTax, we are committed to simplifying the complexities of Tax Services,
+					Accounting, Financial Advisory, and Business Registration & Compliance services for
+					individuals and businesses. We understand that navigating financial regulations can be
+					overwhelming, which is why we provide expert solutions designed to save you time,
+					reduce stress, and maximize your financial benefits.
 				</span>
 			</p>
-			<p class="pb-0 text-base text-justify flex">
+			<p class="flex pb-0 text-justify text-base">
 				<span>
+					{/* 1. Accessibility - Icon */}
 					<Icon
-				name="filled-star"
-				class="me-2" 
-				class:list={[
-					'shrink-0',
-					{ [`size-6 text-primary-400`]: iconStyle != 'square' },
-					{ [`size-10 rounded bg-primary-500 p-2 text-white`]: iconStyle === 'square' }
-				]}
-			/>	
-				</span> 
-				We work closely with each client to understand their unique financial situation and offer tailored solutions that not only meet legal requirements but also optimize tax savings and financial efficiency.
+						name="filled-star"
+						aria-hidden="true"
+						class="me-2"
+						class:list={[
+							'shrink-0',
+							{ [`size-6 text-primary-400`]: iconStyle != 'square' },
+							{
+								[`size-10 rounded bg-primary-500 p-2 text-white`]:
+									iconStyle === 'square'
+							}
+						]}
+					/>
+				</span>
+				<span>
+					{/* 2. Improve Link Accessibility */}
+					<a class="text-primary-500 hover:underline" href="/services">
+						Our range of services includes Income Tax Returns, GST and TDS Filings,
+						Accounting Services, Company Registrations, and more.</a
+					> Whether you're an individual looking for assistance with personal taxes or a business
+					needing complete financial management, we’re here to handle the details so you can
+					focus on what matters most.
+				</span>
 			</p>
-			<Button size="lg" classes="my-2 ms-7"  link="/contact">Let Us Simplify Your Finances
-				<Icon
-				name="long-arrow-right"
-				class:list={[
-					'shrink-0',
-					{ [`size-6`]: iconStyle != 'square' },
-					{ [`size-10 rounded bg-neutral-500 p-2 text-white`]: iconStyle === 'square' }
-				]}
-			/></Button>
+			<p class="flex pb-0 text-justify text-base">
+				<span>
+					{/* 1. Accessibility - Icon */}
+					<Icon
+						name="filled-star"
+						aria-hidden="true"
+						class="me-2"
+						class:list={[
+							'shrink-0',
+							{ [`size-6 text-primary-400`]: iconStyle != 'square' },
+							{
+								[`size-10 rounded bg-primary-500 p-2 text-white`]:
+									iconStyle === 'square'
+							}
+						]}
+					/>
+				</span>
+				<span>
+					We work closely with each client to understand their unique financial situation and
+					offer tailored solutions that not only meet legal requirements but also optimize tax
+					savings and financial efficiency.
+				</span>
+			</p>
+			{/* 3. Button Cleanup */}
+			<div class="mt-4 flex justify-center md:justify-start">
+				<Button size="lg" classes="my-2 gap-2" link="/contact">
+					Let Us Simplify Your Finances
+					{/* 1. Accessibility - Icon */}
+					<Icon
+						name="long-arrow-right"
+						aria-hidden="true"
+						class:list={[
+							'shrink-0',
+							{ [`size-6`]: iconStyle != 'square' },
+							{
+								[`size-10 rounded bg-neutral-500 p-2 text-white`]:
+									iconStyle === 'square'
+							}
+						]}
+					/>
+				</Button>
+			</div>
 		</Col>
 
-		<Col span="5" classes=''>
-			<!-- <h2 class="text-pretty mb-0 text-center text-5xl md:hidden"><strong> About</strong> Us</h2> -->
+		<Col span="5" classes="">
+			{/* <h2 class="text-pretty mb-0 text-center text-5xl md:hidden"><strong> About</strong> Us</h2> --> */}
 			<Image
-			src={aboutus}
-			alt="OnePoint Tax. About Us"
-			class="h-full w-full dark:shadow-neutral-950"
-			format="webp"
-		/>
-			 </Col>
+				src={aboutus}
+				alt="OnePoint Tax. About Us"
+				class="h-full w-full dark:shadow-neutral-950"
+				format="webp"
+			/>
+		</Col>
 	</Row>
 </Section>

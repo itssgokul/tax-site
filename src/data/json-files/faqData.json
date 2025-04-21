@@ -1,45 +1,252 @@
 [
-	{
-		"question": "What is Gross Total Income ?",
-		"reply": "Gross Total Income is the sum total of your income from all sources, including salary, property, royalty, capital gains etc. We will calculate this for you once you enter it all in.",
-		"category": "Finance",
-		"open": false
-	},
-	{
-		"question": "Is my Gross Total Income taxable?",
-		"reply": "No, it isn’t. Your Gross Total Income includes sources that are exempted from tax, and these won’t be included in your net taxable income.",
-		"category": "Finance",
-		"open": false
-	},
-	{
-		"question": "Can I claim a tax deduction on my Fixed Deposit Account?",
-		"reply": "You can, but based on certain considerations like the period, amount and the kind of bank.",
-		"category": "Finance",
-		"open": false
-	},
-
-	{
-		"question": "Is financial year the same as Assessment year?",
-		"reply": "No it isn't. Assessment year is the year following the financial year, which is when the tax authorities evaluate your tax statements.",
-		"category": "Tax",
-		"open": false
-	},
-	{
-		"question": "What is Gross Total Income ?",
-		"reply": "Gross Total Income is the sum total of your income from all sources, including salary, property, royalty, capital gains etc. We will calculate this for you once you enter it all in.",
-		"category": "Tax",
-		"open": false
-	},
-	{
-		"question": "What is TDS?",
-		"reply": "TDS is Tax Deducted at Source, and is usually deducted from the taxable portion of your salary before it reaches you, every month. This is usually mentioned by the company on tax documents.",
-		"category": "Tax",
-		"open": false
-	},
-	{
-		"question": "What is Advance tax?",
-		"reply": "Advance tax is the income tax that is payable once your income is more than Rs.10,000 in the given financial year.",
-		"category": "Tax",
-		"open": false
-	}
+  {
+    "category": "Tax Services",
+    "question": "What tax services do you offer?",
+    "reply": "We offer income tax filing, GST, TDS, advance tax, and tax advisory."
+  },
+  {
+    "category": "Tax Services",
+    "question": "Who can use your tax services?",
+    "reply": "Individuals, businesses, freelancers, and startups."
+  },
+  {
+    "category": "Tax Services",
+    "question": "Do you help with GST registration and returns?",
+    "reply": "Yes, we handle end-to-end GST compliance."
+  },
+  {
+    "category": "Tax Services",
+    "question": "Can you help reduce my tax liability legally?",
+    "reply": "Yes, through proper tax planning and deductions."
+  },
+  {
+    "category": "Tax Services",
+    "question": "How do I know which taxes apply to me?",
+    "reply": "We assess your income and business type to determine applicable taxes."
+  },
+  {
+    "category": "Tax Services",
+    "question": "Do you file both personal and business tax returns?",
+    "reply": "Yes, we file for individuals, firms, companies, and LLPs."
+  },
+  {
+    "category": "Tax Services",
+    "question": "What if I missed filing my taxes?",
+    "reply": "We can help you with belated returns and minimize penalties."
+  },
+  {
+    "category": "Tax Services",
+    "question": "Is my data secure with you?",
+    "reply": "Absolutely, we use encrypted systems for confidentiality."
+  },
+  {
+    "category": "Tax Services",
+    "question": "Do you offer representation in case of a tax notice?",
+    "reply": "Yes, we handle notices and help with assessment proceedings."
+  },
+  {
+    "category": "Tax Services",
+    "question": "How often do I need to file taxes?",
+    "reply": "It depends on the type of tax—some are monthly, quarterly, or annual."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "What types of accounting services do you offer?",
+    "reply": "Bookkeeping, ledger maintenance, financial statements, and reconciliations."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Do you work with small businesses and startups?",
+    "reply": "Yes, we cater to businesses of all sizes."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Can you handle both manual and software-based accounting?",
+    "reply": "Yes, we support Tally, Zoho, QuickBooks, and Excel systems."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Do I need to hire an in-house accountant?",
+    "reply": "Not necessarily. We offer full outsourced accounting services."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Is monthly reporting available?",
+    "reply": "Yes, we provide periodic financial summaries and analysis."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Do you support multi-location accounting?",
+    "reply": "Yes, we handle centralized or branch-wise accounts."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Can you help me understand my financials better?",
+    "reply": "Yes, we simplify reports and explain performance clearly."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Will you prepare data for audits?",
+    "reply": "Yes, we provide audit-ready books and reports."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "Can I integrate my bank and sales data with accounting?",
+    "reply": "Yes, integration is possible with supported tools."
+  },
+  {
+    "category": "Accounting Services",
+    "question": "What if my books are outdated or incomplete?",
+    "reply": "We can clean up and reconstruct past records."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "What types of business registrations do you handle?",
+    "reply": "Proprietorship, Partnership, LLP, Pvt Ltd, and One-Person Company."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "Do you provide assistance with GST, PAN, and TAN?",
+    "reply": "Yes, we help with all statutory registrations."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "How long does it take to register a company?",
+    "reply": "Typically 7–15 working days depending on the type."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "Is business registration mandatory?",
+    "reply": "Yes, to operate legally and avail government benefits."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "Do you help with annual compliance filings?",
+    "reply": "Yes, we handle ROC, GST, Income Tax, and other filings."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "What documents are required to register a business?",
+    "reply": "ID, address proof, business address, photos, and digital signatures."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "Do I need to visit any office physically?",
+    "reply": "No, everything can be done online through us."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "Can I convert my existing business into a company?",
+    "reply": "Yes, we assist with conversion and restructuring."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "What are the compliance requirements after registration?",
+    "reply": "Monthly/quarterly tax filings, annual returns, and record maintenance."
+  },
+  {
+    "category": "Business Registration & Compliance",
+    "question": "Is trademark registration also available?",
+    "reply": "Yes, we also help protect your brand legally."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "What is financial advisory?",
+    "reply": "It’s personalized guidance on managing money, investments, and growth."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Who needs financial advisory services?",
+    "reply": "Individuals, business owners, startups, and investors."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Do you provide investment planning?",
+    "reply": "Yes, we help with mutual funds, insurance, retirement, and more."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Can you help with debt or loan management?",
+    "reply": "Yes, we assist in budgeting, refinancing, and managing EMIs."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Is your advice independent or commission-based?",
+    "reply": "We offer unbiased, client-focused recommendations."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Do you create financial goals and roadmaps?",
+    "reply": "Yes, based on your income, risk profile, and needs."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Can I get advice for my business cash flow and funding?",
+    "reply": "Yes, we offer tailored business financial strategies."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "How often should I review my finances?",
+    "reply": "At least once a quarter or during major life changes."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Do you help with emergency or contingency planning?",
+    "reply": "Yes, we ensure you’re financially prepared for the unexpected."
+  },
+  {
+    "category": "Financial Advisory",
+    "question": "Are your advisors certified?",
+    "reply": "Yes, we have qualified professionals (CA, CFA, CFP)."
+  },
+  {
+    "category": "Insurance",
+    "question": "What types of insurance do you provide?",
+    "reply": "Life, health, business, property, liability, and motor insurance."
+  },
+  {
+    "category": "Insurance",
+    "question": "How do I choose the right policy?",
+    "reply": "We assess your needs and recommend suitable coverage."
+  },
+  {
+    "category": "Insurance",
+    "question": "Do you compare multiple insurers?",
+    "reply": "Yes, we offer the best options from top insurers."
+  },
+  {
+    "category": "Insurance",
+    "question": "Can you help with claim settlement?",
+    "reply": "Absolutely, we guide and support claim filing and follow-ups."
+  },
+  {
+    "category": "Insurance",
+    "question": "What documents are needed to buy insurance?",
+    "reply": "Basic ID, address proof, and medical reports (for life/health)."
+  },
+  {
+    "category": "Insurance",
+    "question": "Is health insurance cashless or reimbursement?",
+    "reply": "Both options are available, depending on the provider and plan."
+  },
+  {
+    "category": "Insurance",
+    "question": "Can I insure my business assets?",
+    "reply": "Yes, including stock, equipment, liability, and employees."
+  },
+  {
+    "category": "Insurance",
+    "question": "Do I need medical tests for insurance?",
+    "reply": "For some plans, yes—based on age, coverage, and health status."
+  },
+  {
+    "category": "Insurance",
+    "question": "How often do I pay insurance premiums?",
+    "reply": "Monthly, quarterly, annually, or single premium—your choice."
+  },
+  {
+    "category": "Insurance",
+    "question": "Do you provide renewals and reminders?",
+    "reply": "Yes, we manage policy renewals and notify you before expiry."
+  }
 ]

@@ -1,0 +1,32 @@
+---
+// src/components/blocks/cta/BottomCTA.astro
+import Section from '../../ui/Section.astro';
+import Row from '../../ui/Row.astro';
+import Col from '../../ui/Col.astro';
+import Button from '../../ui/Button.astro';
+---
+
+{/* Updated gradient to use defined theme colors */}
+<Section classes="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-neutral-900 dark:to-neutral-800 py-16 md:py-24">
+	<Row>
+		<Col span="12" align="center">
+			<div class="max-w-3xl mx-auto text-center">
+				<h2 class="text-4xl md:text-5xl font-bold mb-4 text-neutral-900 dark:text-white">
+					Ready For Stress-Free Taxes?
+				</h2>
+				<p class="text-lg text-neutral-700 dark:text-neutral-300 mb-8">
+					Stop the worry. Stop the wasted hours. Book your free session with a certified expert. Discover how easy tax and compliance can be.
+				</p>
+				<Button size="lg" style="primary" classes="mb-2 hover:scale-105 transition-transform duration-300" link="/contact">
+					Claim My Free Tax Peace Session Now
+				</Button>
+				<p class="text-sm text-neutral-600 dark:text-neutral-400 mt-2 mb-12">
+					Limited Slots Available This Week!
+				</p>
+			</div>
+			{/* Removed the form section */}
+		</Col>
+	</Row>
+</Section>
+
+{/* Removed the script associated with the form */}

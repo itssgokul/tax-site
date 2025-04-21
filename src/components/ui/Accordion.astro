@@ -1,57 +1,68 @@
 ---
-// Accordion
-// ------------
-// Description: the accordion element creates a disclosure widget in which information is visible only when the widget is toggled into an "open" state.
-// Properties:
-// - Title: the title of the accordion (usually represents a question)
-// - Text: the text of the accordion (usually represents an answer)
-// - Open: whether the accordion is open or not
-// - classes: additional classes
-// Reference: https://wind-ui.com/components/accordions/
-
-// Components
-// - UI
+// Accordion Component - Modernized
 import { Icon } from 'astro-icon/components'
 
-// Props
 type Props = {
 	title: string
 	text: string
+	note?: string // Add optional note prop
 	open?: boolean
 	classes?: string
 }
 const {
-	title = 'OnePointTax – Simplifying Your Tax, Finance, and Compliance Needs',
-	text = 'OnePointTax offers comprehensive finance, tax, and compliance services tailored for individuals and businesses. From expert tax filing to financial advisory and business registrations, we simplify complex processes, ensuring peace of mind and precision every step of the way.',
+	title = 'Default Accordion Title',
+	text = 'Default accordion content text.',
+	note, // Destructure note
 	open = false,
-	classes 
+	classes
 } = Astro.props
 ---
 
-<details
-	class:list={['accordion group', { [`${classes}`]: classes }]}
-	open={open ? true : undefined}
->
-	<summary class="accordion__summary">
+<details class:list={['accordion-item group border-b border-neutral-200 dark:border-neutral-700 py-3', classes]} {open}>
+	<summary class="flex cursor-pointer list-none items-center justify-between py-2 text-lg font-medium text-neutral-900 dark:text-neutral-100">
 		{title}
-		<Icon name="plus" class="accordion__icon" />
+		<div class="ml-4 flex-shrink-0">
+			<Icon
+				name="chevron-down"
+				class="size-5 transition-transform duration-300 group-open:rotate-180"
+				aria-hidden="true"
+			/>
+		</div>
 	</summary>
-	<p class="accordion__text">
-		{text}
-	</p>
+	<div class="accordion-content space-y-2 pt-2 text-neutral-600 dark:text-neutral-400">
+		{/* Added text-base for better readability */}
+		<p class="text-base">{text}</p>
+		{/* Display note if it exists */}
+		{note && (
+			<p class="text-sm italic text-neutral-500 dark:text-neutral-500">
+				<strong>Note:</strong> {note}
+			</p>
+		)}
+	</div>
 </details>
 
 <style>
-	.accordion {
-		@apply cursor-pointer;
+	/* Hide default summary marker */
+	summary {
+		list-style: none; /* Safari */
 	}
-	.accordion__summary {
-		@apply relative list-none px-6 py-4 text-lg font-medium text-neutral-700 transition focus-visible:outline-none dark:text-neutral-300 [&::-webkit-details-marker]:hidden;
+	summary::-webkit-details-marker {
+		display: none; /* Chrome */
 	}
-	.accordion__icon {
-		@apply absolute right-4 top-[1.375rem] h-4 w-4 shrink-0 transition duration-300 group-open:rotate-45;
+
+	/* Smooth content reveal (optional - relies on CSS transitions) */
+	.accordion-item[open] .accordion-content {
+		animation: fadeIn 0.5s ease-out;
 	}
-	.accordion__text {
-		@apply mb-0 bg-neutral-50 p-6 transition dark:bg-neutral-800/50;
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 </style>

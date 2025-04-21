@@ -3,9 +3,10 @@
 import NavigationBar from '../components/ui/NavigationBar.astro'
 import Main from '../components/ui/Main.astro'
 import Footer from '../components/ui/Footer.astro'
-// import Modal from '../components/blocks/modal/SignUp.astro' // Removed import
+import Modal from '../components/ui/Modal.astro'; // Added Modal import
+import Button from '../components/ui/Button.astro'; // Added Button import
 import Header from '../components/blocks/head/Header.astro'
-import Scriprs from '../components/scripts/LocalScripts.astro'
+import LocalScripts from '../components/scripts/LocalScripts.astro' // Corrected typo Scriprs -> LocalScripts
 import GoogleTagManagerBody from '../components/scripts/googleTagManagerBody.astro'
 import '../styles/global.css'
 import '@fontsource-variable/inter'
@@ -49,7 +50,74 @@ const GOOGLE_CLIENT_ID = import.meta.env.PUBLIC_GOOGLE_CLIENT_ID || 'YOUR_FALLBA
 			<slot />
 		</Main>
 		<Footer />
-		{/* <Modal /> Removed usage */}
-		<Scriprs />
+
+		{/* Newsletter/Contact Modal Definition */}
+		<Modal id="contact-modal" title="Stay Updated / Get In Touch">
+			<form id="modal-contact-form" method="POST" action="/api/submit-contact" class="space-y-4">
+				<p class="text-sm text-neutral-600 dark:text-neutral-400">Enter your details below to subscribe to updates or send us a quick message.</p>
+				<div>
+					<label for="modal-name" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Full Name</label>
+					<input type="text" name="name" id="modal-name" required class="mt-1 block w-full rounded-md border-neutral-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-neutral-600 dark:bg-neutral-800 dark:text-white sm:text-sm" placeholder="John Doe">
+				</div>
+				<div>
+					<label for="modal-email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300">Email Address</label>
+					<input type="email" name="email" id="modal-email" required class="mt-1 block w-full rounded-md border-neutral-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-neutral-600 dark:bg-neutral-800 dark:text-white sm:text-sm" placeholder="you@example.com">
+				</div>
+				 <input type="hidden" name="service_interest" value="Modal Signup/Inquiry"> {/* Optional: Add context */}
+				<div>
+					<Button type="submit" style="primary" classes="w-full">Submit</Button>
+				</div>
+			</form>
+			<div id="modal-form-result" class="mt-4 text-center text-sm"></div>
+		</Modal>
+
+		<LocalScripts /> {/* Corrected typo Scriprs -> LocalScripts */}
+
+		{/* Script to handle modal form submission */}
+		<script>
+		  document.addEventListener('DOMContentLoaded', () => {
+		    const modalForm = document.getElementById('modal-contact-form') as HTMLFormElement | null;
+		    const modalResultDiv = document.getElementById('modal-form-result');
+
+		    if (modalForm && modalResultDiv) {
+		      modalForm.addEventListener('submit', async (event) => {
+		        event.preventDefault();
+		        modalResultDiv.textContent = 'Sending...';
+		        modalResultDiv.className = 'mt-4 text-center text-sm text-neutral-600 dark:text-neutral-400';
+
+		        const formData = new FormData(modalForm);
+		        const requestData = Object.fromEntries(formData.entries());
+
+		        try {
+		          const response = await fetch('/api/submit-contact', {
+		            method: 'POST',
+		            headers: { 'Content-Type': 'application/json' },
+		            body: JSON.stringify(requestData),
+		          });
+		          const result = await response.json();
+
+		          if (response.ok) {
+		            modalResultDiv.textContent = result.message || 'Success!';
+		            modalResultDiv.className = 'mt-4 text-center text-sm text-green-600 dark:text-green-400';
+		            modalForm.reset();
+		          } else {
+		            modalResultDiv.textContent = result.message || `Error: ${response.statusText}`;
+		            modalResultDiv.className = 'mt-4 text-center text-sm text-red-600 dark:text-red-400';
+		          }
+		        } catch (error) {
+		          console.error('Modal form submission error:', error);
+		          modalResultDiv.textContent = 'An error occurred.';
+		          modalResultDiv.className = 'mt-4 text-center text-sm text-red-600 dark:text-red-400';
+		        } finally {
+		            setTimeout(() => {
+		                if (modalResultDiv.textContent !== 'Sending...') {
+		                   // modalResultDiv.textContent = ''; // Optionally clear message
+		                }
+		            }, 7000);
+		        }
+		      });
+		    }
+		  });
+		</script>
 	</body>
 </html>

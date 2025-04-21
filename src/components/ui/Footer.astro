@@ -12,7 +12,7 @@ import { Icon } from 'astro-icon/components'
 import { socialLinks } from '../../config/socialLinks'
 import { footerNavigationData } from '../../config/footerNavigation'
 
-const { footerAbout, footerColumns, subFooter } = footerNavigationData
+const { footerAbout, subFooter } = footerNavigationData // Removed footerColumns
 ---
 
 <footer class="footer">
@@ -25,24 +25,7 @@ const { footerAbout, footerColumns, subFooter } = footerNavigationData
 						<img src={footerAbout.logo.src} alt={footerAbout.logo.alt} width="32" height="32" />
 						{footerAbout.logo.text}
 					</a>
-					<p>
-						{footerAbout.aboutText}
-					</p>
 				</div>
-				{
-					footerColumns.map((column) => (
-						<div class="footer__col">
-							<h3>{column.category}</h3>
-							<ul>
-								{column.subCategories.map((subCategory) => (
-									<li>
-										<a href={subCategory.subCategoryLink}> {subCategory.subCategory} </a>
-									</li>
-								))}
-							</ul>
-						</div>
-					))
-				}
 			</div>
 		</div>
 	</div>
@@ -78,13 +61,12 @@ const { footerAbout, footerColumns, subFooter } = footerNavigationData
 		@apply transition-colors duration-300 hover:text-primary-500 focus:text-primary-600;
 	}
 	.footer__main {
-		@apply border-t border-neutral-100 bg-neutral-50 pb-12 pt-16 text-sm dark:border-neutral-900 dark:bg-neutral-950 [&_li]:mb-2 [&_li]:leading-6;
-	}
-	.footer__main h3 {
-		@apply mb-6 text-base font-medium leading-8 text-neutral-700 dark:text-neutral-50;
+		/* Reduced padding */
+		@apply border-t border-neutral-100 bg-neutral-50 py-8 text-sm dark:border-neutral-900 dark:bg-neutral-950;
 	}
 	.footer__main-brand {
-		@apply mb-6 flex items-center gap-2 whitespace-nowrap font-headings text-xl font-bold leading-6 text-neutral-700 focus:outline-none dark:text-neutral-50;
+		/* Removed bottom margin */
+		@apply flex items-center gap-2 whitespace-nowrap font-headings text-xl font-bold leading-6 text-neutral-700 focus:outline-none dark:text-neutral-50;
 	}
 	.footer__container {
 		@apply container mx-auto px-6;
@@ -95,7 +77,8 @@ const { footerAbout, footerColumns, subFooter } = footerNavigationData
 	}
 
 	.footer__col {
-		@apply col-span-2 first:col-span-4 md:col-span-4 md:first:col-span-8 lg:col-span-2 lg:first:col-span-6 lg:first:max-w-96;
+		/* Adjusted to span full width as it's the only column left in footer__main */
+		@apply col-span-4 md:col-span-8 lg:col-span-12;
 	}
 	.footer__sub {
 		@apply border-t border-neutral-200 bg-neutral-100 py-4 text-sm text-neutral-600 dark:border-neutral-900 dark:bg-neutral-800/50 dark:text-neutral-400;

@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro'
 // - UI
 import Feature from '../components/blocks/features/FeatureSticky.astro'
 import Hero from '../components/blocks/hero/PageHeader.astro'
+import Section from '../components/ui/Section.astro' // Import Section component
 
 // Data
 import featuresData from '../data/json-files/featuresData.json'
@@ -14,6 +15,15 @@ const tax = featuresData.filter((feature) => feature.category === 'Tax')
 const Registration = featuresData.filter((feature) => feature.category === 'Registration')
 const Finance = featuresData.filter((feature) => feature.category === 'Finance')
 const insurance = featuresData.filter((feature) => feature.category === 'insurance')
+
+// Define category titles for navigation
+const categoryNav = [
+	{ title: "Accounting Services", id: "Accounting Services" },
+	{ title: "Tax Services", id: "Tax Services" },
+	{ title: "Business Registration & Compliance", id: "Business Registration & Compliance" },
+	{ title: "Financial Advisory", id: "Financial Advisory" },
+	{ title: "Insurance", id: "Insurance" },
+]
 
 // Content
 // - SEO
@@ -31,32 +41,38 @@ const header = {
 
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero classess='!max-w-6xl mx-auto' title={header.title} text={header.text} />
+
+	{/* Removed "On this page" navigation section */}
+
 	<Feature
-		title="Accounting Services"
+		id={categoryNav[0].id}
+		title={categoryNav[0].title}
 		text="Simplify Your Financial Management"
 		data={Accounts}
-		
 	/>
 	<Feature
-		title="Tax Services"
+		id={categoryNav[1].id}
+		title={categoryNav[1].title}
 		text="Maximize Your Tax Benefits"
 		data={tax}
 		classes="bg-neutral-50 dark:bg-neutral-900"
 	/>
 	<Feature
-		title="Business Registration & Compliance"
+		id={categoryNav[2].id}
+		title={categoryNav[2].title}
 		text="Start and Sustain Your Business with Ease"
 		data={Registration}
-		
 	/>
 	<Feature
-		title="Financial Advisory"
+		id={categoryNav[3].id}
+		title={categoryNav[3].title}
 		text="Plan for a Secure Financial Future"
 		data={Finance}
 		classes="bg-neutral-50 dark:bg-neutral-900"
 	/>
 	<Feature
-		title="Insurance"
+		id={categoryNav[4].id}
+		title={categoryNav[4].title}
 		text="Protect What Matters Most"
 		data={insurance}
 	/>

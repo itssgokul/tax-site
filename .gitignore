@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 my-tax-site-auth-1befe6a6408d.json
+
+.netlify/

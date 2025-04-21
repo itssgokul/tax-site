@@ -1,29 +1,178 @@
 ---
-import Section from '../../ui/Section.astro'
-import Row from '../../ui/Row.astro'
-import Col from '../../ui/Col.astro'
+// Component Imports
+import Section from '../../ui/Section.astro';
+import Row from '../../ui/Row.astro';
+import Col from '../../ui/Col.astro';
+import { Icon } from 'astro-icon/components'; // For quote icon
+
+// Import Swiper styles (important!)
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+// Testimonial Data
+const testimonials = [
+  {
+    quote: "Their team is reliable, knowledgeable, and always available when I have questions!",
+    name: "Madesh",
+    title: "Small Business Owner",
+    initials: "M",
+  },
+  {
+    quote: "Onepointtax transformed the way I approach my finances. Highly recommended!",
+    name: "Prakash",
+    title: "Freelancer",
+    initials: "P",
+  },
+  {
+    quote: "As a new startup, we needed reliable support for our accounting and compliance needs. OnepointTax provided exactly that, guiding us through every step with clarity and professionalism.",
+    name: "Steffi",
+    title: "Startup Founder",
+    initials: "S",
+  },
+  {
+    quote: "The personalized attention and proactive advice from OnepointTax have been invaluable for my business growth.",
+    name: "Arun",
+    title: "Consultant",
+    initials: "A",
+  },
+  {
+    quote: "Switching to OnepointTax was the best decision. Their platform is user-friendly and their support team is top-notch.",
+    name: "Priya",
+    title: "E-commerce Seller",
+    initials: "P",
+  },
+];
+
+// Helper function for avatar background color
+function getAvatarColor(name: string): string {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const colors = [
+    'bg-primary-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-red-500', 'bg-indigo-500', 'bg-purple-500', 'bg-pink-500'
+  ];
+  const index = Math.abs(hash % colors.length);
+  return colors[index];
+}
 ---
 
 <Section padding="bottom" id="testimonial">
-	<Row classes='items-center'>
-        <Col span="12" align="center">
-            <h2 class="text-pretty mb-0 text-center text-5xl"><strong>Happy </strong> Stories</h2>
-            <p class="pb-0 text-lg">Your Financial Partner, Every Step of the Way.</p>
+  <Row classes="items-center">
+    <Col span="12" align="center">
+      <h2 class="text-pretty mb-2 text-center text-4xl lg:text-5xl"><strong class="text-primary-500">Happy</strong> Stories</h2>
+      <p class="pb-8 text-lg text-neutral-600 dark:text-neutral-400">Your Financial Partner, Every Step of the Way.</p>
+    </Col>
+  </Row>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 dark:text-white">
-                <div class="shadow rounded-lg p-8">
-                    <p class="mb-4">"Their team is reliable, knowledgeable, and always available when I have questions!"</p>
-                    <p class="font-medium">- Madesh <small>(Small Business Owner)</small></p>
+  <!-- Swiper Carousel Container -->
+  <div class="relative w-full max-w-4xl mx-auto">
+    <!-- Swiper main container -->
+    <div class="swiper testimonial-swiper overflow-hidden">
+      <!-- Swiper wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        {testimonials.map((testimonial) => (
+          <div class="swiper-slide px-2 h-auto">
+            <!-- Card content with hover effect - Fixed height with minimum height -->
+            <div class="bg-white dark:bg-neutral-800 rounded-lg border border-neutral-100 dark:border-neutral-700 shadow-md p-8 relative text-left flex flex-col transition-transform duration-300 ease-in-out hover:scale-[1.02] min-h-[320px]">
+              <!-- Quote Icon -->
+              <Icon name="mdi:format-quote-open" class="absolute top-6 left-6 size-10 text-primary-200 dark:text-primary-700 opacity-100" />
+              <!-- Testimonial Text -->
+              <p class="mt-12 mb-6 text-lg italic text-neutral-700 dark:text-neutral-300 relative z-10 flex-grow">"{testimonial.quote}"</p>
+              <!-- Avatar & Author Info -->
+              <div class="flex items-center gap-4 mt-auto">
+                <div class={`flex-shrink-0 size-12 rounded-full ${getAvatarColor(testimonial.name)} flex items-center justify-center text-white font-bold text-xl`}>
+                  {testimonial.initials}
                 </div>
-                <div class="shadow rounded-lg p-8">
-                    <p class="mb-4">"Onepointtax transformed the way I approach my finances."</p>
-                    <p class="font-medium">- Prakash <small>(Freelancer)</small></p>
+                <div>
+                  <p class="font-semibold text-neutral-800 dark:text-neutral-100 mb-0">{testimonial.name}</p>
+                  <p class="text-sm text-neutral-500 dark:text-neutral-400">{testimonial.title}</p>
                 </div>
-                <div class="shadow rounded-lg p-8">
-                    <p class="mb-4">"As a new startup, we needed reliable support for our accounting and compliance needs. OnepointTax provided exactly that, guiding us through every step with clarity and professionalism."</p>
-                    <p class="font-medium">- Steffi <small>(Startup Founder)</small></p>
-                </div>
+              </div>
             </div>
-        </Col>
-    </Row>
-    </Section>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Improved Navigation Buttons -->
+    <button class="swiper-button-prev absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-6 bg-white dark:bg-neutral-700 rounded-full w-12 h-12 shadow-lg hover:bg-neutral-50 dark:hover:bg-neutral-600 transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 z-10 flex items-center justify-center">
+      <Icon name="mdi:chevron-left" class="size-6 text-primary-500 dark:text-primary-300" />
+    </button>
+    <button class="swiper-button-next absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-6 bg-white dark:bg-neutral-700 rounded-full w-12 h-12 shadow-lg hover:bg-neutral-50 dark:hover:bg-neutral-600 transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 z-10 flex items-center justify-center">
+      <Icon name="mdi:chevron-right" class="size-6 text-primary-500 dark:text-primary-300" />
+    </button>
+  </div>
+</Section>
+
+<style>
+  /* Override Swiper default styles for navigation buttons */
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    display: none;
+  }
+  
+  /* Make the swiper-slide elements equal height */
+  .swiper-slide {
+    height: auto !important;
+  }
+</style>
+
+<script>
+  // Import Swiper correctly for modern versions
+  import Swiper from 'swiper';
+  import { Navigation, Autoplay } from 'swiper/modules';
+  
+  function initSwiper() {
+    const swiperElement = document.querySelector('.testimonial-swiper');
+    
+    if (swiperElement) {
+      const swiper = new Swiper('.testimonial-swiper', {
+        // Install required modules
+        modules: [Navigation, Autoplay],
+        
+        // Parameters
+        slidesPerView: 1,
+        spaceBetween: 16,
+        loop: true,
+        centeredSlides: false,
+        
+        // Responsive breakpoints
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 24
+          }
+        },
+        
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        
+        // Autoplay (uncomment to enable)
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: true,
+        },
+      });
+      
+      console.log('Swiper initialized successfully');
+    } else {
+      console.error('Swiper element not found');
+    }
+  }
+  
+  // Initialize when DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Small delay to ensure everything is rendered
+    setTimeout(initSwiper, 100);
+  });
+  
+  // Also initialize if the script runs after DOM is already loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(initSwiper, 100);
+  }
+</script>
