@@ -6,27 +6,39 @@ import { Image } from 'astro:assets'
 import services from '../../../assets/our-sevices.svg' // Fixed typo: sevices -> services
 import ServiceCard from '../../ui/cards/ServiceCard.astro'
 
-const serviceData = [
-	{
-		title: 'Tax Services',
-		description:
-			'Stay compliant with our Income Tax Returns, GST & TDS Filings, Professional Tax, and Sales Tax/VAT Consultancy. We also manage Company Law Compliance, ESI & EPF Returns, and provide Income Tax Consultancy to simplify your tax needs.',
-		linkHref: '/services/#tax-services'
-	},
+// Define the type for service data items
+interface ServiceDataItem {
+	title: string;
+	icon: string; // Re-add icon to type
+	description: string;
+	linkHref: string;
+}
+
+const serviceData: ServiceDataItem[] = [ // Explicitly type the array
 	{
 		title: 'Accounting Services',
+		icon: 'chart-pie', // Re-add icon data
 		description:
 			'Streamline your finances with our Accounting Services and Company Accounts Management. We handle Bookkeeping and Financial Reporting, giving you clear insights so you can focus on growth.',
 		linkHref: '/services/#accounting-services'
 	},
 	{
-		title: 'Business <br /> Registration & Compliance',
+		title: 'Tax Services',
+		icon: 'scale', // Re-add icon data
+		description:
+			'Stay compliant with our Income Tax Returns, GST & TDS Filings, Professional Tax, and Sales Tax/VAT Consultancy. We also manage Company Law Compliance, ESI & EPF Returns, and provide Income Tax Consultancy to simplify your tax needs.',
+		linkHref: '/services/#tax-services'
+	},
+	{
+		title: 'Business <br /> Registration & Compliance', // Restore <br /> tag
+		icon: 'clipboard-document-list', // Re-add icon data
 		description:
 			'Get your business started with Partnership Registration, Company Incorporation, MSME Registration, and FSSAI Registration. We handle ongoing needs like Trust Incorporation and ROC Filing to keep your business legally sound.',
 		linkHref: '/services/#business-registration-compliance'
 	},
 	{
 		title: 'Financial Advisory',
+		icon: 'arrow-trending-up', // Re-add icon data
 		description:
 			'Achieve financial security with our Investment Advisory, Asset Management, and Financial Planning services. We offer Mutual Fund Advisory and comprehensive Insurance Options like Term, Health, and Vehicle Insurance to protect your future.',
 		linkHref: '/services/#financial-advisory'
@@ -59,14 +71,18 @@ const serviceData = [
 					{' '}
 					{/* Removed -mb-4, adjusted negative margin */}
 					{
-						serviceData.map((service) => (
-							// Added bottom padding/margin implicitly via ServiceCard's mb-4
-							<ServiceCard
-								title={service.title}
-								description={service.description}
-								linkHref={service.linkHref}
-							/>
-						))
+						serviceData.map((service) => {
+							const iconName = service.icon; // Assign to intermediate variable
+							return (
+								// Added bottom padding/margin implicitly via ServiceCard's mb-4
+								<ServiceCard
+									title={service.title}
+									description={service.description}
+									linkHref={service.linkHref}
+									icon={iconName}
+								/>
+							);
+						})
 					}
 				</div>
 			</section>

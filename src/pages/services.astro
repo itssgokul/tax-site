@@ -9,17 +9,28 @@ import Section from '../components/ui/Section.astro' // Import Section component
 
 // Data
 import featuresData from '../data/json-files/featuresData.json'
-// - Feature Categories
-const Accounts = featuresData.filter((feature) => feature.category === 'Accounts')
-const tax = featuresData.filter((feature) => feature.category === 'Tax')
-const Registration = featuresData.filter((feature) => feature.category === 'Registration')
-const Finance = featuresData.filter((feature) => feature.category === 'Finance')
-const insurance = featuresData.filter((feature) => feature.category === 'insurance')
+// Define the expected structure for items in featuresData for clarity
+type FeatureDataItem = {
+	category: string;
+	title: string;
+	icon: string;
+	note?: string;
+	// Add other potential properties if they exist in the JSON
+};
+// Explicitly type featuresData
+const typedFeaturesData: FeatureDataItem[] = featuresData;
+
+// - Feature Categories - Ensure the filter returns the correct type
+const Accounts = typedFeaturesData.filter((feature) => feature.category === 'Accounts')
+const tax = typedFeaturesData.filter((feature) => feature.category === 'Tax')
+const Registration = typedFeaturesData.filter((feature) => feature.category === 'Registration')
+const Finance = typedFeaturesData.filter((feature) => feature.category === 'Finance')
+const insurance = typedFeaturesData.filter((feature) => feature.category === 'insurance')
 
 // Define category titles for navigation
 const categoryNav = [
-	{ title: "Accounting Services", id: "Accounting Services" },
-	{ title: "Tax Services", id: "Tax Services" },
+	{ title: "Tax Services", id: "Tax Services" }, // Index 0
+	{ title: "Accounting Services", id: "Accounting Services" }, // Index 1
 	{ title: "Business Registration & Compliance", id: "Business Registration & Compliance" },
 	{ title: "Financial Advisory", id: "Financial Advisory" },
 	{ title: "Insurance", id: "Insurance" },
@@ -42,19 +53,19 @@ const header = {
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero classess='!max-w-6xl mx-auto' title={header.title} text={header.text} />
 
-	{/* Removed "On this page" navigation section */}
+	{/* Service sections in the desired order */}
 
 	<Feature
 		id={categoryNav[0].id}
 		title={categoryNav[0].title}
-		text="Simplify Your Financial Management"
-		data={Accounts}
+		text="Maximize Your Tax Benefits"
+		data={tax} 
 	/>
 	<Feature
 		id={categoryNav[1].id}
 		title={categoryNav[1].title}
-		text="Maximize Your Tax Benefits"
-		data={tax}
+		text="Simplify Your Financial Management"
+		data={Accounts}
 		classes="bg-neutral-50 dark:bg-neutral-900"
 	/>
 	<Feature

@@ -1,5 +1,5 @@
 <!-- Scripts for UI components -->
-<script async defer>
+<script>
 	document.addEventListener('astro:page-load', () => {
 		// Menu Dropdown
 		const menuItems = document.querySelectorAll('.header__menu-item')
@@ -15,11 +15,12 @@
 			}
 		})
 		document.addEventListener('click', function (event) {
-			const target = event.target
+			const target = event.target as Node | null; // Add type assertion
 
 			menuItems.forEach((menuItem) => {
 				const submenu = menuItem.querySelector('.header__submenu')
-				if (submenu && !menuItem.contains(target)) {
+				// Check if target exists and is contained within the menuItem
+				if (submenu && target && !menuItem.contains(target)) {
 					menuItem.classList.remove('open')
 				}
 			})
@@ -39,12 +40,12 @@
 		}
 
 		// Modals
-		function openModal(modal) {
+		function openModal(modal: HTMLElement | null) { // Add type
 			if (modal && modal.classList.contains('modal')) {
 				modal.classList.add('open')
 			}
 		}
-		function closeModal(modal) {
+		function closeModal(modal: HTMLElement | null) { // Add type
 			if (modal && modal.classList.contains('modal')) {
 				modal.classList.remove('open')
 			}
@@ -53,22 +54,26 @@
 
 		modalButtons.forEach(function (button) {
 			button.addEventListener('click', function () {
-				const modalId = button.getAttribute('data-modal')
-				const modal = document.getElementById(modalId)
-				openModal(modal)
+				const modalId = button.getAttribute('data-modal');
+				if (modalId) { // Add null check for modalId
+					const modal = document.getElementById(modalId);
+					openModal(modal);
+				}
 			})
 		})
 		document.querySelectorAll('.modal').forEach(function (modal) {
 			modal.addEventListener('click', function (event) {
 				if (event.target === modal) {
-					closeModal(modal)
+					closeModal(modal as HTMLElement | null); // Assert type
 				}
 			})
-			const close = modal.querySelector('.modal__close')
-			close.addEventListener('click', function (event) {
-				event.stopPropagation()
-				closeModal(modal)
-			})
+			const close = modal.querySelector('.modal__close');
+			if (close) { // Add null check for close button
+				close.addEventListener('click', function (event) {
+					event.stopPropagation();
+					closeModal(modal as HTMLElement | null); // Assert type
+				});
+			}
 		})
 	})
 </script>
