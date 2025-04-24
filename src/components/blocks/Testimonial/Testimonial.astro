@@ -115,7 +115,16 @@ function getAvatarColor(name: string): string {
   
   /* Make the swiper-slide elements equal height */
   .swiper-slide {
-    height: auto !important;
+    height: auto !important; /* Ensure slides adapt height */
+    width: 100%; /* Default width for smaller screens */
+  }
+
+  /* On medium screens and up (Tailwind 'md', 768px), show two slides */
+  @media (min-width: 768px) {
+    .swiper-slide {
+      /* Calculate width for 2 slides, accounting for spaceBetween (24px at this breakpoint) */
+      width: calc(50% - 12px); /* (100% / 2) - (spaceBetween / 2) */
+    }
   }
 </style>
 
@@ -133,16 +142,17 @@ function getAvatarColor(name: string): string {
         modules: [Navigation, Autoplay],
         
         // Parameters
-        slidesPerView: 1,
-        spaceBetween: 16,
+        slidesPerView: 'auto', // Use 'auto' to allow CSS to control width
+        spaceBetween: 16, // Default spaceBetween for smaller screens
         loop: true,
-        centeredSlides: false,
-        
-        // Responsive breakpoints
+        centeredSlides: false, // Set to false if you don't want slides centered when fewer than slidesPerView
+
+        // Responsive breakpoints - only adjust spaceBetween here
         breakpoints: {
+          // md breakpoint (Tailwind)
           768: {
-            slidesPerView: 2,
-            spaceBetween: 24
+            spaceBetween: 24 // Increase space between slides on larger screens
+            // slidesPerView is handled by 'auto' and CSS now
           }
         },
         
