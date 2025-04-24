@@ -1,6 +1,8 @@
+console.log("--- submit-contact.ts execution START ---"); // Add log at the very top
+
 import type { APIRoute } from 'astro';
 // import { OAuth2Client } from 'google-auth-library'; // Removed Google Auth
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js'; // Remove SupabaseClient type import
 // Import default and destructure for CommonJS compatibility
 import pkg from 'sib-api-v3-sdk';
 const { ApiClient, TransactionalEmailsApi, SendSmtpEmail } = pkg;
@@ -19,14 +21,33 @@ if (/*!GOOGLE_CLIENT_ID ||*/ !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BRE
 
 // const oAuth2Client = new OAuth2Client(GOOGLE_CLIENT_ID); // Removed Google Auth
 
-// Initialize Supabase client ONCE outside the handler
-const supabaseAdmin = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
+// Initialize Supabase client ONCE outside the handler with error handling
+let supabaseAdmin; // Type will be inferred
+try {
+    console.log("Initializing Supabase client...");
+    supabaseAdmin = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
+    console.log("Supabase client initialized.");
+} catch (e: any) {
+    console.error("FATAL: Error initializing Supabase client:", e.message, e.stack);
+    // Throw error to prevent function execution if Supabase fails to init
+    throw new Error("Supabase client initialization failed.");
+}
 
-// Initialize Brevo client ONCE outside the handler using named imports
-let defaultClient = ApiClient.instance; // Use ApiClient directly
-let apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = BREVO_API_KEY!;
-const brevoApiInstance = new TransactionalEmailsApi(); // Use TransactionalEmailsApi directly
+
+// Initialize Brevo client ONCE outside the handler using named imports with error handling
+let brevoApiInstance; // Remove explicit type annotation
+try {
+    console.log("Initializing Brevo client...");
+    let defaultClient = ApiClient.instance; // Use ApiClient directly
+    let apiKeyAuth = defaultClient.authentications['api-key']; // Rename variable to avoid conflict
+    apiKeyAuth.apiKey = BREVO_API_KEY!;
+    brevoApiInstance = new TransactionalEmailsApi(); // Use TransactionalEmailsApi directly
+    console.log("Brevo client initialized.");
+} catch (e: any) {
+    console.error("FATAL: Error initializing Brevo client:", e.message, e.stack);
+    // Throw error to prevent function execution if Brevo fails to init
+    throw new Error("Brevo client initialization failed.");
+}
 
 // Define sender and recipients (ensure sender email is verified in Brevo)
 const senderEmail = "noreply@onepointtax.in"; // CHANGE THIS if needed to your verified sender
@@ -45,27 +66,24 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     let requestData;
+    // Log headers before parsing
+    console.log("Received request headers:", JSON.stringify(Object.fromEntries(request.headers.entries()))); 
+    // Expect only JSON now
     try {
-        // Clone the request to read the body multiple times (once for logging, once for JSON parsing)
-        const requestClone = request.clone();
-        const rawBody = await requestClone.text();
-        console.log("Received raw request body:", rawBody); // Log the raw body
-
-        // Now try parsing the original request body as JSON
         requestData = await request.json();
         console.log("Successfully parsed JSON body:", requestData);
     } catch (error) {
-        console.error("Error parsing request body as JSON:", error); // Log the parsing error
-        // Try parsing as form data if JSON fails
+        console.error(`Error parsing request body as JSON:`, error);
+        // Log the raw body for debugging if parsing fails
         try {
-            const requestClone = request.clone(); // Clone again for form data
-            const formData = await requestClone.formData();
-            requestData = Object.fromEntries(formData.entries());
-            console.log("Successfully parsed form data:", requestData);
-        } catch (formError) {
-            console.error("Error parsing request body as form data:", formError);
-            return new Response(JSON.stringify({ message: "Invalid request body. Expecting JSON or form data." }), { status: 400 });
+            const requestClone = request.clone();
+            const rawBody = await requestClone.text();
+            console.error("Raw body on parse error:", rawBody);
+        } catch (cloneError) {
+            console.error("Could not clone request to log raw body.");
         }
+        // Ensure a response is always returned
+        return new Response(JSON.stringify({ message: "Invalid request body. Could not parse as JSON." }), { status: 400 });
     }
 
     // Extract fields directly from requestData
@@ -98,23 +116,26 @@ export const POST: APIRoute = async ({ request }) => {
         }
         const { data: existingUser, error: selectError } = await supabaseAdmin
             .from('contacts') // Use correct table name 'contacts'
-            .select('email, phone_number') // Select fields to check
-            .or(orConditions.join(',')) // Check if email OR phone number matches
-            .maybeSingle(); // Returns one row or null if no match
+            .select('email, phone_number', { count: 'exact', head: false }) // Select fields, get count
+            .or(orConditions.join(',')); // Check if email OR phone number matches
+            // Remove .maybeSingle()
 
+        // Check for general select error first
         if (selectError) {
+            // Handle specific PGRST116 error differently if needed, but for now, log and throw
             console.error("Supabase select error:", selectError);
-            throw selectError; // Let the main catch block handle it
+            throw selectError;
         }
 
-        if (existingUser) {
-            // User exists (matched either email or phone) - Just notify
-            let existingField = existingUser.email === submittedEmail ? 'email' : 'phone number';
-            console.log(`User already exists with this ${existingField}:`, existingUser);
-            return new Response(JSON.stringify({ status: 'exists', message: `This ${existingField} is already registered.` }), { status: 200 }); // More specific message
+        // Check if any rows were returned (data will be an array)
+        if (existingUser && existingUser.length > 0) {
+            // User exists (one or more matches found) - Just notify
+            console.log(`User already exists with matching email or phone. Found ${existingUser.length} potential matches.`);
+            // Always return JSON now
+            return new Response(JSON.stringify({ status: 'exists', message: `We’ve already got your details! Our expert will be in touch soon.` }), { status: 200 });
 
         } else {
-            // User does not exist - Insert new record
+            // User does not exist (data is null or empty array) - Insert new record
             console.log("New user, inserting data for:", submittedEmail);
             const { error: insertError } = await supabaseAdmin
                 .from('contacts') // Use correct table name 'contacts'
@@ -147,12 +168,26 @@ export const POST: APIRoute = async ({ request }) => {
             }
             // ---- END: Send Brevo Email Notification ----
 
-            // Return updated success message
+            // Always return JSON now
             return new Response(JSON.stringify({ status: 'success', message: 'Thanks for reaching out! Our expert will be in touch shortly — we’re excited to help!' }), { status: 200 });
+
         }
 
     } catch (error) {
-        console.error("Error saving data to Supabase:", error);
-        return new Response(JSON.stringify({ message: "We’ve already got your details! Our expert will be in touch soon." }), { status: 500 });
+        console.error("Error during Supabase operation:", error);
+        // Always return JSON error response
+        return new Response(JSON.stringify({ message: "An error occurred while processing your request." }), { status: 500 });
     }
 };
+
+// Add this GET handler
+export const GET: APIRoute = async () => {
+    return new Response(JSON.stringify({ 
+      message: "This endpoint only accepts POST requests for form submissions. Please use the contact form." 
+    }), { 
+      status: 405,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  };

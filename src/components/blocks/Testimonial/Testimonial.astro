@@ -165,14 +165,28 @@ function getAvatarColor(name: string): string {
     }
   }
   
-  // Initialize when DOM is fully loaded
+  // Function to initialize and update Swiper
+  function initializeAndUpdateSwiper() {
+    initSwiper();
+    // Add a small delay after init and then update Swiper to recalculate dimensions
+    const swiperInstance = (document.querySelector('.testimonial-swiper') as any)?.swiper;
+    if (swiperInstance) {
+      setTimeout(() => {
+        swiperInstance.update();
+        console.log('Swiper updated after delay.');
+      }, 150); // Delay for update
+    }
+  }
+
+  // Initialize when DOM is fully loaded, with a slightly longer delay
   document.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure everything is rendered
-    setTimeout(initSwiper, 100);
+    // Increased delay to ensure layout stability
+    setTimeout(initializeAndUpdateSwiper, 200); // Increased delay before init
   });
-  
+
   // Also initialize if the script runs after DOM is already loaded
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(initSwiper, 100);
+     // Use the same delayed initialization logic
+    setTimeout(initializeAndUpdateSwiper, 200);
   }
 </script>

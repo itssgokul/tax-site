@@ -163,10 +163,18 @@ import stats from '../../../assets/our-stats.svg'
 </Section>
 
 <script>
-	const stats = document.querySelectorAll('.count-up-stat')
-	const statsContainer = document.querySelector('.stats-container')
+	function setupStatsAnimation() {
+		const stats = document.querySelectorAll('.count-up-stat')
+		// No need for statsContainer querySelector if not used
 
-	const animateCountUp = (el: HTMLElement) => {
+		// Reset stats to 0 before animating, important for subsequent navigations
+		stats.forEach(stat => {
+			const suffix = stat.textContent?.includes('+') ? '+' : '';
+			stat.textContent = '0' + suffix; // Reset to 0 + suffix
+		});
+
+
+		const animateCountUp = (el: HTMLElement) => {
 		const target = parseInt(el.dataset.target || '0', 10)
 		const duration = 1500 // Animation duration in milliseconds
 		const suffix = el.textContent?.includes('+') ? '+' : '' // Preserve suffix like '+'
@@ -186,27 +194,46 @@ import stats from '../../../assets/our-stats.svg'
 			}
 		}
 
-		window.requestAnimationFrame(step)
+			window.requestAnimationFrame(step)
+		}
+
+		// Check if IntersectionObserver is available
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver(
+				(entries, observerInstance) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							const statElement = entry.target as HTMLElement
+							// Check if animation already ran for this element in this page load cycle
+							if (!statElement.dataset.animated) {
+								animateCountUp(statElement)
+								statElement.dataset.animated = 'true'; // Mark as animated
+								observerInstance.unobserve(statElement) // Stop observing once animated
+							}
+						}
+					})
+				},
+				{
+					root: null, // Use the viewport as the root
+					threshold: 0.5 // Trigger when 50% of the element is visible
+				}
+			)
+
+			// Observe each stat element individually
+			stats.forEach((stat) => {
+				// Reset animation flag on each setup
+				delete (stat as HTMLElement).dataset.animated;
+				observer.observe(stat)
+			})
+		} else {
+			// Fallback for browsers without IntersectionObserver: animate immediately
+			console.warn('IntersectionObserver not supported, animating stats immediately.');
+			stats.forEach(stat => animateCountUp(stat as HTMLElement));
+		}
 	}
 
-	const observer = new IntersectionObserver(
-		(entries, observer) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const statElement = entry.target as HTMLElement
-					animateCountUp(statElement)
-					observer.unobserve(statElement) // Stop observing once animated
-				}
-			})
-		},
-		{
-			root: null, // Use the viewport as the root
-			threshold: 0.5 // Trigger when 50% of the element is visible
-		}
-	)
-
-	// Observe each stat element individually
-	stats.forEach((stat) => {
-		observer.observe(stat)
-	})
+	// Run the setup function on initial load and after Astro navigations
+	document.addEventListener('astro:page-load', setupStatsAnimation);
+	// Run on initial load as well in case astro:page-load isn't needed for the very first load
+	// setupStatsAnimation(); // astro:page-load should cover the initial load too.
 </script>

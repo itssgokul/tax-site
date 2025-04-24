@@ -56,7 +56,8 @@ const header = {
 						</select>
 					</div>
 					<div>
-						<Button type="submit" style="primary" classes="w-full">Submit</Button>
+						{/* Changed type to "button" and added specific class */}
+						<Button type="button" style="primary" classes="w-full contact-submit-button">Submit</Button>
 					</div>
 				</form>
 				<div id="form-result" class="mt-4 text-center text-sm"></div>
@@ -67,14 +68,26 @@ const header = {
 </Layout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  console.log("Client-side: Main script tag executed."); // Log script execution start
+
+  function setupContactForm() {
+    console.log("Client-side: setupContactForm() called."); // Log function call
+
     // Cast form to HTMLFormElement
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
     const resultDiv = document.getElementById('form-result');
+    // Find the button using the specific class
+    console.log("Client-side: Attempting to find button with selector:", '.contact-submit-button'); // Log selector
+    const submitButton = form?.querySelector('.contact-submit-button') as HTMLButtonElement | null; 
+    console.log("Client-side: submitButton found?", submitButton); // Log the result of the querySelector
 
-    if (form && resultDiv) {
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent default form submission
+    if (form && resultDiv && submitButton) { // Check for button too
+      console.log("Client-side: Successfully found form, resultDiv, and submitButton."); // Simplified log
+      // Changed from form 'submit' listener to button 'click' listener
+      submitButton.addEventListener('click', async () => { // Removed event parameter
+        console.log("Client-side: Submit button click event triggered."); // Log click event
+        // No need for event.preventDefault() on a type="button" click for form submission
+        
         resultDiv.textContent = 'Sending...';
         resultDiv.className = 'mt-4 text-center text-sm text-neutral-600 dark:text-neutral-400'; // Reset classes
 
@@ -82,6 +95,7 @@ const header = {
         const requestData = Object.fromEntries(formData.entries());
 
         try {
+          console.log("Client-side: Attempting fetch to /api/submit-contact with JSON body:", requestData); // Add log
           const response = await fetch('/api/submit-contact', {
             method: 'POST',
             headers: {
@@ -101,8 +115,9 @@ const header = {
             resultDiv.className = 'mt-4 text-center text-sm text-red-600 dark:text-red-400';
           }
         } catch (error) {
-          console.error('Form submission error:', error);
-          resultDiv.textContent = 'An error occurred. Please try again.';
+          // This catch block handles network errors or errors during fetch/response processing (like failed JSON parsing)
+          console.error('Client-side: Form submission fetch/processing error:', error); // Log the specific error
+          resultDiv.textContent = 'An error occurred during submission. Please check the console.';
           resultDiv.className = 'mt-4 text-center text-sm text-red-600 dark:text-red-400';
         } finally {
             // Optional: Hide message after a delay
@@ -113,6 +128,25 @@ const header = {
             }, 7000); // Hide after 7 seconds
         }
       });
+      console.log("Client-side: Click event listener attached to submit button."); // Log listener attachment
+    } else {
+      // Log which element(s) were not found
+      console.error("Client-side: Listener not attached. Missing elements:", { 
+        formFound: !!form, 
+        resultDivFound: !!resultDiv, 
+        submitButtonFound: !!submitButton 
+      }); 
     }
-  });
+  }
+
+  // Run on initial load
+  if (document.readyState === 'loading') { //DOMContentLoaded hasn't fired yet
+    document.addEventListener('DOMContentLoaded', setupContactForm);
+  } else { // DOMContentLoaded has already fired
+    setupContactForm();
+  }
+
+  // Run after Astro view transitions
+  document.addEventListener('astro:page-load', setupContactForm);
+
 </script>
