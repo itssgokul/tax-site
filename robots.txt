@@ -1,0 +1,16 @@
+# robots.txt
+# 5/6/2025 7:00:50 AM
+
+User-agent: *
+Allow: /
+Sitemap: https://onepointtax.in/sitemap.xml
+
+# Common disallow paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /test/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+
+# Crawl delay (in seconds)
+Crawl-Delay: 5

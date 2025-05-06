@@ -1,0 +1,18 @@
+# robots.txt
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /temp/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /*?*
+Disallow: /*.php$
+
+Sitemap: https://onepointtax.in/sitemap.xml
+
+# Googlebot specific settings
+User-agent: Googlebot
+Crawl-Delay: 2

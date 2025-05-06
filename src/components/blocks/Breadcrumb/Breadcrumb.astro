@@ -1,0 +1,50 @@
+---
+// Breadcrumb Component
+// -------------------
+// Generates breadcrumb schema markup based on current URL path
+// Converts URL segments to readable names (e.g., tax-planning → Tax Planning)
+
+// Get current URL path and split into segments
+const path = Astro.url.pathname;
+const segments = path.split('/').filter(segment => segment !== '');
+
+// Initialize breadcrumb list with home
+const breadcrumbList = [{
+  "@type": "ListItem",
+  "position": 1,
+  "name": "Home",
+  "item": "https://www.onepointtax.in/"
+}];
+
+// Process each segment to build breadcrumb trail
+segments.forEach((segment, index) => {
+  // Skip index.html if present
+  if (segment.toLowerCase() === 'index.html') return;
+  
+  const position = index + 2;
+  // Convert URL segment to readable name (handle hyphens/underscores)
+  const name = segment
+    .split(/[-_]/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+  
+  // Build URL for this breadcrumb level
+  const item = `https://www.onepointtax.in/${segments.slice(0, index + 1).join('/')}`;
+  
+  breadcrumbList.push({
+    "@type": "ListItem",
+    "position": position,
+    "name": name,
+    "item": item
+  });
+});
+---
+
+<!-- Breadcrumb Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": {JSON.stringify(breadcrumbList)}
+}
+</script>

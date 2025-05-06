@@ -28,6 +28,8 @@ const imageAlt = `Preview image for ${title}`; // Dynamic alt text
 <Fragment>
 	<title>{title}</title>
 	<meta name="description" content={description} />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	{canonical && <link rel="canonical" href={new URL(Astro.url.pathname, Astro.url.origin).href} />}
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={Astro.url} />
 	<meta property="og:title" content={title} />
@@ -41,4 +43,70 @@ const imageAlt = `Preview image for ${title}`; // Dynamic alt text
 	<meta property="twitter:image" content={imageURL} />
 	{canonical && <link rel="canonical" href={Astro.url.href} />}
 	{noindex && <meta name="robots" content="noindex,nofollow" />}
+
+	<script type="application/ld+json">
+		{{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "{configData.business.name}",
+			"alternateName": "Onepoint Tax",
+			"url": "{configData.business.url}",
+			"logo": "{configData.business.logo}",
+			"sameAs": [
+				"https://www.facebook.com/onepointtax",
+				"https://www.instagram.com/onepointtax",
+				"https://www.linkedin.com/company/onepointtax"
+			]
+		}}
+	</script>
+	
+	<script type="application/ld+json">
+		{{
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"areaServed": "India",
+			"serviceArea": {
+				"@type": "GeoCircle",
+				"radius": 50000,
+				"center": {
+					"@type": "GeoCoordinates",
+					"latitude": 28.6139,
+					"longitude": 77.2090
+				}
+			},
+			"name": "{configData.business.name}",
+			"address": {{
+				"@type": "PostalAddress",
+				"streetAddress": "{configData.business.address.street}",
+				"addressLocality": "{configData.business.address.city}",
+				"addressRegion": "{configData.business.address.state}",
+				"postalCode": "{configData.business.address.zip}",
+				"addressCountry": "{configData.business.address.country}"
+			}},
+			"telephone": "{configData.business.phone}",
+			"email": "{configData.business.email}",
+			"url": "{configData.business.url}",
+			"openingHours": "{configData.business.openingHours}",
+			"priceRange": "₹₹₹",
+			"aggregateRating": {{
+				"@type": "AggregateRating",
+				"ratingValue": "4.8",
+				"reviewCount": "125"
+			}}
+		}}
+	</script>
+	
+	<script type="application/ld+json">
+		{{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "{configData.business.name}",
+			"url": "{configData.business.url}",
+			"potentialAction": {{
+				"@type": "SearchAction",
+				"target": "{configData.business.url}/search?q={search_term_string}",
+				"query-input": "required name=search_term_string"
+			}}
+		}}
+	</script>
 </Fragment>

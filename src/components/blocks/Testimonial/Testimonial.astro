@@ -106,7 +106,7 @@ function getAvatarColor(name: string): string {
   </div>
 </Section>
 
-<style>
+  <style>
   /* Override Swiper default styles for navigation buttons */
   .swiper-button-next::after,
   .swiper-button-prev::after {
@@ -125,6 +125,19 @@ function getAvatarColor(name: string): string {
       /* Calculate width for 2 slides, accounting for spaceBetween (24px at this breakpoint) */
       width: calc(50% - 12px); /* (100% / 2) - (spaceBetween / 2) */
     }
+  }
+  
+  /* SEO: Ensure testimonials are crawlable by search engines */
+  .testimonial-content {
+    position: relative;
+  }
+  
+  .testimonial-content .swiper-slide {
+    position: static;
+  }
+  
+  .testimonial-content .swiper-slide .bg-white {
+    min-height: 320px;
   }
 </style>
 
